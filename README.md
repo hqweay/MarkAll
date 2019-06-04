@@ -1,6 +1,6 @@
 # mark-all
 
-> this is a project about mark operation that you can mark books, films...
+> this is a project built by electron-vue that help you to mark your life 
 
 #### Build Setup
 

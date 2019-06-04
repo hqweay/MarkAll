@@ -12,13 +12,22 @@
             <div class="siderbar-body">
               <ul>
                 <li>
-                  <router-link to="/template">模板</router-link>
+                  <router-link to="/template">
+                    <div class="tab-link">模板</div>
+                  </router-link>
                 </li>
                 <li>
-                  <a href="/item">项目</a>
+                  <router-link to="/template">
+                    <div class="tab-link">项目</div>
+                  </router-link>
                 </li>
                 <li>
-                  <a href="/tag">标签</a>
+                  <router-link to="/template">
+                    <div class="tab-link">标签</div>
+                  </router-link>
+                </li>
+                <li>
+                  <a href="/">测试</a>
                 </li>
               </ul>
             </div>
@@ -38,11 +47,16 @@
 
 <script>
 import index from "./views/index.vue";
+
 export default {
   name: "mark-all",
+  data() {
+    return {};
+  },
   components: {
     index
-  }
+  },
+  created: function() {}
 };
 </script>
 
