@@ -57,7 +57,7 @@
     "lowdb": "^1.0.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
-    "vue-json-edit": "^1.2.0",
+    "vue-json-ui-editor": "^1.0.0",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "vuex-electron": "^1.0.0"

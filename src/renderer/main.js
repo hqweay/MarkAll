@@ -21,6 +21,8 @@ Vue.config.productionTip = false
 // 引入mockjs
 require('./mock')
 
+
+
 /* eslint-disable no-new */
 new Vue({
   components: { App },

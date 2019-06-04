@@ -8,19 +8,21 @@ export const constantRouterMap = [
         path: '/',
         // redirect: '/template',//跳转
         name: 'index',//命名路由
-    },
-    {
+    }, {
         path: '/movie',
-        name: 'movie',//命名路由
+        name: 'movie',
         component: () => import('@/views/movie/movie'),
-    },
-    {
+    }, {
         path: '/template',
-        name: 'template',//命名路由
+        name: 'template',
         component: () => import('@/views/template/index'),
     }, {
+        path: '/template/add',
+        name: 'template-add',
+        component: () => import('@/views/template/add'),
+    }, {
         path: '/template/info/:name',
-        name: 'template-info',//命名路由
+        name: 'template-info',
         component: () => import('@/views/template/info'),
     }
 ];

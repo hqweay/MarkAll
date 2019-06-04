@@ -1,7 +1,7 @@
 <template>
   <div class="template">
     <ul class="item-list">
-      <li class="item">
+      <li class="item" @click="addTemplate()">
         <div class="container">
           <div class="card">
             <ul class="item-attr">
@@ -59,6 +59,10 @@ export default {
     showInfo(temName) {
       // this.$router.push({ name: 'home', params: { userId: wise }})
       this.$router.push("template/info/" + temName);
+    },
+    addTemplate() {
+      console.log("ssss");
+      this.$router.push("template/add");
     }
   }
 };

@@ -12,21 +12,13 @@
             {{template.style}}</pre>
         </li>
         <li class="edit">
-          <!-- <el-input
+          <el-input
             type="textarea"
             :autosize="{ minRows: 4}"
             placeholder="请输入内容"
             v-model="templateString"
             clearable
-          ></el-input>-->
-          <JsonEditor
-            :options="{
-            confirmText: 'confirm',
-            cancelText: 'cancel',
-        }"
-            :objData="jsonData"
-            v-model="jsonData"
-          ></JsonEditor>
+          ></el-input>
           <button class="btn" @click="editTemplate(template.name, templateString)">修改</button>
         </li>
       </ul>
@@ -48,34 +40,65 @@ export default {
   },
   created: function() {
     this.template = getTemplateByName(this.$route.params.name);
-    // this.name = this.template.name;
-    this.templateString = JSON.stringify(this.template);
+    // 对象转 json 再 格式化(缩进)
+    this.templateString = this.checkJson(JSON.stringify(this.template));
   },
   methods: {
     editTemplate(oldName, templateString) {
       console.log(oldName);
       console.log(templateString);
       let newTemplate = [];
-      try {
-        newTemplate = JSON.parse(templateString);
-      } catch (e) {
-        this.errorNotify();
+      if (typeof templateString == "string") {
+        try {
+          newTemplate = JSON.parse(templateString);
+        } catch (e) {
+          console.log(e);
+          this.errorNotify();
+          return false;
+        }
+        editTemplateByName(oldName, newTemplate);
+        this.successNotify();
       }
-      editTemplateByName(oldName, newTemplate);
+    },
+    checkJson(message) {
+      if (message == "") {
+        alert("不能为空");
+        return false;
+      } else {
+        var res = "";
+        for (var i = 0, j = 0, k = 0, ii, ele; i < message.length; i++) {
+          //k:缩进，j:""个数
+          ele = message.charAt(i);
+          if (j % 2 == 0 && ele == "}") {
+            k--;
+            for (ii = 0; ii < k; ii++) ele = "    " + ele;
+            ele = "\n" + ele;
+          } else if (j % 2 == 0 && ele == "{") {
+            ele += "\n";
+            k++;
+            // debugger;
+            for (ii = 0; ii < k; ii++) ele += "    ";
+          } else if (j % 2 == 0 && ele == ",") {
+            ele += "\n";
+            for (ii = 0; ii < k; ii++) ele += "    ";
+          } else if (ele == '"') j++;
+          res += ele;
+        }
+        return res;
+      }
+    },
+    notify(message) {
+      const h = this.$createElement;
+      this.$notify({
+        title: "标题名称",
+        message: h("i", { style: "color: teal" }, message)
+      });
     },
     errorNotify() {
-      const h = this.$createElement;
-      this.$notify({
-        title: "标题名称",
-        message: h("i", { style: "color: teal" }, "要保证json格式哦")
-      });
+      this.notify("出错啦!!要保证 json 格式哦!!!");
     },
     successNotify() {
-      const h = this.$createElement;
-      this.$notify({
-        title: "标题名称",
-        message: h("i", { style: "color: teal" }, "成功啦!!")
-      });
+      this.notify("成功啦!!!");
     }
   }
 };
