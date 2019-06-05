@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "hqweay <hqweay@gmail.com>",
   "description": "this is a project about mark operation that you can mark books, films...",
-  "license": null,
+  "license": "null",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",

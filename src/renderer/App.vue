@@ -13,16 +13,16 @@
               <ul>
                 <li>
                   <router-link to="/template">
-                    <div class="tab-link">模板</div>
+                    <div class="tab-link">类别</div>
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="/template">
-                    <div class="tab-link">项目</div>
+                  <router-link to="/item">
+                    <div class="tab-link">条目</div>
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="/template">
+                  <router-link to="/tag">
                     <div class="tab-link">标签</div>
                   </router-link>
                 </li>

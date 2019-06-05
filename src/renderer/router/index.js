@@ -24,6 +24,30 @@ export const constantRouterMap = [
         path: '/template/info/:name',
         name: 'template-info',
         component: () => import('@/views/template/info'),
+    }, {
+        path: '/item',
+        name: 'item',
+        component: () => import('@/views/item/index'),
+    }, {
+        path: '/item/add',
+        name: 'item-add',
+        component: () => import('@/views/item/add'),
+    }, {
+        path: '/item/info/:name',
+        name: 'item-info',
+        component: () => import('@/views/item/info'),
+    }, {
+        path: '/tag',
+        name: 'tag',
+        component: () => import('@/views/tag/index'),
+    }, {
+        path: '/tag/add',
+        name: 'tag-add',
+        component: () => import('@/views/tag/add'),
+    }, {
+        path: '/tag/info/:name',
+        name: 'tag-info',
+        component: () => import('@/views/tag/info'),
     }
 ];
 export default new Router({

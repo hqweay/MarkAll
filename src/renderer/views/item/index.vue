@@ -1,49 +1,114 @@
 <template>
-  <div class="page">
-    <!-- <button @click="test">哈哈</button> -->
+  <div class="template">
     <ul class="item-list">
-      <li v-for="movie in movieList" :key="movie.title">
-        <ul class="item-attr">
-          <li class="url">
-            <a :href="movie.url" target="_blank">{{movie.url}}</a>
-          </li>
-          <li class="title">{{movie.title}}</li>
-          <!-- <li>{{movie.intro}}</li> -->
-          <li class="comment">{{movie.comment}}</li>
-          <li class="date">{{movie.date}}</li>
-        </ul>
+      <li class="item" @click="addItem()">
+        <div class="container">
+          <div class="card">
+            <ul class="item-attr">
+              <li class="add">
+                <h1>添ss加</h1>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li
+        class="item"
+        v-for="template in list"
+        :key="template.name"
+        @click="showInfo(template.name)"
+      >
+        <div class="container">
+          <div class="card">
+            <ul class="item-attr">
+              <li class="url">
+                <h1>
+                  <a target="_blank">{{template.name}}</a>
+                </h1>
+              </li>
+              <li class="style">
+                <pre>
+                {{template.style}}</pre>
+              </li>
+            </ul>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+// import { getTemplates } from "../../../shared/db/mapper/templateMapper";
+import { getTemplates } from "@/../shared/db/mapper/templateMapper";
+
 export default {
   data() {
     return {
-      movieList: []
+      item: [
+        {
+          name: "test"
+        }
+      ]
     };
   },
   created: function() {
-    this.$http({
-      url: "/api/data",
-      method: "get"
-    }).then(res => {
-      this.movieList = res.data.data;
-    });
-    // this.movieList = require("../../utils/douban.js");
+    this.list = getTemplates();
   },
-  methods: {}
+  methods: {
+    showInfo(itemName) {
+      // this.$router.push({ name: 'home', params: { userId: wise }})
+      this.$router.push("item/info/" + itemName);
+    },
+    addItem() {
+      console.log("ssss");
+      this.$router.push("template/add");
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
-.item-attr {
-  list-style: none;
-  margin-top: 1em;
+* {
+  display: flex;
 }
-
-.info ul li {
-  display: inline;
+.template {
+  a {
+    // color: black;
+    text-decoration: none;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .item-list {
+    margin-bottom: 40px;
+    .item {
+      margin-top: 20px;
+    }
+    .card {
+      background-color: #75d8af;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+      width: 300px;
+      height: 300px;
+      border-radius: 5px;
+      cursor: pointer;
+      .add {
+        text-align: center;
+      }
+      .style {
+        margin-right: 40px;
+      }
+    }
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+    .container {
+      padding: 2px 16px;
+    }
+  }
 }
 </style>

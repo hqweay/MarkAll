@@ -30,6 +30,10 @@
                 <pre>
                 {{template.style}}</pre>
               </li>
+              <!-- .top 阻止事件继续向下传播 -->
+              <div class="delete" @click.stop="deleteTemplate(template.name)">
+                <img src="@/assets/icon/trash.png" alt>
+              </div>
             </ul>
           </div>
         </div>
@@ -40,7 +44,10 @@
 
 <script type="text/ecmascript-6">
 // import { getTemplates } from "../../../shared/db/mapper/templateMapper";
-import { getTemplates } from "@/../shared/db/mapper/templateMapper";
+import {
+  getTemplates,
+  deleteTemplateByName
+} from "@/../shared/db/mapper/templateMapper";
 
 export default {
   data() {
@@ -56,13 +63,25 @@ export default {
     this.list = getTemplates();
   },
   methods: {
+    notify(message) {
+      const h = this.$createElement;
+      this.$notify({
+        title: "标题名称",
+        message: h("i", { style: "color: teal" }, message)
+      });
+    },
     showInfo(temName) {
       // this.$router.push({ name: 'home', params: { userId: wise }})
       this.$router.push("template/info/" + temName);
     },
     addTemplate() {
-      console.log("ssss");
       this.$router.push("template/add");
+    },
+    deleteTemplate(name) {
+      deleteTemplateByName(name);
+      // this.$router.push("/template");
+      this.list = getTemplates();
+      this.notify("删除成功");
     }
   }
 };
@@ -84,6 +103,7 @@ export default {
     flex-wrap: wrap;
   }
   .item-list {
+    margin-bottom: 40px;
     .item {
       margin-top: 20px;
     }
@@ -100,6 +120,30 @@ export default {
       }
       .style {
         margin-right: 40px;
+      }
+      position: relative;
+      .delete {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        img {
+          height: 50px;
+          width: 50px;
+          // border: 5px solid #eee;
+          // -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+          // -moz-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+          //  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+          -webkit-transition: all 0.5s ease-out;
+          -moz-transition: all 0.5s ease;
+          -o-transition: all 0.5s ease;
+        }
+        img:hover {
+          height: 80px;
+          width: 80px;
+          -webkit-transform: rotate(-7deg);
+          -moz-transform: rotate(-7deg);
+          -o-transform: rotate(-7deg);
+        }
       }
     }
     .card:hover {
