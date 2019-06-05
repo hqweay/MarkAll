@@ -22,6 +22,11 @@ export function deleteTagByName(tagName) {
 
 // 修改标签
 export function editTagByName(oldName, newTag) {
+
+    if (db.read().get('tag').find({ name: newTag.name }).value() != null) {
+        return false;
+    }
+
     db.read().get('tag').find({ name: oldName }).assign({
         name: newTag.name,
     }).write()

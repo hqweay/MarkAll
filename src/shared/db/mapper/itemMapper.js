@@ -7,6 +7,8 @@ export function getItems() {
 }
 
 // 通过 templateName 和 name 获取条目
+// 做不到
+// lowdb 不支持深查询
 export function getItemByName(templateName, name) {
     //"template_name": templateName, 
     // "template_name": templateName, "tag_name": "开心",
@@ -38,4 +40,18 @@ export function deleteItemByID(id) {
     db.read().get('item')
         .removeById(id)
         .write();
+}
+
+// 通过 id 修改 条目
+export function editItemByID(id, newItem) {
+
+    if (db.read().get('item').find({ id: newItem.id }).value() != null) {
+        return false;
+    }
+
+    db.read().get('item').getById(id).assign({
+        template_name: newItem.template_name,
+        template_style: newItem.template_style,
+        tag_name: newItem.tag_name
+    }).write()
 }

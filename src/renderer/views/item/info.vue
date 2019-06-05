@@ -13,8 +13,7 @@
             v-model="itemString"
             clearable
           ></el-input>
-          <button class="btn" @click="editTemplate(template.name, templateString)">修改</button>
-          <button class="btn" @click="deleteTemplate(template.name)">删除</button>
+          <button class="btn" @click="editItem(item.id, itemString)">修改</button>
         </div>
       </div>
     </div>
@@ -22,7 +21,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { getItemByID } from "@/../shared/db/mapper/itemMapper";
+import { getItemByID, editItemByID } from "@/../shared/db/mapper/itemMapper";
 import { checkJson } from "@/utils/checkJson";
 export default {
   data() {
@@ -45,6 +44,23 @@ export default {
         title: "提示",
         message: h("i", { style: "color: teal" }, message)
       });
+    },
+    editItem(id, itemString) {
+      let newItem = [];
+      if (typeof itemString == "string") {
+        try {
+          newItem = JSON.parse(itemString);
+        } catch (e) {
+          this.notify("请保证 json 格式");
+          return false;
+        }
+        if (editItemByID(id, newItem) == false) {
+          this.notify("修改后的数据与已有数据重复");
+          return false;
+        }
+        this.notify("修改成功");
+        this.item = newItem;
+      }
     }
   }
 };

@@ -18,6 +18,12 @@ export function getTemplateByID(temID) {
 
 // 修改模板
 export function editTemplateByName(oldName, newTemplate) {
+    // 修改前需要判断一下新的与旧的是否重复
+
+    if (db.read().get('template').find({ name: newTemplate.name }).value() != null) {
+        return false;
+    }
+
     db.read().get('template').find({ name: oldName }).assign({
         name: newTemplate.name,
         style: newTemplate.style
@@ -26,8 +32,6 @@ export function editTemplateByName(oldName, newTemplate) {
 
 // 删除模板
 export function deleteTemplateByName(oldName) {
-    // db.read().get('template').value();
-    // console.log(oldName);
     db.read().get('template')
         .remove({ name: oldName })
         .write();
@@ -35,8 +39,6 @@ export function deleteTemplateByName(oldName) {
 
 // 添加模板
 export function addTemplate(template) {
-    // 操作前通过 get 更新数据保证为最新数据
-    // db.read().get('template').value()
     // 插入数据前先判断是否已有数据
     if (db.read().get('template').find({ name: template.name }).value() != null) {
         return false;

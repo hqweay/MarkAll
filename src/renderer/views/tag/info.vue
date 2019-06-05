@@ -43,10 +43,13 @@ export default {
       });
     },
     editTagNow(newTag) {
-      // this.oldTagName;
-      editTagByName(this.oldTagName, this.tag);
+      if (editTagByName(this.oldTagName, this.tag) == false) {
+        this.notify("修改后的数据和已有数据重复,或者您尚未修改...");
+        return false;
+      }
       this.$router.push("/tag");
       this.notify("修改成功");
+      this.oldTagName = this.tag.name;
     }
   }
 };

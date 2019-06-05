@@ -21,7 +21,7 @@
             clearable
           ></el-input>
           <button class="btn" @click="editTemplate(template.name, templateString)">修改</button>
-          <button class="btn" @click="deleteTemplate(template.name)">删除</button>
+          <!-- <button class="btn" @click="deleteTemplate(template.name)">删除</button> -->
         </div>
       </div>
     </div>
@@ -54,20 +54,24 @@ export default {
         try {
           newTemplate = JSON.parse(templateString);
         } catch (e) {
-          console.log(e);
+          // console.log(e);
           this.errorNotify();
           return false;
         }
-        editTemplateByName(oldName, newTemplate);
+        if (editTemplateByName(oldName, newTemplate) == false) {
+          this.notify("修改后的数据与已有数据重复了...");
+          return false;
+        }
         this.successNotify();
         this.template = newTemplate;
       }
     },
-    deleteTemplate(oldName) {
-      deleteTemplateByName(oldName);
-      this.$router.push("/template");
-      this.notify("删除成功");
-    },
+    // 首页删除就行了
+    // deleteTemplate(oldName) {
+    //   deleteTemplateByName(oldName);
+    //   this.$router.push("/template");
+    //   this.notify("删除成功");
+    // },
     notify(message) {
       const h = this.$createElement;
       this.$notify({
