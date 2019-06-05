@@ -58,7 +58,7 @@ export default {
       });
     },
     addTag() {
-      this.$router.push("tag/add");
+      this.$router.push("/tag/add");
     },
     showInfo(tagName) {},
     deleteTag(tagName) {

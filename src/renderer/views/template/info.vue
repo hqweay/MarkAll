@@ -1,17 +1,18 @@
 <template>
   <div class="container">
     <div class="card">
-      <ul class="item-attr">
-        <li class="url">
+      <div class="container">
+        <div class="name">
           <h1>
             <a target="_blank">{{template.name}}</a>
           </h1>
-        </li>
-        <li class="style">
-          <pre>
-            {{template.style}}</pre>
-        </li>
-        <li class="edit">
+        </div>
+
+        <div class="style">
+          <pre>{{templateString}}</pre>
+        </div>
+
+        <div class="edit">
           <el-input
             type="textarea"
             :autosize="{ minRows: 4}"
@@ -21,8 +22,8 @@
           ></el-input>
           <button class="btn" @click="editTemplate(template.name, templateString)">修改</button>
           <button class="btn" @click="deleteTemplate(template.name)">删除</button>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -94,20 +95,23 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 100%;
-  height: 700px;
+  min-height: 700px;
+  height: 100%;
   border-radius: 5px;
   cursor: pointer;
-  ul {
-    list-style: none;
-    margin: 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-right: 40px;
-    .edit {
-      margin-top: 40px;
+  .container {
+    margin: 10px 10px 10px 10px;
+    .style {
+      // width: 80%;
+      pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
     }
+    .edit,
     .btn {
       margin-top: 40px;
+      margin-bottom: 10px;
     }
   }
 }

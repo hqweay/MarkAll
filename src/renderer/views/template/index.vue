@@ -27,8 +27,7 @@
                 </h1>
               </li>
               <li class="style">
-                <pre>
-                {{template.style}}</pre>
+                <pre>{{template.style}}</pre>
               </li>
               <!-- .top 阻止事件继续向下传播 -->
               <div class="delete" @click.stop="deleteTemplate(template.name)">
@@ -72,10 +71,10 @@ export default {
     },
     showInfo(temName) {
       // this.$router.push({ name: 'home', params: { userId: wise }})
-      this.$router.push("template/info/" + temName);
+      this.$router.push("/template/info/" + temName);
     },
     addTemplate() {
-      this.$router.push("template/add");
+      this.$router.push("/template/add");
     },
     deleteTemplate(name) {
       deleteTemplateByName(name);
@@ -115,11 +114,26 @@ export default {
       height: 300px;
       border-radius: 5px;
       cursor: pointer;
+      // 暂且这么解决吧...
+      ul {
+        width: 70%;
+        height: 70%;
+      }
       .add {
         text-align: center;
       }
       .style {
         margin-right: 40px;
+        width: 100%;
+        height: 100%;
+        pre {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -o-text-overflow: ellipsis;
+          white-space: pre-wrap;
+          // white-space: pre-wrap;
+          // word-wrap: break-word;
+        }
       }
       position: relative;
       .delete {

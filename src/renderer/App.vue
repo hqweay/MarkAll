@@ -12,18 +12,18 @@
             <div class="siderbar-body">
               <ul>
                 <li>
-                  <router-link to="/template">
-                    <div class="tab-link">类别</div>
+                  <router-link class="tab-item" to="/template">
+                    <span class="tab-link">类别</span>
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="/item">
-                    <div class="tab-link">条目</div>
+                  <router-link class="tab-item" to="/item">
+                    <span class="tab-link">条目</span>
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="/tag">
-                    <div class="tab-link">标签</div>
+                  <router-link class="tab-item" to="/tag">
+                    <span class="tab-link">标签</span>
                   </router-link>
                 </li>
                 <li>
@@ -37,7 +37,8 @@
       <el-col :span="17">
         <div class="grid-content bg-purple">
           <div class="content">
-            <index/>
+            <!-- <index/> -->
+            <router-view></router-view>
           </div>
         </div>
       </el-col>
@@ -93,7 +94,14 @@ export default {
           // line-height: 40px;
         }
         a:hover {
-          color: cadetblue;
+          color: #285943;
+        }
+        .tab-item {
+          &.router-link-active {
+            .tab-link {
+              color: #379392;
+            }
+          }
         }
       }
     }

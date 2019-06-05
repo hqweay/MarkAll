@@ -1,36 +1,34 @@
 <template>
   <div class="template">
     <ul class="item-list">
-      <li class="item" @click="addItem()">
+      <li class="item" @click="addTag()">
         <div class="container">
           <div class="card">
             <ul class="item-attr">
               <li class="add">
-                <h1>添ss加</h1>
+                <h1>添加</h1>
               </li>
             </ul>
           </div>
         </div>
       </li>
-      <li
-        class="item"
-        v-for="template in list"
-        :key="template.name"
-        @click="showInfo(template.name)"
-      >
+      <li class="item" v-for="item in items" :key="item.id" @click="showInfo(item.id)">
         <div class="container">
           <div class="card">
-            <ul class="item-attr">
-              <li class="url">
-                <h1>
-                  <a target="_blank">{{template.name}}</a>
-                </h1>
-              </li>
-              <li class="style">
-                <pre>
-                {{template.style}}</pre>
-              </li>
-            </ul>
+            <span class="main-name">
+              <h1>
+                <a target="_blank">{{item.template_style.name}}</a>
+              </h1>
+            </span>
+            <span class="template-name">
+              <h2>{{item.template_name}}</h2>
+            </span>
+            <span class="tag-name">
+              <h2>{{item.tag_name}}</h2>
+            </span>
+            <div class="delete" @click.stop="deleteItem(item.id)">
+              <img src="@/assets/icon/trash.png" alt>
+            </div>
           </div>
         </div>
       </li>
@@ -39,13 +37,12 @@
 </template>
 
 <script type="text/ecmascript-6">
-// import { getTemplates } from "../../../shared/db/mapper/templateMapper";
-import { getTemplates } from "@/../shared/db/mapper/templateMapper";
+import { getItems, deleteItemByID } from "@/../shared/db/mapper/itemMapper";
 
 export default {
   data() {
     return {
-      item: [
+      items: [
         {
           name: "test"
         }
@@ -53,16 +50,31 @@ export default {
     };
   },
   created: function() {
-    this.list = getTemplates();
+    this.items = getItems();
   },
   methods: {
-    showInfo(itemName) {
-      // this.$router.push({ name: 'home', params: { userId: wise }})
-      this.$router.push("item/info/" + itemName);
+    notify(message) {
+      const h = this.$createElement;
+      this.$notify({
+        title: "标题名称",
+        message: h("i", { style: "color: teal" }, message)
+      });
     },
-    addItem() {
-      console.log("ssss");
-      this.$router.push("template/add");
+    addTag() {
+      this.$router.push("/tag/add");
+    },
+    showInfo(id) {
+      // path 只能用 query 传参
+      // this.$router.push({
+      //   path: "/item/info",
+      //   query: { templateName: nowTemplateName, name: nowName }
+      // });
+      this.$router.push("/item/info/" + id);
+    },
+    deleteItem(id) {
+      deleteItemByID(id);
+      this.items = getItems();
+      this.notify("删除成功");
     }
   }
 };
@@ -96,11 +108,43 @@ export default {
       height: 300px;
       border-radius: 5px;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      span {
+        margin: 0 10px 0 10px;
+      }
+      .main-name {
+        height: 100px;
+        // max-height: 80px;
+        overflow: hidden;
+        white-space: normal;
+      }
       .add {
         text-align: center;
       }
-      .style {
-        margin-right: 40px;
+      position: relative;
+      .delete {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        img {
+          height: 50px;
+          width: 50px;
+          // border: 5px solid #eee;
+          // -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+          // -moz-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+          //  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+          -webkit-transition: all 0.5s ease-out;
+          -moz-transition: all 0.5s ease;
+          -o-transition: all 0.5s ease;
+        }
+        img:hover {
+          height: 80px;
+          width: 80px;
+          -webkit-transform: rotate(-7deg);
+          -moz-transform: rotate(-7deg);
+          -o-transform: rotate(-7deg);
+        }
       }
     }
     .card:hover {

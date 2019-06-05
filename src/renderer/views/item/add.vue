@@ -1,46 +1,51 @@
 <template>
   <div class="container">
     <div class="card">
-      <json-editor ref="JsonEditor" :schema="schema" v-model="model">
-        <button @click="submit">submit</button>
-        <button @click="reset">Reset</button>
-      </json-editor>
+      <div class="edit">
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 4}"
+          placeholder="请输入内容"
+          v-model="tag.name"
+          clearable
+        ></el-input>
+        <button class="btn" @click="addTagNow(tag)">添加</button>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-const SCHEMA = {
-  type: "object",
-  title: "vue-json-editor demo",
-  properties: {
-    name: {
-      type: "string"
-    },
-    email: {
-      type: "string"
-    }
-  }
-};
-// import vue-json-ui-editor
-import JsonEditor from "vue-json-ui-editor";
+<script type="text/ecmascript-6">
+import { addTag } from "@/../shared/db/mapper/tagMapper";
 export default {
-  components: { JsonEditor },
-  data: () => ({
-    // init json schma file ( require('@/schema/newsletter') )
-    schema: SCHEMA,
-    // data
-    model: {
-      name: "Yourtion"
-    }
-  }),
-
+  data() {
+    return {
+      tag: {
+        name: ""
+      }
+    };
+  },
+  created: function() {},
   methods: {
-    submit(_e) {
-      alert(JSON.stringify(this.model));
+    notify(message) {
+      const h = this.$createElement;
+      this.$notify({
+        title: "标题名称",
+        message: h("i", { style: "color: teal" }, message)
+      });
     },
-    reset() {
-      this.$refs.JsonEditor.reset();
+    addTagNow(tag) {
+      if (tag.name == "") {
+        this.notify("不能为空啊");
+        return false;
+      }
+      // console.log(tagName);
+      if (addTag(tag) == false) {
+        this.notify("重复了");
+        return false;
+      }
+      this.$router.push("/tag");
+      this.notify("添加成功");
     }
   }
 };
@@ -52,9 +57,18 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 100%;
-  height: 800px;
+  height: 600px;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  .edit {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .btn {
+    margin-top: 40px;
+  }
 }
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);

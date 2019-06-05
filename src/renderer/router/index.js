@@ -33,7 +33,7 @@ export const constantRouterMap = [
         name: 'item-add',
         component: () => import('@/views/item/add'),
     }, {
-        path: '/item/info/:name',
+        path: '/item/info/:id',
         name: 'item-info',
         component: () => import('@/views/item/info'),
     }, {

@@ -110,7 +110,7 @@ let rendererConfig = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new MiniCssExtractPlugin({filename: 'styles.css'}),
+    new MiniCssExtractPlugin({ filename: 'styles.css' }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, '../src/index.ejs'),
@@ -127,6 +127,8 @@ let rendererConfig = {
     new webpack.NoEmitOnErrorsPlugin()
   ],
   output: {
+    // 配置 publicPath 防止 二级路由跳一级 失效
+    publicPath: "/",
     filename: '[name].js',
     libraryTarget: 'commonjs2',
     path: path.join(__dirname, '../dist/electron')
