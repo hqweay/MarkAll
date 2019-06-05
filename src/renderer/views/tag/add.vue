@@ -57,7 +57,8 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 100%;
-  height: 600px;
+  min-height: 700px;
+  height: 100%;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
@@ -65,9 +66,11 @@ export default {
   .edit {
     width: 80%;
     margin: 0 auto;
-  }
-  .btn {
-    margin-top: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    .btn {
+      margin-top: 40px;
+    }
   }
 }
 .card:hover {

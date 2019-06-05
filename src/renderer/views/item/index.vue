@@ -1,7 +1,7 @@
 <template>
   <div class="template">
     <ul class="item-list">
-      <li class="item" @click="addTag()">
+      <li class="item" @click="addItem()">
         <div class="container">
           <div class="card">
             <ul class="item-attr">
@@ -60,8 +60,8 @@ export default {
         message: h("i", { style: "color: teal" }, message)
       });
     },
-    addTag() {
-      this.$router.push("/tag/add");
+    addItem() {
+      this.$router.push("/item/add");
     },
     showInfo(id) {
       // path 只能用 query 传参
