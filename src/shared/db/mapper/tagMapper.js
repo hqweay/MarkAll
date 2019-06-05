@@ -19,3 +19,10 @@ export function deleteTagByName(tagName) {
         .remove({ name: tagName })
         .write();
 }
+
+// 修改标签
+export function editTagByName(oldName, newTag) {
+    db.read().get('tag').find({ name: oldName }).assign({
+        name: newTag.name,
+    }).write()
+}

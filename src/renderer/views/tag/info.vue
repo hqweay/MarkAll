@@ -1,88 +1,52 @@
 <template>
   <div class="container">
     <div class="card">
-      <ul class="item-attr">
-        <li class="url">
-          <h1>
-            <a target="_blank">{{template.name}}</a>
-          </h1>
-        </li>
-        <li class="style">
-          <pre>
-            {{template.style}}</pre>
-        </li>
-        <li class="edit">
-          <el-input
-            type="textarea"
-            :autosize="{ minRows: 4}"
-            placeholder="请输入内容"
-            v-model="templateString"
-            clearable
-          ></el-input>
-          <button class="btn" @click="editTemplate(template.name, templateString)">修改</button>
-          <button class="btn" @click="deleteTemplate(template.name)">删除</button>
-        </li>
-      </ul>
+      <!-- <div class="name">
+        <h1>{{tag.name}}</h1>
+      </div>-->
+      <div class="edit">
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 4}"
+          placeholder="请输入内容"
+          v-model="tag.name"
+          clearable
+        ></el-input>
+        <button class="btn" @click="editTagNow(tag)">修改</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import {
-  getTemplateByName,
-  editTemplateByName,
-  deleteTemplateByName
-} from "@/../shared/db/mapper/templateMapper";
-import { checkJson } from "@/utils/checkJson";
+// import { editTagByName } from "@/../shared/db/mapper/tagMapper";
+import { editTagByName } from "@/../shared/db/mapper/tagMapper";
 export default {
   data() {
     return {
-      template: {},
-      templateString: ""
+      tag: {
+        name: ""
+      },
+      oldTagName: ""
     };
   },
   created: function() {
-    this.template = getTemplateByName(this.$route.params.name);
-    // 对象转 json 再 格式化(缩进)
-    this.templateString = checkJson(JSON.stringify(this.template));
+    this.tag.name = this.$route.params.name;
+    this.oldTagName = this.tag.name;
   },
   methods: {
-    editTemplate(oldName, templateString) {
-      console.log(oldName);
-      console.log(templateString);
-      let newTemplate = [];
-      if (typeof templateString == "string") {
-        try {
-          newTemplate = JSON.parse(templateString);
-        } catch (e) {
-          console.log(e);
-          this.errorNotify();
-          return false;
-        }
-        editTemplateByName(oldName, newTemplate);
-        this.successNotify();
-        this.template = newTemplate;
-        console.log(this.template);
-        console.log(newTemplate);
-      }
-    },
-    deleteTemplate(oldName) {
-      deleteTemplateByName(oldName);
-      this.$router.push("/template");
-      this.notify("删除成功");
-    },
     notify(message) {
       const h = this.$createElement;
       this.$notify({
-        title: "标题名称",
+        title: "提示",
         message: h("i", { style: "color: teal" }, message)
       });
     },
-    errorNotify() {
-      this.notify("出错啦!!要保证 json 格式哦!!!");
-    },
-    successNotify() {
-      this.notify("成功啦!!!");
+    editTagNow(newTag) {
+      // this.oldTagName;
+      editTagByName(this.oldTagName, this.tag);
+      this.$router.push("/tag");
+      this.notify("修改成功");
     }
   }
 };
@@ -94,18 +58,18 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 100%;
-  height: 700px;
+  min-height: 700px;
+  height: 100%;
   border-radius: 5px;
   cursor: pointer;
-  ul {
-    list-style: none;
-    margin: 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-right: 40px;
-    .edit {
-      margin-top: 40px;
-    }
+  display: flex;
+  // flex-direction: column;
+  align-items: center;
+  .edit {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     .btn {
       margin-top: 40px;
     }

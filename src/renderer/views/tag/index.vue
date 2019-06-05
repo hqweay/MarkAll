@@ -53,14 +53,16 @@ export default {
     notify(message) {
       const h = this.$createElement;
       this.$notify({
-        title: "标题名称",
+        title: "提示",
         message: h("i", { style: "color: teal" }, message)
       });
     },
     addTag() {
       this.$router.push("/tag/add");
     },
-    showInfo(tagName) {},
+    showInfo(tagName) {
+      this.$router.push("/tag/info/" + tagName);
+    },
     deleteTag(tagName) {
       deleteTagByName(tagName);
       this.tags = getTags();

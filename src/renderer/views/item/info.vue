@@ -5,7 +5,6 @@
         <div class="style">
           <pre>{{itemString}}</pre>
         </div>
-
         <div class="edit">
           <el-input
             type="textarea"
@@ -43,7 +42,7 @@ export default {
     notify(message) {
       const h = this.$createElement;
       this.$notify({
-        title: "标题名称",
+        title: "提示",
         message: h("i", { style: "color: teal" }, message)
       });
     }
@@ -57,7 +56,6 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 100%;
-
   min-height: 700px;
   height: 100%;
   border-radius: 5px;

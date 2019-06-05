@@ -49,8 +49,6 @@ export default {
   },
   methods: {
     editTemplate(oldName, templateString) {
-      console.log(oldName);
-      console.log(templateString);
       let newTemplate = [];
       if (typeof templateString == "string") {
         try {
@@ -63,8 +61,6 @@ export default {
         editTemplateByName(oldName, newTemplate);
         this.successNotify();
         this.template = newTemplate;
-        console.log(this.template);
-        console.log(newTemplate);
       }
     },
     deleteTemplate(oldName) {
@@ -75,7 +71,7 @@ export default {
     notify(message) {
       const h = this.$createElement;
       this.$notify({
-        title: "标题名称",
+        title: "提示",
         message: h("i", { style: "color: teal" }, message)
       });
     },
