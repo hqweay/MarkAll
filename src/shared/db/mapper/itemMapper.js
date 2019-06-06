@@ -41,11 +41,17 @@ export function getItemsByTagName(tagName) {
 export function addItem(newItem) {
     // 插入数据前先判断是否已有数据
     // 因为 id 会变化 所以不能直接通过 对象 判断
-    if (db.read().get('item').find({ template_name: newItem.template_name }).value() != null) {
-        if (db.read().get('item').find(["template_style.name", newItem.template_style.name]).value() != null) {
-            return false;
-        }
-    }
+
+
+    // 也不能简单地通过 name 判断
+    // 如果要判断的话应该对 template_style 的每一项进行判断!!
+    // if (db.read().get('item').find({ template_name: newItem.template_name }).value() != null) {
+    //     if (db.read().get('item').find(["template_style.name", newItem.template_style.name]).value() != null) {
+    //         return false;
+    //     }
+    // }
+
+    // 太麻烦了,,算了...
 
     db.read().get('item').insert(newItem).write();
 }
@@ -70,11 +76,14 @@ export function editItemByID(item) {
     // 判断 模板名+条目名
     // 不能直接判断,因为有 id 影响
 
-    if (db.read().get('item').find({ template_name: item.template_name }).value() != null) {
-        if (db.read().get('item').find(["template_style.name", item.template_style.name]).value() != null) {
-            return 1;
-        }
-    }
+
+    // bug
+    // 应该允许重名啊!!
+    // if (db.read().get('item').find({ template_name: item.template_name }).value() != null) {
+    //     if (db.read().get('item').find(["template_style.name", item.template_style.name]).value() != null) {
+    //         return 1;
+    //     }
+    // }
 
     db.read().get('item').getById(item.id).assign({
         template_name: item.template_name,

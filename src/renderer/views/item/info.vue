@@ -87,7 +87,7 @@ export default {
         this.notify("未修改");
         return false;
       } else if (status === 1) {
-        //
+        // 不会生效,应该允许该操作
         this.notify("名称和已有数据重复");
         return false;
       }
