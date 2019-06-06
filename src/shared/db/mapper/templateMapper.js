@@ -17,6 +17,7 @@ export function getTemplateByID(temID) {
 }
 
 // 修改模板
+// 判断错误 todo
 export function editTemplateByName(oldName, newTemplate) {
     // 修改前需要判断一下新的与旧的是否重复
 

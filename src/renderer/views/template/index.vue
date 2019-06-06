@@ -14,26 +14,27 @@
       </li>
       <li
         class="item"
-        v-for="template in list"
+        v-for="template in templates"
         :key="template.name"
         @click="showInfo(template.name)"
       >
         <div class="container">
           <div class="card">
-            <ul class="item-attr">
-              <li class="url">
-                <h1>
-                  <a target="_blank">{{template.name}}</a>
-                </h1>
-              </li>
-              <li class="style">
-                <pre>{{template.style}}</pre>
-              </li>
-              <!-- .top 阻止事件继续向下传播 -->
-              <div class="delete" @click.stop="deleteTemplate(template.name)">
-                <img src="@/assets/icon/trash.png" alt>
-              </div>
-            </ul>
+            <span class="show name">
+              <h1>
+                <a target="_blank">{{template.name}}</a>
+              </h1>
+            </span>
+            <span class="show style">
+              <pre>{{template.style}}</pre>
+            </span>
+
+            <div class="edit" @click.stop="editTemplate(template.name)">
+              <img src="@/assets/icon/edit.png" alt>
+            </div>
+            <div class="delete" @click.stop="deleteTemplate(template.name)">
+              <img src="@/assets/icon/trash.png" alt>
+            </div>
           </div>
         </div>
       </li>
@@ -42,7 +43,6 @@
 </template>
 
 <script type="text/ecmascript-6">
-// import { getTemplates } from "../../../shared/db/mapper/templateMapper";
 import {
   getTemplates,
   deleteTemplateByName
@@ -51,7 +51,7 @@ import {
 export default {
   data() {
     return {
-      list: [
+      templates: [
         {
           name: "test"
         }
@@ -59,7 +59,7 @@ export default {
     };
   },
   created: function() {
-    this.list = getTemplates();
+    this.templates = getTemplates();
   },
   methods: {
     notify(message) {
@@ -73,13 +73,17 @@ export default {
       // this.$router.push({ name: 'home', params: { userId: wise }})
       this.$router.push("/template/info/" + temName);
     },
+    editTemplate(temName) {
+      // this.$router.push({ name: 'home', params: { userId: wise }})
+      this.$router.push("/template/info/" + temName);
+    },
     addTemplate() {
       this.$router.push("/template/add");
     },
     deleteTemplate(name) {
       deleteTemplateByName(name);
       // this.$router.push("/template");
-      this.list = getTemplates();
+      this.templates = getTemplates();
       this.notify("删除成功");
     }
   }
@@ -114,35 +118,52 @@ export default {
       height: 300px;
       border-radius: 5px;
       cursor: pointer;
-      // 暂且这么解决吧...
-      ul {
+      display: flex;
+      flex-direction: column;
+      span {
         width: 70%;
-        height: 70%;
+        height: 100px;
+        margin-left: 40px;
+      }
+      .name {
+        overflow: hidden;
+        white-space: normal;
+      }
+      .style {
+        height: 180px;
+        overflow: hidden;
+        white-space: normal;
       }
       .add {
         text-align: center;
       }
-      .style {
-        margin-right: 40px;
-        width: 100%;
-        height: 100%;
-        pre {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          -o-text-overflow: ellipsis;
-          white-space: pre-wrap;
-          // white-space: pre-wrap;
-          // word-wrap: break-word;
+      position: relative;
+      .edit {
+        position: absolute;
+        top: 22px;
+        right: 10px;
+        img {
+          height: 40px;
+          width: 40px;
+          -webkit-transition: all 0.5s ease-out;
+          -moz-transition: all 0.5s ease;
+          -o-transition: all 0.5s ease;
+        }
+        img:hover {
+          height: 50px;
+          width: 50px;
+          -webkit-transform: rotate(-7deg);
+          -moz-transform: rotate(-7deg);
+          -o-transform: rotate(-7deg);
         }
       }
-      position: relative;
       .delete {
         position: absolute;
         bottom: 10px;
         right: 10px;
         img {
-          height: 50px;
-          width: 50px;
+          height: 40px;
+          width: 40px;
           // border: 5px solid #eee;
           // -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
           // -moz-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
@@ -152,8 +173,8 @@ export default {
           -o-transition: all 0.5s ease;
         }
         img:hover {
-          height: 80px;
-          width: 80px;
+          height: 50px;
+          width: 50px;
           -webkit-transform: rotate(-7deg);
           -moz-transform: rotate(-7deg);
           -o-transform: rotate(-7deg);

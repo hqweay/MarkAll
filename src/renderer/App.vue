@@ -16,14 +16,15 @@
                     <span class="tab-link">类别</span>
                   </router-link>
                 </li>
-                <li>
-                  <router-link class="tab-item" to="/item">
-                    <span class="tab-link">条目</span>
-                  </router-link>
-                </li>
+
                 <li>
                   <router-link class="tab-item" to="/tag">
                     <span class="tab-link">标签</span>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link class="tab-item" to="/item">
+                    <span class="tab-link">条目</span>
                   </router-link>
                 </li>
                 <li>

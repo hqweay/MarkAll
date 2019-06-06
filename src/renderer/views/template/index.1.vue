@@ -1,7 +1,7 @@
 <template>
   <div class="template">
     <ul class="item-list">
-      <li class="item" @click="addTag()">
+      <li class="item" @click="addTemplate()">
         <div class="container">
           <div class="card">
             <ul class="item-attr">
@@ -12,21 +12,31 @@
           </div>
         </div>
       </li>
-      <li class="item" v-for="tag in tags" :key="tag.name" @click="showInfo(tag.name)">
+      <li
+        class="item"
+        v-for="template in list"
+        :key="template.name"
+        @click="showInfo(template.name)"
+      >
         <div class="container">
           <div class="card">
-            <span class="name">
-              <h1>
-                <a target="_blank">{{tag.name}}</a>
-              </h1>
-            </span>
-
-            <div class="edit" @click.stop="editTag(tag.name)">
-              <img src="@/assets/icon/edit.png" alt>
-            </div>
-            <div class="delete" @click.stop="deleteTag(tag.name)">
-              <img src="@/assets/icon/trash.png" alt>
-            </div>
+            <ul class="item-attr">
+              <li class="name">
+                <h1>
+                  <a target="_blank">{{template.name}}</a>
+                </h1>
+              </li>
+              <li class="style">
+                <pre>{{template.style}}</pre>
+              </li>
+              <!-- .top 阻止事件继续向下传播 -->
+              <div class="edit" @click.stop="editTemplate(template.name)">
+                <img src="@/assets/icon/edit.png" alt>
+              </div>
+              <div class="delete" @click.stop="deleteTemplate(template.name)">
+                <img src="@/assets/icon/trash.png" alt>
+              </div>
+            </ul>
           </div>
         </div>
       </li>
@@ -35,12 +45,16 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { getTags, deleteTagByName } from "@/../shared/db/mapper/tagMapper";
+// import { getTemplates } from "../../../shared/db/mapper/templateMapper";
+import {
+  getTemplates,
+  deleteTemplateByName
+} from "@/../shared/db/mapper/templateMapper";
 
 export default {
   data() {
     return {
-      tags: [
+      list: [
         {
           name: "test"
         }
@@ -48,7 +62,7 @@ export default {
     };
   },
   created: function() {
-    this.tags = getTags();
+    this.list = getTemplates();
   },
   methods: {
     notify(message) {
@@ -58,18 +72,21 @@ export default {
         message: h("i", { style: "color: teal" }, message)
       });
     },
-    addTag() {
-      this.$router.push("/tag/add");
+    showInfo(temName) {
+      // this.$router.push({ name: 'home', params: { userId: wise }})
+      this.$router.push("/template/info/" + temName);
     },
-    showInfo(tagName) {
-      this.$router.push("/tag/info/" + tagName);
+    editTemplate(temName) {
+      // this.$router.push({ name: 'home', params: { userId: wise }})
+      this.$router.push("/template/info/" + temName);
     },
-    editTag(tagName) {
-      this.$router.push("/tag/info/" + tagName);
+    addTemplate() {
+      this.$router.push("/template/add");
     },
-    deleteTag(tagName) {
-      deleteTagByName(tagName);
-      this.tags = getTags();
+    deleteTemplate(name) {
+      deleteTemplateByName(name);
+      // this.$router.push("/template");
+      this.list = getTemplates();
       this.notify("删除成功");
     }
   }
@@ -104,19 +121,29 @@ export default {
       height: 300px;
       border-radius: 5px;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      span {
+      // 暂且这么解决吧...
+      ul {
         width: 70%;
-        height: 100px;
-        margin-left: 40px;
+        height: 70%;
       }
       .name {
-        overflow: hidden;
-        white-space: normal;
+        margin-right: 0;
       }
       .add {
         text-align: center;
+      }
+      .style {
+        margin-right: 40px;
+        width: 100%;
+        height: 100%;
+        pre {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -o-text-overflow: ellipsis;
+          white-space: pre-wrap;
+          // white-space: pre-wrap;
+          // word-wrap: break-word;
+        }
       }
       position: relative;
       .edit {
