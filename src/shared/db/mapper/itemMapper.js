@@ -31,6 +31,11 @@ export function getItemsByTemplateName(temName) {
     return db.read().get('item').filter({ template_name: temName }).value()
 }
 
+// 通过 标签名 获取 条目
+export function getItemsByTagName(tagName) {
+    return db.read().get('item').filter({ tag_name: tagName }).value()
+}
+
 
 // 添加 条目
 export function addItem(newTag) {

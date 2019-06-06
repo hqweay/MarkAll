@@ -45,7 +45,8 @@ import {
   getItems,
   deleteItemByID,
   getItemByName,
-  getItemsByTemplateName
+  getItemsByTemplateName,
+  getItemsByTagName
 } from "@/../shared/db/mapper/itemMapper";
 
 export default {
@@ -69,8 +70,10 @@ export default {
 
     if (this.$route.params.temName) {
       // 通过 模板名 获取 条目
-      console.log("sss");
       this.items = getItemsByTemplateName(this.$route.params.temName);
+    } else if (this.$route.params.tagName) {
+      // 通过 标签名 获取 条目
+      this.items = getItemsByTagName(this.$route.params.tagName);
     } else {
       this.items = getItems();
     }

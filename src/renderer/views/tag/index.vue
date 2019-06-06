@@ -12,7 +12,7 @@
           </div>
         </div>
       </li>
-      <li class="item" v-for="tag in tags" :key="tag.name" @click="showInfo(tag.name)">
+      <li class="item" v-for="tag in tags" :key="tag.name" @click="toItemsByTagName(tag.name)">
         <div class="container">
           <div class="card">
             <span class="name">
@@ -61,8 +61,8 @@ export default {
     addTag() {
       this.$router.push("/tag/add");
     },
-    showInfo(tagName) {
-      this.$router.push("/tag/info/" + tagName);
+    toItemsByTagName(tagName) {
+      this.$router.push("/item/tag/" + tagName);
     },
     editTag(tagName) {
       this.$router.push("/tag/info/" + tagName);
