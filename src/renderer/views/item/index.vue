@@ -6,7 +6,7 @@
           <div class="card">
             <ul class="item-attr">
               <li class="add">
-                <h1>添加</h1>
+                <h1>添加条目</h1>
               </li>
             </ul>
           </div>

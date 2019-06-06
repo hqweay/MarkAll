@@ -8,7 +8,6 @@
             <el-card class="box-card">
               <div slot="header" class="clearfix">
                 <span>{{item.template_style.name}}</span>
-                {{item.id}}
               </div>
               <pre class="json">{{ item }}</pre>
             </el-card>
@@ -101,9 +100,6 @@ export default {
       }
       this.notify("添加成功,继续添加吧~");
     },
-    test() {
-      console.log(this.item);
-    },
     reset() {
       this.item = this.oldItem;
     }
@@ -134,6 +130,10 @@ export default {
       .el-col {
         width: 80%;
         margin: 0 auto;
+        pre {
+          white-space: pre-wrap;
+          word-wrap: break-word;
+        }
       }
     }
   }

@@ -58,19 +58,27 @@ export function deleteItemByID(id) {
 }
 
 // 通过 id 修改 条目
-export function editItemByID(id, newItem) {
+export function editItemByID(item) {
 
     // 不能这样判断
     // if (db.read().get('item').find({ id: newItem.id }).value() != null) {
     //     return false;
     // }
-    if (db.read().get('item').find(newItem).value() != null) {
-        return false;
+    if (db.read().get('item').find(item).value() != null) {
+        return 0;
+    }
+    // 判断 模板名+条目名
+    // 不能直接判断,因为有 id 影响
+
+    if (db.read().get('item').find({ template_name: item.template_name }).value() != null) {
+        if (db.read().get('item').find(["template_style.name", item.template_style.name]).value() != null) {
+            return 1;
+        }
     }
 
-    db.read().get('item').getById(id).assign({
-        template_name: newItem.template_name,
-        template_style: newItem.template_style,
-        tag_name: newItem.tag_name
+    db.read().get('item').getById(item.id).assign({
+        template_name: item.template_name,
+        template_style: item.template_style,
+        tag_name: item.tag_name
     }).write()
 }
