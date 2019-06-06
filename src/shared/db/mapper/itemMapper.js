@@ -6,18 +6,19 @@ export function getItems() {
     return db.read().get('item').value();
 }
 
-// 通过 templateName 和 name 获取条目
-// 做不到
-// lowdb 不支持深查询
-export function getItemByName(templateName, name) {
-    //"template_name": templateName, 
-    // "template_name": templateName, "tag_name": "开心",
-    console.log(name);
-    return db.read().get('item').filter({
-        "template_style.name": "测试"
-    }).value();
 
-    // return db.read().get('item').find({ "template_name": templateName, "template_style.name": name }).value();
+// lowdb 不支持深查询
+// update 现在这样应该就是深查询了吧 没错 就是!!cool
+// filter 会返回所有匹配值
+// find 只返回一个
+// 根据 条目的 name 获取 条目
+// 应该获取多个 因为 不同的类别可能有多个 条目名相同的不同条目
+// 唯一性 则由 id 来保证
+export function getItemByName(name) {
+    // console.log(db.read().get('item').filter(["template_name", "豆瓣电影"]).value());
+    return db.read().get('item')
+        .filter(["template_style.name", name])
+        .value();
 }
 
 // 通过 id 获取 item
@@ -45,9 +46,10 @@ export function deleteItemByID(id) {
 // 通过 id 修改 条目
 export function editItemByID(id, newItem) {
 
-    if (db.read().get('item').find({ id: newItem.id }).value() != null) {
-        return false;
-    }
+    // 不能这样判断
+    // if (db.read().get('item').find({ id: newItem.id }).value() != null) {
+    //     return false;
+    // }
 
     db.read().get('item').getById(id).assign({
         template_name: newItem.template_name,

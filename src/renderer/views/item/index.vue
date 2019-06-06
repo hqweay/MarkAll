@@ -37,7 +37,11 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { getItems, deleteItemByID } from "@/../shared/db/mapper/itemMapper";
+import {
+  getItems,
+  deleteItemByID,
+  getItemByName
+} from "@/../shared/db/mapper/itemMapper";
 
 export default {
   data() {
@@ -50,6 +54,7 @@ export default {
     };
   },
   created: function() {
+    getItemByName();
     this.items = getItems();
   },
   methods: {

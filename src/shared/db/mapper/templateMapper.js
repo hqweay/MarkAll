@@ -45,5 +45,5 @@ export function addTemplate(template) {
     }
     // lowdb 提供了 push
     // insert 可以隐式添加 id,是由 lodash-id 提供的
-    db.read().get('template').insert(template).write();
+    db.read().get('template').push(template).write();
 }

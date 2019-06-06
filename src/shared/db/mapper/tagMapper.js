@@ -10,8 +10,9 @@ export function addTag(newTag) {
     if (db.read().get('tag').find({ name: newTag.name }).value() != null) {
         return false;
     }
-
-    db.read().get('tag').insert(newTag).write();
+    // tag 的添加不用 insert
+    // 无需 id, name 就可以保证唯一性
+    db.read().get('tag').push(newTag).write();
 }
 // 删除 标签
 export function deleteTagByName(tagName) {
