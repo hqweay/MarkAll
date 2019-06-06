@@ -44,7 +44,8 @@
 import {
   getItems,
   deleteItemByID,
-  getItemByName
+  getItemByName,
+  getItemsByTemplateName
 } from "@/../shared/db/mapper/itemMapper";
 
 export default {
@@ -59,7 +60,20 @@ export default {
   },
   created: function() {
     // getItemByName();
-    this.items = getItems();
+
+    // 先判断 是否 通过啥查询
+    // if (this.$route.query.welcome) {
+    //   this.welcome = this.$route.query.welcome;
+    //   console.log(this.welcome);
+    // }
+
+    if (this.$route.params.temName) {
+      // 通过 模板名 获取 条目
+      console.log("sss");
+      this.items = getItemsByTemplateName(this.$route.params.temName);
+    } else {
+      this.items = getItems();
+    }
   },
   methods: {
     notify(message) {
@@ -70,7 +84,14 @@ export default {
       });
     },
     addItem() {
-      this.$router.push("/item/add");
+      // 跳到 模板(分类) 页面,选择一个模板
+      // 添加一个属于该模板的条目
+      // this.$router.push("/template");
+      this.notify("请选择一个类别,在该类别下添加条目~");
+      this.$router.push({
+        path: "/template",
+        query: { welcome: "请选择点击选择一个类别,添加条目." }
+      });
     },
     showInfo(id) {
       // path 只能用 query 传参

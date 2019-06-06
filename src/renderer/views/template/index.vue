@@ -12,11 +12,12 @@
           </div>
         </div>
       </li>
+
       <li
         class="item"
         v-for="template in templates"
         :key="template.name"
-        @click="showInfo(template.name)"
+        @click="toItemsByTemName(template.name)"
       >
         <div class="container">
           <div class="card">
@@ -56,9 +57,14 @@ export default {
           name: "test"
         }
       ]
+      // welcome: ""
     };
   },
   created: function() {
+    // if (this.$route.query.welcome) {
+    //   this.welcome = this.$route.query.welcome;
+    //   console.log(this.welcome);
+    // }
     this.templates = getTemplates();
   },
   methods: {
@@ -69,9 +75,9 @@ export default {
         message: h("i", { style: "color: teal" }, message)
       });
     },
-    showInfo(temName) {
+    toItemsByTemName(temName) {
       // this.$router.push({ name: 'home', params: { userId: wise }})
-      this.$router.push("/template/info/" + temName);
+      this.$router.push("/item/template/" + temName);
     },
     editTemplate(temName) {
       // this.$router.push({ name: 'home', params: { userId: wise }})
@@ -120,6 +126,10 @@ export default {
       cursor: pointer;
       display: flex;
       flex-direction: column;
+
+      .add {
+        text-align: center;
+      }
       span {
         width: 70%;
         height: 100px;
@@ -134,9 +144,7 @@ export default {
         overflow: hidden;
         white-space: normal;
       }
-      .add {
-        text-align: center;
-      }
+
       position: relative;
       .edit {
         position: absolute;

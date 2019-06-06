@@ -26,6 +26,12 @@ export function getItemByID(id) {
     return db.read().get('item').getById(id).value()
 }
 
+// 通过 模板名 获取 条目
+export function getItemsByTemplateName(temName) {
+    return db.read().get('item').filter({ template_name: temName }).value()
+}
+
+
 // 添加 条目
 export function addItem(newTag) {
     // 插入数据前先判断是否已有数据
