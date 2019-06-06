@@ -9,7 +9,7 @@ export default [{
         "date": "2019-02-06",
         "comment": "资本来到这世间.../那个年代的美国社会呀.../想起英国那只熊，装蠢制造的笑点略尬..."
     },
-    tag_name: "开心"
+    tag_name: ["开心", "悬疑"]
 }, {
     id: 2,
     template_name: "豆瓣电影",
@@ -21,7 +21,7 @@ export default [{
         "date": "2019-02-05",
         "comment": "不管是剧情还是梗都很流程化（工业化？）虽然小的点很过时但核心还是伟光正..."
     },
-    tag_name: "悬疑"
+    tag_name: ["开心", "悬疑", "开心", "悬疑", "开心", "悬疑"]
 }, {
     id: 3,
     template_name: "豆瓣电影",
@@ -33,7 +33,7 @@ export default [{
         "date": "2019-02-01",
         "comment": "配乐过头了.../这么意淫的设定居然拍的这么主旋律又不腻，太强了"
     },
-    tag_name: "悬疑"
+    tag_name: ["开心", "悬疑"]
 }, {
     id: 4,
     template_name: "豆瓣电影",
@@ -45,7 +45,7 @@ export default [{
         "date": "2019-01-31",
         "comment": "太嗨了，忍不住想要展示一下偏见。。。"
     },
-    tag_name: "悬疑"
+    tag_name: ["开心", "悬疑"]
 }, {
     id: 5,
     template_name: "豆瓣电影",
@@ -57,5 +57,5 @@ export default [{
         "date": "2019-01-31标签:日本日剧小说改编人生",
         "comment": ""
     },
-    tag_name: "悬疑"
+    tag_name: ["开心", "悬疑"]
 }]

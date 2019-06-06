@@ -17,7 +17,7 @@
         class="item"
         v-for="template in templates"
         :key="template.name"
-        @click="toItemsByTemName(template.name)"
+        @click="toFuture(template.name)"
       >
         <div class="container">
           <div class="card">
@@ -49,6 +49,8 @@ import {
   deleteTemplateByName
 } from "@/../shared/db/mapper/templateMapper";
 
+// import { templatePraseSchema } from "@/utils/templatePraseSchema";
+
 export default {
   data() {
     return {
@@ -56,16 +58,24 @@ export default {
         {
           name: "test"
         }
-      ]
+      ],
+      addItem: false
       // welcome: ""
     };
   },
   created: function() {
-    // if (this.$route.query.welcome) {
-    //   this.welcome = this.$route.query.welcome;
-    //   console.log(this.welcome);
-    // }
+    // 只有从 条目 跳转过来 才能相应 根据模板添加条目
+    if (this.$route.query.addItem) {
+      this.addItem = this.$route.query.addItem;
+    }
     this.templates = getTemplates();
+    // templatePraseSchema(this.templates[0]);
+  },
+  watch: {
+    // 重新点击 类别 后,再点击类别项就不是根据类别添加了,而是恢复根据类别查询
+    $route(to, from) {
+      this.addItem = false;
+    }
   },
   methods: {
     notify(message) {
@@ -78,6 +88,15 @@ export default {
     toItemsByTemName(temName) {
       // this.$router.push({ name: 'home', params: { userId: wise }})
       this.$router.push("/item/template/" + temName);
+    },
+    toFuture(temName) {
+      if (this.addItem == false) {
+        this.toItemsByTemName(temName);
+      } else {
+        //
+        // alert("按照 模板 添加条目");
+        this.$router.push("/item/add/" + temName);
+      }
     },
     editTemplate(temName) {
       // this.$router.push({ name: 'home', params: { userId: wise }})
@@ -117,7 +136,8 @@ export default {
       margin-top: 20px;
     }
     .card {
-      background-color: #75d8af;
+      // background-color: #75d8af;
+      background-color: #cff0da;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       transition: 0.3s;
       width: 300px;
@@ -126,7 +146,11 @@ export default {
       cursor: pointer;
       display: flex;
       flex-direction: column;
-
+      .add {
+        h1 {
+          color: #eb9f9f;
+        }
+      }
       .add {
         text-align: center;
       }

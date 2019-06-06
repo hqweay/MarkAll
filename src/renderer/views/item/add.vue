@@ -1,31 +1,84 @@
 <template>
   <div class="container">
     <div class="card">
-      <div class="edit">
-        <el-input
-          type="textarea"
-          :autosize="{ minRows: 4}"
-          placeholder="请输入内容"
-          v-model="tag.name"
-          clearable
-        ></el-input>
-        <button class="btn" @click="addTagNow(tag)">添加</button>
+      <div class="add-container">
+        <!-- <div class="test"> -->
+        <el-row type="flex" align="middle">
+          <el-col>
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>{{item.template_style.name}}</span>
+                {{item.id}}
+              </div>
+              <pre class="json">{{ item }}</pre>
+            </el-card>
+            <br>
+          </el-col>
+
+          <el-col>
+            <el-card class="form">
+              <json-editor ref="JsonEditor" :schema="schema" v-model="item">
+                <el-button type="primary" @click="addItemNow()">添加</el-button>
+                <el-button type="reset" @click="reset()">重置</el-button>
+                <el-button type="reset" @click="test()">Test</el-button>
+              </json-editor>
+            </el-card>
+          </el-col>
+        </el-row>
+        <!-- </div> -->
+        <!-- <div class="template">{{template.name}}</div>
+        <div class="edit">
+          <el-input
+            type="textarea"
+            :autosize="{ minRows: 4}"
+            placeholder="请输入内容"
+            v-model="item.name"
+            clearable
+          ></el-input>
+          <button class="btn" @click="addTagNow(tag)">添加</button>
+        </div>-->
       </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import { addTag } from "@/../shared/db/mapper/tagMapper";
+import { templatePraseSchema } from "@/utils/templatePraseSchema";
+const SCHEMA = {};
+
+import JsonEditor from "@/utils/JsonEditor";
+
+import { getTemplateByName } from "@/../shared/db/mapper/templateMapper";
+import { addItem } from "@/../shared/db/mapper/itemMapper";
+
 export default {
+  components: { JsonEditor },
   data() {
     return {
-      tag: {
-        name: ""
-      }
+      schema: SCHEMA,
+      template: {
+        name: "哈哈",
+        style: {}
+      },
+      item: {
+        template_name: "",
+        template_style: {},
+        tag_name: ""
+      },
+      oldItem: {}
     };
   },
-  created: function() {},
+  created: function() {
+    // 初始化
+    if (this.$route.params.temName) {
+      this.template = getTemplateByName(this.$route.params.temName);
+      this.schema = templatePraseSchema(this.template);
+      this.item.template_name = this.$route.params.temName;
+      this.item.template_style = this.template.style;
+      // 深拷贝做个备份
+      this.oldItem = JSON.parse(JSON.stringify(this.item));
+    }
+  },
   methods: {
     notify(message) {
       const h = this.$createElement;
@@ -34,18 +87,25 @@ export default {
         message: h("i", { style: "color: teal" }, message)
       });
     },
-    addTagNow(tag) {
-      if (tag.name == "") {
-        this.notify("不能为空啊");
+    addItemNow() {
+      // 牛皮
+      // 不知为何 addItem 调用了 lodash-id 的 insert 方法,会导致这里传的参数(item)改变为插入后添加了 id 的 item
+      // 所以这里传入 item 的拷贝,item 就不会被修改了
+      // 为什么啊
+      // 真的秀...
+      // js 可能可以这样吧 不太懂
+      let newItem = JSON.parse(JSON.stringify(this.item));
+      if (addItem(newItem) == false) {
+        this.notify("不能重复,建议分类名-条目名对应一个项");
         return false;
       }
-      // console.log(tagName);
-      if (addTag(tag) == false) {
-        this.notify("重复了");
-        return false;
-      }
-      this.$router.push("/tag");
-      this.notify("添加成功");
+      this.notify("添加成功,继续添加吧~");
+    },
+    test() {
+      console.log(this.item);
+    },
+    reset() {
+      this.item = this.oldItem;
     }
   }
 };
@@ -62,16 +122,44 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   display: flex;
+  // flex-direction: column;
   align-items: center;
-  .edit {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    .btn {
-      margin-top: 40px;
+  .add-container {
+    width: 100%;
+    display: flex;
+    .el-row {
+      margin: 20px 0 20px 0;
+      width: 100%;
+      flex-direction: column;
+      .el-col {
+        width: 80%;
+        margin: 0 auto;
+      }
     }
   }
+
+  // .add-container {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+
+  // .add-container {
+  //   display: flex;
+  //   flex-direction: column;
+  //   width: 100%;
+  //   .template {
+  //     text-align: center;
+  //   }
+  //   .edit {
+  //     width: 80%;
+  //     margin: 0 auto;
+  //     margin-top: 10px;
+  //     margin-bottom: 10px;
+  //     .btn {
+  //       margin-top: 40px;
+  //     }
+  //   }
+  // }
 }
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);

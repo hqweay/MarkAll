@@ -12,19 +12,19 @@
           </div>
         </div>
       </li>
-      <li class="item" v-for="tag in tags" :key="tag.name" @click="toItemsByTagName(tag.name)">
+      <li class="item" v-for="tag in tags" :key="tag" @click="toItemsByTagName(tag)">
         <div class="container">
           <div class="card">
             <span class="name">
               <h1>
-                <a target="_blank">{{tag.name}}</a>
+                <a target="_blank">{{tag}}</a>
               </h1>
             </span>
 
-            <div class="edit" @click.stop="editTag(tag.name)">
+            <div class="edit" @click.stop="editTag(tag)">
               <img src="@/assets/icon/edit.png" alt>
             </div>
-            <div class="delete" @click.stop="deleteTag(tag.name)">
+            <div class="delete" @click.stop="deleteTag(tag)">
               <img src="@/assets/icon/trash.png" alt>
             </div>
           </div>
@@ -41,9 +41,9 @@ export default {
   data() {
     return {
       tags: [
-        {
-          name: "test"
-        }
+        // {
+        //   name: "test"
+        // }
       ]
     };
   },
@@ -97,7 +97,7 @@ export default {
       margin-top: 20px;
     }
     .card {
-      background-color: #75d8af;
+      background-color: #88dba3;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       transition: 0.3s;
       width: 300px;
@@ -106,6 +106,11 @@ export default {
       cursor: pointer;
       display: flex;
       flex-direction: column;
+      .add {
+        h1 {
+          color: #f8ecc9;
+        }
+      }
       span {
         width: 70%;
         height: 100px;

@@ -1,6 +1,5 @@
-export default [{
-    name: "悬疑"
-},
-{
-    name: "童年"
-}]
+export default [
+    "悬疑",
+    "童年",
+    "恐怖", "科幻", "喜剧", "快乐"
+]

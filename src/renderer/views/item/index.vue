@@ -25,7 +25,11 @@
               <h2>{{item.template_name}}</h2>
             </span>
             <span class="show tag-name">
-              <h2>{{item.tag_name}}</h2>
+              <!-- <h2>{{item.tag_name}}</h2> -->
+              <h3 v-if="item.tag_name.length > 0">{{item.tag_name}}</h3>
+              <!-- <span v-for="tag in item.tag_name" :key="tag">
+                <h3>{{tag}}</h3>
+              </span>-->
             </span>
             <div class="edit" @click.stop="editItem(item.id)">
               <img src="@/assets/icon/edit.png" alt>
@@ -93,7 +97,7 @@ export default {
       this.notify("请选择一个类别,在该类别下添加条目~");
       this.$router.push({
         path: "/template",
-        query: { welcome: "请选择点击选择一个类别,添加条目." }
+        query: { addItem: true }
       });
     },
     showInfo(id) {
@@ -146,6 +150,11 @@ export default {
       cursor: pointer;
       display: flex;
       flex-direction: column;
+      .add {
+        h1 {
+          color: #bf209f;
+        }
+      }
       span {
         width: 70%;
         height: 110px;
@@ -155,6 +164,16 @@ export default {
         height: 120px;
         overflow: hidden;
         white-space: normal;
+      }
+      .tag-name {
+        height: 100px;
+        overflow: hidden;
+        white-space: normal;
+        // display: flex;
+
+        // h3 {
+        //   display: block;
+        // }
       }
       .add {
         text-align: center;

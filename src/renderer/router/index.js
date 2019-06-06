@@ -37,7 +37,7 @@ export const constantRouterMap = [
         name: 'item-tag',
         component: () => import('@/views/item/index'),
     }, {
-        path: '/item/add',
+        path: '/item/add/:temName',
         name: 'item-add',
         component: () => import('@/views/item/add'),
     }, {

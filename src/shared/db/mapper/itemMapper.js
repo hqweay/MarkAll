@@ -15,7 +15,7 @@ export function getItems() {
 // 应该获取多个 因为 不同的类别可能有多个 条目名相同的不同条目
 // 唯一性 则由 id 来保证
 export function getItemByName(name) {
-    // console.log(db.read().get('item').filter(["template_name", "豆瓣电影"]).value());
+    // console.log(db.read().get('item').filter(["template_style.name", "测试"]).value());
     return db.read().get('item')
         .filter(["template_style.name", name])
         .value();
@@ -38,13 +38,16 @@ export function getItemsByTagName(tagName) {
 
 
 // 添加 条目
-export function addItem(newTag) {
+export function addItem(newItem) {
     // 插入数据前先判断是否已有数据
-    if (db.read().get('tag').find({ name: newTag.name }).value() != null) {
-        return false;
+    // 因为 id 会变化 所以不能直接通过 对象 判断
+    if (db.read().get('item').find({ template_name: newItem.template_name }).value() != null) {
+        if (db.read().get('item').find(["template_style.name", newItem.template_style.name]).value() != null) {
+            return false;
+        }
     }
 
-    db.read().get('tag').push(newTag).write();
+    db.read().get('item').insert(newItem).write();
 }
 
 // 删除 条目

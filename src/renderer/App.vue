@@ -58,7 +58,12 @@ export default {
   components: {
     index
   },
-  created: function() {}
+  created: function() {},
+  methods: {
+    flush() {
+      this.$router.go(0);
+    }
+  }
 };
 </script>
 
