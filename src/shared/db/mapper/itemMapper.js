@@ -50,6 +50,9 @@ export function editItemByID(id, newItem) {
     // if (db.read().get('item').find({ id: newItem.id }).value() != null) {
     //     return false;
     // }
+    if (db.read().get('item').find(newItem).value() != null) {
+        return false;
+    }
 
     db.read().get('item').getById(id).assign({
         template_name: newItem.template_name,

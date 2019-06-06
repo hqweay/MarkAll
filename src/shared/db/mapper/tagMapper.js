@@ -23,8 +23,9 @@ export function deleteTagByName(tagName) {
 
 // 修改标签
 export function editTagByName(oldName, newTag) {
-
-    if (db.read().get('tag').find({ name: newTag.name }).value() != null) {
+    // 修改前先判断是否重复
+    // if (db.read().get('tag').find({ name: newTag.name }).value() != null) {
+    if (db.read().get('tag').find(newTag).value() != null) {
         return false;
     }
 
