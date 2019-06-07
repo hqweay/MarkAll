@@ -60,9 +60,9 @@ export default {
   },
   created: function() {},
   methods: {
-    flush() {
-      this.$router.go(0);
-    }
+    // flush() {
+    //   this.$router.go(0);
+    // }
   }
 };
 </script>

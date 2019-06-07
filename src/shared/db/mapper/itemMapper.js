@@ -36,12 +36,12 @@ export function getItemsByTemplateName(temName) {
 export function getItemsByTagName(tagName) {
     // 我可太他妈聪明了
     return db.read().get('item').filter(function (o) {
-        console.log(tagName);
+        // console.log(tagName);
         if (o.tag_name.indexOf(tagName) !== -1) {
-            console.log("true");
+            // console.log("true");
             return true;
         } else {
-            console.log("false");
+            // console.log("false");
             return false;
         }
     }).value();

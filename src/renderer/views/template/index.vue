@@ -1,7 +1,7 @@
 <template>
   <div class="template">
     <ul class="item-list">
-      <li class="item" @click="addTemplate()">
+      <li v-if="!addItem" class="item" @click="addTemplate()">
         <div class="container">
           <div class="card">
             <ul class="item-attr">

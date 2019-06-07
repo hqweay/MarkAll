@@ -82,6 +82,12 @@ export default {
       this.items = getItems();
     }
   },
+  watch: {
+    // 重新点击 条目 后,显示所有条目
+    $route(to, from) {
+      this.items = getItems();
+    }
+  },
   methods: {
     notify(message) {
       const h = this.$createElement;
