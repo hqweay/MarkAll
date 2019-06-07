@@ -1,8 +1,14 @@
 # mark-all
 
 > this is a project built by electron-vue that help you to mark your life 
+>
+> 此项目用于记录(标记)书影音...一切!(你可以自己添加想要标记的模板)
 
-#### Build Setup
+## 展示
+
+![show.gif](https://github.com/hqweay/MarkAll/blob/master/examples/show.gif?raw=true)
+
+## Build Setup
 
 ``` bash
 # install dependencies
@@ -13,10 +19,12 @@ npm run dev
 
 # build electron application for production
 npm run build
-
-
 ```
 
----
+# 使用开源库
 
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[8fae476](https://github.com/SimulatedGREG/electron-vue/tree/8fae4763e9d225d3691b627e83b9e09b56f6c935) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+* [electron-vue](<https://github.com/SimulatedGREG/electron-vue>)
+* [elementUI](<https://element.eleme.io/#/>)
+* [lowdb](<https://github.com/typicode/lowdb>)
+* [lodash-id](<https://github.com/typicode/lodash-id>)
+* [vue-json-ui-editor](<https://github.com/yourtion/vue-json-ui-editor>)

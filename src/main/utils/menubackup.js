@@ -119,9 +119,9 @@ let template = [{
     label: '帮助',
     role: 'help',
     submenu: [{
-        label: '学习更多',
+        label: '关于',
         click: function () {
-            electron.shell.openExternal('http://electron.atom.io')
+            electron.shell.openExternal('https://github.com/hqweay/MarkAll')
         }
     }]
 }]

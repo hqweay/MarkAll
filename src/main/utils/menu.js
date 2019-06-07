@@ -6,7 +6,7 @@ import {
 
 // export default
 let menuTemplate = [{
-  label: '嘻嘻',
+  label: '嘻嘻~',
   submenu: [{
     label: '撤销',
     accelerator: 'CmdOrCtrl+Z',
@@ -122,9 +122,9 @@ let menuTemplate = [{
   label: '帮助',
   role: 'help',
   submenu: [{
-    label: '学习更多',
+    label: '关于',
     click: function () {
-      electron.shell.openExternal('http://electron.atom.io')
+      electron.shell.openExternal('https://github.com/hqweay/MarkAll')
     }
   }]
 }]
