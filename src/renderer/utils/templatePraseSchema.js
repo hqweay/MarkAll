@@ -7,7 +7,7 @@ export function templatePraseSchema(template) {
     let tags = getTags();
     let SCHEMA = {
         type: "object",
-        title: "添加条目",
+        // title: "添加条目",
         properties: {
             // template_name 这里不用设置
             tag_name: {
@@ -41,10 +41,11 @@ export function templatePraseSchema(template) {
         SCHEMA.properties.template_style.properties[key] = {
 
             type: "string",
-            // minRows: 1,
+            // "maxLength": 40,
             title: key,
             // description: "Ex. Using the NPM Search Engine",
             attrs: {
+                // rows: "1",
                 type: "textarea"
             }
 

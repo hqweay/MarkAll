@@ -5,17 +5,28 @@
         <!-- <div class="test"> -->
         <el-row type="flex" align="middle">
           <el-col>
-            <el-card class="box-card">
+            <el-card class="box-card" shadow="hover">
               <div slot="header" class="clearfix">
-                <span>{{item.template_style.name}}</span>
+                <!-- <span>{{item.template_style.name}}</span> -->
+                <span>条目信息</span>
+                <el-button
+                  style="float: right; padding: 3px 0"
+                  type="text"
+                  @click="showStyle()"
+                >{{style.message}}</el-button>
               </div>
-              <pre class="json">{{ item }}</pre>
+
+              <el-collapse-transition>
+                <div v-if="style.isShow == true" class="style">
+                  <pre class="json">{{ item }}</pre>
+                </div>
+              </el-collapse-transition>
             </el-card>
             <br>
           </el-col>
 
           <el-col>
-            <el-card class="form">
+            <el-card class="form" shadow="hover">
               <json-editor ref="JsonEditor" :schema="schema" v-model="item">
                 <el-button type="primary" @click="editItem(item)">提交</el-button>
                 <el-button type="reset" @click="reset()">重置</el-button>
@@ -53,7 +64,11 @@ export default {
         template_style: {},
         tag_name: ""
       },
-      oldItem: {}
+      oldItem: {},
+      style: {
+        isShow: false,
+        message: "展开"
+      }
     };
   },
   created: function() {
@@ -66,6 +81,10 @@ export default {
     this.oldItem = JSON.parse(JSON.stringify(this.item));
   },
   methods: {
+    showStyle() {
+      this.style.isShow = this.style.isShow === true ? false : true;
+      this.style.message = this.style.message === "折叠" ? "展开" : "折叠";
+    },
     notify(message) {
       const h = this.$createElement;
       this.$notify({

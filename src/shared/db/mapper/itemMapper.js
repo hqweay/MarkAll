@@ -32,6 +32,7 @@ export function getItemsByTemplateName(temName) {
 }
 
 // 通过 标签名 获取 条目
+// bug 应该判断 tagName 是否在 tag 列表里
 export function getItemsByTagName(tagName) {
     return db.read().get('item').filter({ tag_name: tagName }).value()
 }

@@ -16,9 +16,19 @@ export function addTag(newTag) {
 }
 // 删除 标签
 export function deleteTagByName(tagName) {
+    // db.read().get('tag')
+    //     .remove(tagName)
+    //     .write();
+    // db.unset('tag.' + tagName)
+    //     .write()
     db.read().get('tag')
-        .remove({ name: tagName })
+        .remove(function(n) {
+            // console.log(n);
+            // console.log(tagName);
+            return n === tagName;
+          })
         .write();
+
 }
 
 // 修改标签

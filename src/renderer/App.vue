@@ -70,7 +70,7 @@ export default {
 <style scoped lang="scss">
 #app {
   width: 100%;
-  height: 100px;
+  // height: 100px;
   color: black;
 
   .siderbar,
