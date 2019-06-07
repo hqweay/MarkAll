@@ -34,7 +34,17 @@ export function getItemsByTemplateName(temName) {
 // 通过 标签名 获取 条目
 // bug 应该判断 tagName 是否在 tag 列表里
 export function getItemsByTagName(tagName) {
-    return db.read().get('item').filter({ tag_name: tagName }).value()
+    // 我可太他妈聪明了
+    return db.read().get('item').filter(function (o) {
+        console.log(tagName);
+        if (o.tag_name.indexOf(tagName) !== -1) {
+            console.log("true");
+            return true;
+        } else {
+            console.log("false");
+            return false;
+        }
+    }).value();
 }
 
 
