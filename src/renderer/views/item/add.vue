@@ -112,15 +112,12 @@ export default {
       // 真的秀...
       // js 可能可以这样吧 不太懂
       let newItem = JSON.parse(JSON.stringify(this.item));
-      // 这个判断不会生效
-      // 思考一下如何做重复判断
+
       if (addItem(newItem) == false) {
-        this.notify("不能重复,建议分类名-条目名对应一个项");
+        this.notify("不能重复添加呀~");
         return false;
       }
-      this.notify(
-        "添加成功,继续添加吧~注意,后台不会对重复数据进行判断,请避免插入重复数据."
-      );
+      this.notify("添加成功,继续添加吧~");
       // 提示开启个严格校验啥的
     },
     reset() {

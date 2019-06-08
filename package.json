@@ -8,6 +8,7 @@
   "scripts": {
     "description": "这只是个描述,做注释用.下面添加 --platform=all 表示打包为全平台 --arch=x64 x64 架构硬件.--platform=all --arch=x64",
     "build": "node .electron-vue/build.js && electron-builder",
+    "build:win": "node .electron-vue/build.js && electron-builder --platform=win --arch=x64",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",

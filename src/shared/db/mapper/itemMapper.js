@@ -53,16 +53,14 @@ export function addItem(newItem) {
     // 插入数据前先判断是否已有数据
     // 因为 id 会变化 所以不能直接通过 对象 判断
 
+    // 我可太聪明了
 
-    // 也不能简单地通过 name 判断
-    // 如果要判断的话应该对 template_style 的每一项进行判断!!
-    // if (db.read().get('item').find({ template_name: newItem.template_name }).value() != null) {
-    //     if (db.read().get('item').find(["template_style.name", newItem.template_style.name]).value() != null) {
-    //         return false;
-    //     }
-    // }
+    if (db.read().get('item').find({ template_name: newItem.template_name }).value() != null) {
+        if (db.read().get('item').find(["template_style", newItem.template_style]).value() != null) {
+            return false;
+        }
+    }
 
-    // 太麻烦了,,算了...
 
     db.read().get('item').insert(newItem).write();
 }
