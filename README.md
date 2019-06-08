@@ -4,6 +4,8 @@
 >
 > 此项目用于记录(标记)书影音...一切!(你可以自己添加想要标记的模板)
 
+
+
 ## 展示
 
 ![show.gif](https://github.com/hqweay/MarkAll/blob/master/examples/show.gif?raw=true)
@@ -12,13 +14,16 @@
 
 ``` bash
 # install dependencies
-npm install
+yarn or yarn install
+#npm install
 
 # serve with hot reload at localhost:9080
-npm run dev
+yarn run dev
+#npm run dev
 
 # build electron application for production
-npm run build
+yarn run build
+#npm run build
 ```
 
 # 使用开源库
