@@ -8,11 +8,24 @@ if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
+// const winURL = process.env.NODE_ENV === 'development'
+//   ? `http://localhost:9080`
+//   : `file://${__dirname}/index.html`
+
+
 const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
 
 let mainWindow
+
+
+console.log(winURL);
+console.log("=====")
+// let a = 'file://${__dirname}/index.html';
+// console.log(a);
+// 打印错误信息
+// mainWindow.webContents.openDevTools()
 
 function createWindow() {
   mainWindow = new BrowserWindow({
