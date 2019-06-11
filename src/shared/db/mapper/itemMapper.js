@@ -60,8 +60,6 @@ export function addItem(newItem) {
             return false;
         }
     }
-
-
     db.read().get('item').insert(newItem).write();
 }
 

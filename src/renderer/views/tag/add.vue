@@ -6,10 +6,10 @@
           type="textarea"
           :autosize="{ minRows: 4}"
           placeholder="请输入内容"
-          v-model="tag.name"
+          v-model="tagName"
           clearable
         ></el-input>
-        <button class="btn" @click="addTagNow(tag)">添加</button>
+        <button class="btn" @click="addTagNow(tagName)">添加</button>
       </div>
     </div>
   </div>
@@ -20,9 +20,7 @@ import { addTag } from "@/../shared/db/mapper/tagMapper";
 export default {
   data() {
     return {
-      tag: {
-        name: ""
-      }
+      tagName: ""
     };
   },
   created: function() {},
@@ -34,13 +32,13 @@ export default {
         message: h("i", { style: "color: teal" }, message)
       });
     },
-    addTagNow(tag) {
-      if (tag.name == "") {
+    addTagNow(tagName) {
+      if (tagName == "") {
         this.notify("不能为空啊");
         return false;
       }
       // console.log(tagName);
-      if (addTag(tag) == false) {
+      if (addTag(tagName) == false) {
         this.notify("重复了");
         return false;
       }

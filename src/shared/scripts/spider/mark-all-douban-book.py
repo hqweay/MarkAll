@@ -16,7 +16,7 @@ page_end = 100000  # 要爬多少条数据
 id = 0  # 计数
 user = 'hqweay'  # 豆瓣 id
 file_name = "./douban-" + user + ".json"  # 数据保存文件名
-sleep_time = 700  # 爬取频率
+sleep_time = 1000  # 爬取频率
 page = -15
 # --------------------------
 fo = open(file_name, "w+")  # 数据写入文件 "ab+"追加,"wb+"覆盖  b 是二进制使用数据的意思
@@ -39,9 +39,8 @@ while True:
     # URL
     url_str = 'https://movie.douban.com/people/' + user + '/collect?start=' + \
         str(page) + '&sort=time&rating=all&filter=all&mode=grid'
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36', 'Cookie': 'll="118324"; bid=M1JpprRWbRA; push_doumail_num=0; douban-profile-remind=1; gr_user_id=5b991e9a-31e3-4570-b558-8c8e7aa8b17f; _vwo_uuid_v2=D093346D2775934F09BF533639BA70A30|96572c08218f84fdf2c7830547e53a6c; douban-fav-remind=1; _ga=GA1.2.1862642392.1547866201; __yadk_uid=rZ6T4lQaw0wUVSanYlG8WBzSDTojX7pU; __utmc=30149280; push_noty_num=0; viewed="33384238_30379527"; dbcl2="99496602:URDCBQ9kKPk"; ck=q7xT; __utmz=30149280.1560075912.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmv=30149280.9949; ct=y; _pk_ref.100001.8cb4=%5B%22%22%2C%22%22%2C1560175430%2C%22https%3A%2F%2Fbook.douban.com%2Fsubject%2F30486757%2F%22%5D; _pk_ses.100001.8cb4=*; __utma=30149280.1862642392.1547866201.1560165568.1560175435.10; __utmb=30149280.2.10.1560175435; _pk_id.100001.8cb4=d857a24b5312fe94.1547866200.366.1560176114.1560156871.'}
     # 获取信息
-    response = requests.get(url=url_str, headers=headers)
+    response = requests.get(url=url_str)
     info_html = response.text
     soup = BeautifulSoup(info_html, 'html.parser')
     tag = soup.div
@@ -89,10 +88,11 @@ while True:
         item['date'] = str(date)
         item['comment'] = str(comment.replace(
             "\n", "").replace(" ", "").replace('"', '\''))
-        item['oldTags'] = str(tags)
+        item['oldTags'] = tags
 
         newItem = item.copy()
         datas.append(newItem)
+        # print(datas)
 
 
 itemJson = json.dumps(datas, ensure_ascii=False)

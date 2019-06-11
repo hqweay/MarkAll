@@ -6,14 +6,16 @@ export function getTags() {
 }
 // 添加 标签
 // todo 修改逻辑
-export function addTag(newTag) {
+export function addTag(tagName) {
     // 插入数据前先判断是否已有数据
-    if (db.read().get('tag').find({ name: newTag.name }).value() != null) {
+    if (db.read().get('tag').find(function (n) {
+        return n === tagName;
+    }).value() != null) {
         return false;
     }
     // tag 的添加不用 insert
     // 无需 id, name 就可以保证唯一性
-    db.read().get('tag').push(newTag).write();
+    db.read().get('tag').push(tagName).write();
 }
 // 删除 标签
 export function deleteTagByName(tagName) {
