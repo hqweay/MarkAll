@@ -6,15 +6,15 @@ const fs = require('fs-extra')
 
 
 
-// import { getMovies } from '../../scripts/spider/mark-all-douban-movie'
+import { getMovies } from '../../scripts/spider/mark-all-douban-movie'
 import { importDoubanMovie } from './import-douban-movie'
 
 // /home/hqweay/.config/Electron
 export function importData() {
     // With a callback:
 
-    // getMovies();
-    importDoubanMovie();
+    getMovies();
+    // importDoubanMovie();
     // fs.readJson(STORE_PATH + '/douban-hqweay.json', (err, data) => {
     //     if (err) console.error(err)
 
