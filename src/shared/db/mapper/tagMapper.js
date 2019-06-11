@@ -5,6 +5,7 @@ export function getTags() {
     return db.read().get('tag').value();
 }
 // 添加 标签
+// todo 修改逻辑
 export function addTag(newTag) {
     // 插入数据前先判断是否已有数据
     if (db.read().get('tag').find({ name: newTag.name }).value() != null) {
@@ -22,11 +23,11 @@ export function deleteTagByName(tagName) {
     // db.unset('tag.' + tagName)
     //     .write()
     db.read().get('tag')
-        .remove(function(n) {
+        .remove(function (n) {
             // console.log(n);
             // console.log(tagName);
             return n === tagName;
-          })
+        })
         .write();
 
 }

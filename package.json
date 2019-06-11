@@ -54,9 +54,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.3",
     "element-ui": "^2.9.1",
     "lodash-id": "^0.14.0",
     "lowdb": "^1.0.0",
+    "superagent": "^5.0.6",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-json-ui-editor": "^1.0.0",

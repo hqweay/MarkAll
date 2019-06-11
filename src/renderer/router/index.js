@@ -6,7 +6,7 @@ Vue.use(Router)
 export const constantRouterMap = [
     {
         path: '/',
-        redirect: '/item',//跳转
+        // redirect: '/item',//跳转
         name: 'index',//命名路由
     }, {
         path: '/movie',

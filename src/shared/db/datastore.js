@@ -17,11 +17,16 @@ const APP = process.type === 'renderer' ? remote.app : app // 根据process.type
 const STORE_PATH = APP.getPath('userData') // 获取electron应用的用户目录
 // /home/hqweay/.config/Electron
 
-const adapter = new FileSync(path.join(STORE_PATH, '/data.json')) // 初始化lowdb读写的json文件名以及存储路径
+// 创建 user 文件夹 保存相关数据
+fs.ensureDir(STORE_PATH + '/user', err => {
+    console.log(err);
+})
+
+const adapter = new FileSync(path.join(STORE_PATH, '/user/data.json')) // 初始化lowdb读写的json文件名以及存储路径
 
 const db = Datastore(adapter) // lowdb接管该文件
 
-db._.mixin(LodashId) // 通过._mixin()引入
+db._.mixin(LodashId) // 通过._mixin()引入 lodash-id
 
 // 创建数据库,表放这里比较合适
 // 模板

@@ -16,7 +16,6 @@
                     <span class="tab-link">类别</span>
                   </router-link>
                 </li>
-
                 <li>
                   <router-link class="tab-item" to="/tag">
                     <span class="tab-link">标签</span>
@@ -28,7 +27,10 @@
                   </router-link>
                 </li>
                 <li>
-                  <a href="/">测试</a>
+                  <a href="/">测 s cc试</a>
+                </li>
+                <li>
+                  <span @click="test">测试x x api</span>
                 </li>
               </ul>
             </div>
@@ -50,6 +52,8 @@
 <script>
 import index from "./views/index.vue";
 
+import { importData } from "@/../shared/db/import/importData";
+
 export default {
   name: "mark-all",
   data() {
@@ -60,6 +64,9 @@ export default {
   },
   created: function() {},
   methods: {
+    test() {
+      importData();
+    }
     // flush() {
     //   this.$router.go(0);
     // }

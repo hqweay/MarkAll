@@ -42,10 +42,10 @@
 <script type="text/ecmascript-6">
 import { getItemByID, editItemByID } from "@/../shared/db/mapper/itemMapper";
 
-import { templatePraseSchema } from "@/utils/templatePraseSchema";
+import { templatePraseSchema } from "@/utils/jsonEditor/templatePraseSchema";
 const SCHEMA = {};
 
-import JsonEditor from "@/utils/JsonEditor";
+import JsonEditor from "@/utils/jsonEditor/JsonEditor";
 
 import { getTemplateByName } from "@/../shared/db/mapper/templateMapper";
 

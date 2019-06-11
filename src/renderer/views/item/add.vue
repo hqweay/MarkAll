@@ -24,7 +24,7 @@
             </el-card>
             <br>
           </el-col>
-
+ 
           <el-col>
             <el-card class="form" shadow="hover">
               <json-editor ref="JsonEditor" :schema="schema" v-model="item">
@@ -52,10 +52,10 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { templatePraseSchema } from "@/utils/templatePraseSchema";
+import { templatePraseSchema } from "@/utils/jsonEditor/templatePraseSchema";
 const SCHEMA = {};
 
-import JsonEditor from "@/utils/JsonEditor";
+import JsonEditor from "@/utils/jsonEditor/JsonEditor";
 
 import { getTemplateByName } from "@/../shared/db/mapper/templateMapper";
 import { addItem } from "@/../shared/db/mapper/itemMapper";
