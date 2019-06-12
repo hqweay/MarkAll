@@ -7,7 +7,7 @@ const fs = require('fs-extra')
 
 
 import { getMovies } from '../../scripts/spider/mark-all-douban-movie'
-import { importDoubanMovie } from './import-douban-movie'
+import { getMoviesBySpider } from './import-douban-movie'
 
 // /home/hqweay/.config/Electron
 export function importData() {

@@ -27,11 +27,13 @@
                   </router-link>
                 </li>
                 <li>
-                  <a href="/">测 s cc试</a>
+                  <router-link class="tab-item" to="/other">
+                    <span class="tab-link">插件</span>
+                  </router-link>
                 </li>
-                <li>
+                <!-- <li>
                   <span @click="test">测试x x api</span>
-                </li>
+                </li>-->
               </ul>
             </div>
           </div>
@@ -52,7 +54,7 @@
 <script>
 import index from "./views/index.vue";
 
-import { importData } from "@/../shared/db/import/importData";
+// import { importData } from "@/../shared/db/import/importData";
 
 export default {
   name: "mark-all",

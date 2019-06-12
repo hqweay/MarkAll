@@ -9,10 +9,6 @@ export const constantRouterMap = [
         // redirect: '/item',//跳转
         name: 'index',//命名路由
     }, {
-        path: '/movie',
-        name: 'movie',
-        component: () => import('@/views/movie/movie'),
-    }, {
         path: '/template',
         name: 'template',
         component: () => import('@/views/template/index'),
@@ -56,6 +52,10 @@ export const constantRouterMap = [
         path: '/tag/info/:name',
         name: 'tag-info',
         component: () => import('@/views/tag/info'),
+    }, {
+        path: '/other',
+        name: 'other',
+        component: () => import('@/views/other/index'),
     }
 ];
 export default new Router({

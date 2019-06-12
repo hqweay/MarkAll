@@ -4,10 +4,14 @@ const fs = require('fs-extra')
 import { addItem } from '../mapper/itemMapper'
 import { addTag } from '../mapper/tagMapper'
 
-export function importDoubanMovie() {
-    fs.readJson(STORE_PATH + '/user/douban-movie.json', (err, data) => {
-        if (err) console.error(err)
+export async function importDoubanMovies() {
+    try {
+        let data = await fs.readJson(STORE_PATH + '/user/douban-movie.json');
+        // let id = 1;
+        console.log("导入条目中...");
         data.forEach(element => {
+
+            // id++;
             let item = {
                 template_name: "豆瓣电影",
                 template_style: {
@@ -33,5 +37,7 @@ export function importDoubanMovie() {
                 addTag(tagName);
             })
         });
-    })
+    } catch (err) {
+        console.error(err)
+    }
 }
