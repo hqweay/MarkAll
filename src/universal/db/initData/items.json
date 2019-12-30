@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "template_name": "豆瓣电影",
+    "style": [
+      {
+        "name": "名称",
+        "value": "星球大战9"
+      },
+      {
+        "name": "导演",
+        "value": ""
+      },
+      {
+        "name": "主演",
+        "value": [
+          "黛西·雷德利",
+          "亚当·德赖弗",
+          "奥斯卡·伊萨克"
+        ]
+      },
+      {
+        "name": "封面",
+        "value": "https://img3.doubanio.com/view/photo/raw/public/p2553435803.jpg"
+      },
+      {
+        "name": "截图",
+        "value": [
+          "https://img3.doubanio.com/view/photo/raw/public/p2553435803.jpg",
+          "https://img3.doubanio.com/view/photo/raw/public/p2553435802.jpg",
+          "https://img3.doubanio.com/view/photo/raw/public/p2553435801.jpg"
+        ]
+      },
+      {
+        "name": "地址",
+        "value": "https://movie.douban.com/subject/22265687/"
+      },
+      {
+        "name": "简介",
+        "value": "本片为2017年电影《星球大战：最后的绝地武士》的续集，“星球大战后传三部曲”的第三部作品，同时是“天行者传奇”的第九部作品以及最终章。在卢克·天行者化为绝地英灵的一年后，残存的抵抗势力将再次面对第一秩序。同时，绝地和西斯之间的大战将天行者的传奇带到最后。"
+      },
+      {
+        "name": "评论",
+        "value": "不失为一部佳作。"
+      },
+      {
+        "name": "时间",
+        "value": "2019-12-26 15:55:22"
+      },
+      {
+        "name": "状态",
+        "value": "看过"
+      }
+    ],
+    "tags": [
+      "童年",
+      "悬疑"
+    ]
+  },
+  {
+    "id": 2,
+    "template_name": "专辑",
+    "style": [
+      {
+        "name": "名称",
+        "value": "这个世界会好吗"
+      },
+      {
+        "name": "封面",
+        "value": "https://img3.doubanio.com/view/subject/m/public/s2745500.jpg"
+      },
+      {
+        "name": "创作人",
+        "value": "李志"
+      },
+      {
+        "name": "曲目",
+        "value": [
+          "妈妈",
+          "喀纳斯",
+          "和你在一起"
+        ]
+      },
+      {
+        "name": "日期",
+        "value": "2006-11"
+      }
+    ],
+    "tags": [
+      "童年"
+    ]
+  }
+]

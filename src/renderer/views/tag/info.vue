@@ -20,39 +20,39 @@
 
 <script type="text/ecmascript-6">
 // import { editTagByName } from "@/../shared/db/mapper/tagMapper";
-import { editTagByName } from "@/../shared/db/mapper/tagMapper";
+import { editTagByName } from '@/../shared/db/mapper/tagMapper'
 export default {
-  data() {
+  data () {
     return {
       tag: {
-        name: ""
+        name: ''
       },
-      oldTagName: ""
-    };
+      oldTagName: ''
+    }
   },
-  created: function() {
-    this.tag.name = this.$route.params.name;
-    this.oldTagName = this.tag.name;
+  created: function () {
+    this.tag.name = this.$route.params.name
+    this.oldTagName = this.tag.name
   },
   methods: {
-    notify(message) {
-      const h = this.$createElement;
+    notify (message) {
+      const h = this.$createElement
       this.$notify({
-        title: "提示",
-        message: h("i", { style: "color: teal" }, message)
-      });
+        title: '提示',
+        message: h('i', { style: 'color: teal' }, message)
+      })
     },
-    editTagNow(newTag) {
+    editTagNow (newTag) {
       if (editTagByName(this.oldTagName, this.tag) == false) {
-        this.notify("修改后的数据和已有数据重复,或者您尚未修改...");
-        return false;
+        this.notify('修改后的数据和已有数据重复,或者您尚未修改...')
+        return false
       }
-      this.$router.push("/tag");
-      this.notify("修改成功");
-      this.oldTagName = this.tag.name;
+      this.$router.push('/tag')
+      this.notify('修改成功')
+      this.oldTagName = this.tag.name
     }
   }
-};
+}
 </script>
 
 <style scoped lang="scss">

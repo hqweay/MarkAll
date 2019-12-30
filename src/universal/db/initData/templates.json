@@ -1,0 +1,122 @@
+[
+  {
+    "name": "豆瓣电影",
+    "style": [
+      {
+        "name": "名称",
+        "description": "电影名",
+        "type": "DATE"
+      },
+      {
+        "name": "主演",
+        "description": "主演们",
+        "type": "LIST_TEXT"
+      },
+      {
+        "name": "封面",
+        "description": "封面",
+        "type": "IMAGE"
+      },
+      {
+        "name": "截图",
+        "description": "封面",
+        "type": "LIST_IMAGE"
+      },
+      {
+        "name": "地址",
+        "description": "豆瓣地址",
+        "type": "URL"
+      },
+      {
+        "name": "简介",
+        "description": "简介",
+        "type": "TEXT"
+      },
+      {
+        "name": "评论",
+        "description": "评论",
+        "type": "TEXT"
+      },
+      {
+        "name": "时间",
+        "description": "标记的时间",
+        "type": "DATE"
+      },
+      {
+        "name": "状态",
+        "description": "状态（看过、在看、想看）",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "name": "我去过的地方！",
+    "style": [
+      {
+        "name": "地名",
+        "description": "",
+        "type": "TEXT"
+      },
+      {
+        "name": "时间",
+        "description": "标记的时间",
+        "type": "TEXT"
+      },
+      {
+        "name": "人物",
+        "description": "一起的朋友",
+        "type": "LIST_TEXT"
+      }
+    ]
+  },
+  {
+    "name": "日记！",
+    "style": [
+      {
+        "name": "标题",
+        "description": "",
+        "type": "TEXT"
+      },
+      {
+        "name": "内容",
+        "description": "文章内容",
+        "type": "MARKDOWN"
+      },
+      {
+        "name": "时间",
+        "description": "时间",
+        "type": "DATE"
+      }
+    ]
+  },
+  {
+    "name": "专辑",
+    "style": [
+      {
+        "name": "名称",
+        "description": "专辑名",
+        "type": "TEXT"
+      },
+      {
+        "name": "封面",
+        "description": "封面",
+        "type": "IMAGE"
+      },
+      {
+        "name": "曲目",
+        "description": "歌曲列表",
+        "type": "LIST_TEXT"
+      },
+      {
+        "name": "创作人",
+        "description": "创作人",
+        "type": "TEXT"
+      },
+      {
+        "name": "日期",
+        "description": "发行时间",
+        "type": "DATE"
+      }
+    ]
+  }
+]

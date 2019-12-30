@@ -1,4 +1,4 @@
-import { getTags } from "@/../shared/db/mapper/tagMapper";
+import { getTags } from "#/db/mapper/tagMapper";
 export function templatePraseSchema(template) {
 
 

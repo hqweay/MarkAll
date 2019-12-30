@@ -1,43 +1,39 @@
-# mark-all
+# allmark
 
-> this is a project built by electron-vue that help you to mark your life 
->
-> 此项目用于记录(标记)书影音...一切!(你可以自己添加想要标记的模板)
-
-# 展示
-
-## 更新
-
-现在可以导入豆瓣用户标记看过的电影了!
-
-![](https://github.com/hqweay/MarkAll/blob/master/examples/0.0.2-import-douban.gif?raw=true)
-
-
-
-## ---
-
-![show.gif](https://github.com/hqweay/MarkAll/blob/master/examples/show.gif?raw=true)
-
-# Build Setup
-
-``` bash
-# install dependencies
-yarn or yarn install
-#npm install
-
-# serve with hot reload at localhost:9080
-yarn run dev
-#npm run dev
-
-# build electron application for production
-yarn run build
-#npm run build
+## Project setup
+```
+yarn install
 ```
 
-# 使用开源库
+### Compiles and hot-reloads for development
+```
+yarn run serve
+```
 
-* [electron-vue](<https://github.com/SimulatedGREG/electron-vue>)
-* [elementUI](<https://element.eleme.io/#/>)
-* [lowdb](<https://github.com/typicode/lowdb>)
-* [lodash-id](<https://github.com/typicode/lodash-id>)
-* [vue-json-ui-editor](<https://github.com/yourtion/vue-json-ui-editor>)
+### Compiles and minifies for production
+```
+yarn run build
+```
+
+### Run your tests
+```
+yarn run test
+```
+
+### Lints and fixes files
+```
+yarn run lint
+```
+
+### Run your end-to-end tests
+```
+yarn run test:e2e
+```
+
+### Run your unit tests
+```
+yarn run test:unit
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

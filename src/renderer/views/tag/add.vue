@@ -16,37 +16,37 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { addTag } from "@/../shared/db/mapper/tagMapper";
+import { addTag } from '@/../shared/db/mapper/tagMapper'
 export default {
-  data() {
+  data () {
     return {
-      tagName: ""
-    };
+      tagName: ''
+    }
   },
-  created: function() {},
+  created: function () {},
   methods: {
-    notify(message) {
-      const h = this.$createElement;
+    notify (message) {
+      const h = this.$createElement
       this.$notify({
-        title: "提示",
-        message: h("i", { style: "color: teal" }, message)
-      });
+        title: '提示',
+        message: h('i', { style: 'color: teal' }, message)
+      })
     },
-    addTagNow(tagName) {
-      if (tagName == "") {
-        this.notify("不能为空啊");
-        return false;
+    addTagNow (tagName) {
+      if (tagName == '') {
+        this.notify('不能为空啊')
+        return false
       }
       // console.log(tagName);
       if (addTag(tagName) == false) {
-        this.notify("重复了");
-        return false;
+        this.notify('重复了')
+        return false
       }
-      this.$router.push("/tag");
-      this.notify("添加成功");
+      this.$router.push('/tag')
+      this.notify('添加成功')
     }
   }
-};
+}
 </script>
 
 <style scoped lang="scss">
