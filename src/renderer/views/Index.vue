@@ -12,17 +12,17 @@
             <div class="siderbar-body">
               <ul>
                 <li>
-                  <router-link class="tab-item" to="/main/template">
+                  <router-link class="tab-item" to="/main/template-list">
                     <span class="tab-link">模板</span>
                   </router-link>
                 </li>
                 <li>
-                  <router-link class="tab-item" to="/main/tag">
+                  <router-link class="tab-item" to="/main/tag-list">
                     <span class="tab-link">标签</span>
                   </router-link>
                 </li>
                 <li>
-                  <router-link class="tab-item" to="/main/item">
+                  <router-link class="tab-item" to="/main/item-list">
                     <span class="tab-link">条目</span>
                   </router-link>
                 </li>
@@ -32,7 +32,9 @@
                   </router-link>
                 </li>
                 <!-- <li>
-                  <span @click="test">测试x x api</span>
+                  <router-link class="tab-item" to="/item-info">
+                    <span class="tab-link">ceui1</span>
+                  </router-link>
                 </li>-->
               </ul>
             </div>

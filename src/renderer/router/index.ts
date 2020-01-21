@@ -17,24 +17,28 @@ const routes = [
     component: () => import(/* webpackChunkName: "Item" */ '@/views/Index.vue'),
     children: [
       {
-        path: 'item',
-        name: 'item',
-        component: () => import(/* webpackChunkName: "Item" */ '@/views/item/Index.vue'),
+        path: 'item-list',
+        name: 'item-list',
+        component: () => import(/* webpackChunkName: "Item" */ '@/views/item/ItemList.vue'),
+        meta: {
+          title: '条目'
+        },
       },
       {
-        path: 'item/info/:id',
-        name: 'item-info',
-        component: () => import(/* webpackChunkName: "Item-Info" */ '@/views/item/Info.vue'),
+        path: 'tag-list',
+        name: 'tag-list',
+        meta: {
+          title: '标签'
+        },
+        component: () => import(/* webpackChunkName: "Item" */ '@/views/tag/TagList.vue'),
       },
       {
-        path: 'tag',
-        name: 'tag',
-        component: () => import(/* webpackChunkName: "Item" */ '@/views/tag/Index.vue'),
-      },
-      {
-        path: 'template',
-        name: 'template', // 命名路由
-        component: () => import(/* webpackChunkName: "Item" */ '@/views/template/Index.vue'),
+        path: 'template-list',
+        name: 'template-list', // 命名路由
+        component: () => import(/* webpackChunkName: "Item" */ '@/views/template/TemplateList.vue'),
+        meta: {
+          title: '模板'
+        },
       },
       {
         path: 'plugin',
@@ -43,10 +47,27 @@ const routes = [
       },
     ]
   },
+  {
+    path: '/item',
+    name: 'item',
+    component: () => import(/* webpackChunkName: "Item-Info" */ '@/views/item/Info.vue'),
+
+    children: [
+      {
+        path: 'info',
+        name: 'item-info',
+        meta: {
+          title: '条目信息'
+        },
+        // component: () => import(/* webpackChunkName: "Item-Info" */ '@/views/item/Info.vue'),
+
+      }
+    ]
+  }
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes,
 });

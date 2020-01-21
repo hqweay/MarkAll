@@ -14,9 +14,15 @@
 //   },
 // })
 export default {
-  name: 'markall'
+  name: "markall"
 };
 </script>
 
 <style scoped lang="scss">
+html,
+body,
+div {
+  margin: 0;
+  padding: 0;
+}
 </style>

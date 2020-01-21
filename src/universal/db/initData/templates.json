@@ -3,9 +3,14 @@
     "name": "豆瓣电影",
     "style": [
       {
-        "name": "名称",
+        "name": "片名",
         "description": "电影名",
-        "type": "DATE"
+        "type": "TEXT"
+      },
+      {
+        "name": "导演",
+        "description": "导演",
+        "type": "TEXT"
       },
       {
         "name": "主演",
@@ -44,8 +49,8 @@
       },
       {
         "name": "状态",
-        "description": "状态（看过、在看、想看）",
-        "type": "TEXT"
+        "description": "看过;未看;在看",
+        "type": "ENUM"
       }
     ]
   },

@@ -1,10 +1,13 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import {
+  app, protocol, BrowserWindow
+} from 'electron'
 import {
   createProtocol,
-  installVueDevtools
+  installVueDevtools,
 } from 'vue-cli-plugin-electron-builder/lib'
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -53,7 +56,9 @@ function createWindow() {
   }
 
   win.on('closed', () => {
-    win = null
+    win = null;
+    // 主窗口关了，全都关了好了。
+    app.quit();
   })
 }
 
@@ -110,5 +115,10 @@ if (isDevelopment) {
   }
 }
 
-// 应用菜单
-require('~/main/application/menu')
+// 应用主窗口菜单
+require('~/main/application/mainMenu')
+
+
+
+// 应用 ipc 交互
+require('~/main/ipc/ipcMain')

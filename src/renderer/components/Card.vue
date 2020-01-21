@@ -14,9 +14,9 @@
       <span class="show tag-name">
         <h3 v-if="type === 'item' && data.tags.length > 0">{{data.tags}}</h3>
       </span>
-      <div class="edit" @click.stop="edit(data)">
+      <!-- <div class="edit" @click.stop="edit(data)">
         <img src="@/assets/icon/edit.png" alt />
-      </div>
+      </div>-->
       <div class="delete" @click.stop="del(data)">
         <img src="@/assets/icon/trash.png" alt />
       </div>
@@ -30,7 +30,7 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { deleteItemByID } from "#/db/mapper/itemMapper";
 import { deleteTagByName } from "#/db/mapper/tagMapper";
 import { deleteTemplateByName } from "#/db/mapper/templateMapper";
-
+import { ipcRenderer } from "electron";
 @Component({
   name: "card"
 })
@@ -41,7 +41,8 @@ export default class extends Vue {
   showInfo(data: any) {
     switch (this.type) {
       case "item":
-        this.$router.push("/main/item/info/" + data.id);
+        // this.$router.push("/main/item/info/" + data.id);
+        ipcRenderer.send("showCardInfo", this.type, data);
         break;
       case "template":
         this.$router.push("/main/template/info/" + data.id);
@@ -124,7 +125,7 @@ export default class extends Vue {
 }
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+  transition: 0.1s;
   width: 300px;
   height: 300px;
   border-radius: 5px;

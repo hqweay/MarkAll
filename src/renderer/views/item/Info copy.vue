@@ -39,85 +39,91 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+
+
+<script lang="ts">
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { getItemByID, editItemByID } from "#/db/mapper/itemMapper";
-
 import { templatePraseSchema } from "@/utils/jsonEditor/templatePraseSchema";
-
 import JsonEditor from "@/utils/jsonEditor/JsonEditor";
-
 import { getTemplateByName } from "#/db/mapper/templateMapper";
 const SCHEMA = {};
-
 // import { checkJson } from "@/utils/checkJson";
-export default {
-  components: { JsonEditor },
-  data() {
-    return {
-      schema: SCHEMA,
-      template: {
-        name: "哈哈",
-        style: {}
-      },
-      item: {
-        template_name: "",
-        template_style: {},
-        tag_name: ""
-      },
-      oldItem: {},
-      style: {
-        isShow: false,
-        message: "展开"
-      }
-    };
-  },
-  created: function() {
+@Component({
+  components: {
+    JsonEditor
+  }
+})
+export default class extends Vue {
+  schema = SCHEMA;
+  template: TemplateType = {
+    name: "",
+    style: []
+  };
+  item: ItemType = {
+    id: "",
+    template_name: "",
+    style: [],
+    tags: []
+  };
+  oldItem: ItemType = {
+    id: "",
+    template_name: "",
+    style: [],
+    tags: []
+  };
+  style = {
+    isShow: false,
+    message: "展开"
+  };
+  created() {
     let id = this.$route.params.id;
-    // this.item = getItemByID(id);
-    // this.template = getTemplateByName(this.item.template_name);
+    this.item = getItemByID(id);
+    this.template = getTemplateByName(this.item.template_name);
     // this.schema = templatePraseSchema(this.template);
 
     // 深拷贝做个备份
     // this.oldItem = JSON.parse(JSON.stringify(this.item));
-  },
-  methods: {
-    showStyle() {
-      this.style.isShow = this.style.isShow !== true;
-      this.style.message = this.style.message === "折叠" ? "展开" : "折叠";
-    },
-    notify(message) {
-      const h = this.$createElement;
-      this.$notify({
-        title: "提示",
-        message: h("i", { style: "color: teal" }, message)
-      });
-    },
-    editItem(item) {
-      // let newItem = [];
-      // if (typeof itemString == "string") {
-      //   try {
-      //     newItem = JSON.parse(itemString);
-      //   } catch (e) {
-      //     this.notify("请保证 json 格式");
-      //     return false;
-      //   }
-      let status = editItemByID(item);
-      if (status === 0) {
-        this.notify("未修改");
-        return false;
-      } else if (status === 1) {
-        // 不会生效,应该允许该操作
-        this.notify("名称和已有数据重复");
-        return false;
-      }
+  }
+
+  showStyle() {
+    this.style.isShow = this.style.isShow !== true;
+    this.style.message = this.style.message === "折叠" ? "展开" : "折叠";
+  }
+  notify(message: string) {
+    const h = this.$createElement;
+    this.$notify({
+      title: "提示",
+      message: h("i", { style: "color: teal" }, message)
+    });
+  }
+  editItem(item: ItemType) {
+    // let newItem = [];
+    // if (typeof itemString == "string") {
+    //   try {
+    //     newItem = JSON.parse(itemString);
+    //   } catch (e) {
+    //     this.notify("请保证 json 格式");
+    //     return false;
+    //   }
+    // 有点问题
+    let status = editItemByID(item);
+    if (status === false) {
+      this.notify("未修改");
+      // return false;
+      // } else if (status === true) {
+      // 不会生效,应该允许该操作
+      this.notify("名称和已有数据重复");
+      return false;
+    } else {
       this.notify("修改成功");
       this.item = item;
-    },
-    reset() {
-      this.item = this.oldItem;
     }
   }
-};
+  reset() {
+    this.item = this.oldItem;
+  }
+}
 </script>
 
 <style scoped lang="scss">

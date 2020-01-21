@@ -5,14 +5,17 @@
     "style": [
       {
         "name": "名称",
+        "type": "TEXT",
         "value": "星球大战9"
       },
       {
         "name": "导演",
-        "value": ""
+        "type": "TEXT",
+        "value": "不知道"
       },
       {
         "name": "主演",
+        "type": "LIST_TEXT",
         "value": [
           "黛西·雷德利",
           "亚当·德赖弗",
@@ -21,10 +24,12 @@
       },
       {
         "name": "封面",
+        "type": "IMAGE",
         "value": "https://img3.doubanio.com/view/photo/raw/public/p2553435803.jpg"
       },
       {
         "name": "截图",
+        "type": "LIST_IMAGE",
         "value": [
           "https://img3.doubanio.com/view/photo/raw/public/p2553435803.jpg",
           "https://img3.doubanio.com/view/photo/raw/public/p2553435802.jpg",
@@ -33,22 +38,27 @@
       },
       {
         "name": "地址",
+        "type": "URL",
         "value": "https://movie.douban.com/subject/22265687/"
       },
       {
         "name": "简介",
+        "type": "TEXT",
         "value": "本片为2017年电影《星球大战：最后的绝地武士》的续集，“星球大战后传三部曲”的第三部作品，同时是“天行者传奇”的第九部作品以及最终章。在卢克·天行者化为绝地英灵的一年后，残存的抵抗势力将再次面对第一秩序。同时，绝地和西斯之间的大战将天行者的传奇带到最后。"
       },
       {
         "name": "评论",
+        "type": "TEXT",
         "value": "不失为一部佳作。"
       },
       {
         "name": "时间",
+        "type": "DATE",
         "value": "2019-12-26 15:55:22"
       },
       {
         "name": "状态",
+        "type": "ENUM",
         "value": "看过"
       }
     ],

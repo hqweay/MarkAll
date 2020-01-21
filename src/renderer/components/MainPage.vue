@@ -103,6 +103,10 @@ export default class extends Vue {
     li {
       margin-top: 20px;
     }
+    // 还是平起好看点
+    .add {
+      margin-top: 0;
+    }
   }
 }
 </style>

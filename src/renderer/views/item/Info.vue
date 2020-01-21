@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <title>条目信息</title>
+
     <div class="card">
       <div class="add-container">
         <!-- <div class="test"> -->
@@ -15,22 +17,17 @@
                   @click="showStyle()"
                 >{{style.message}}</el-button>
               </div>
+              <ul v-for="styleItem in this.item.style" :key="styleItem.name">
+                <li>{{ styleItem }}</li>
+              </ul>
 
-              <el-collapse-transition>
+              <!-- <el-collapse-transition>
                 <div v-if="style.isShow == true" class="style">
                   <pre class="json">{{ item }}</pre>
                 </div>
-              </el-collapse-transition>
-            </el-card>
-            <br />
-          </el-col>
+              </el-collapse-transition>-->
 
-          <el-col>
-            <el-card class="form" shadow="hover">
-              <json-editor ref="JsonEditor" :schema="schema" v-model="item">
-                <el-button type="primary" @click="editItem(item)">提交</el-button>
-                <el-button type="reset" @click="reset()">重置</el-button>
-              </json-editor>
+              <!-- 遍历项，根据不同 type 渲染不同效果。 -->
             </el-card>
           </el-col>
         </el-row>
@@ -44,18 +41,14 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { getItemByID, editItemByID } from "#/db/mapper/itemMapper";
-import { templatePraseSchema } from "@/utils/jsonEditor/templatePraseSchema";
-import JsonEditor from "@/utils/jsonEditor/JsonEditor";
+
 import { getTemplateByName } from "#/db/mapper/templateMapper";
 const SCHEMA = {};
 // import { checkJson } from "@/utils/checkJson";
 @Component({
-  components: {
-    JsonEditor
-  }
+  components: {}
 })
 export default class extends Vue {
-  schema = SCHEMA;
   template: TemplateType = {
     name: "",
     style: []
@@ -80,6 +73,9 @@ export default class extends Vue {
     let id = this.$route.params.id;
     this.item = getItemByID(id);
     this.template = getTemplateByName(this.item.template_name);
+
+    // 可视化渲染 json
+
     // this.schema = templatePraseSchema(this.template);
 
     // 深拷贝做个备份
@@ -128,7 +124,7 @@ export default class extends Vue {
 
 <style scoped lang="scss">
 .card {
-  background-color: #75d8af;
+  background-color: #26a4c4;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 100%;
