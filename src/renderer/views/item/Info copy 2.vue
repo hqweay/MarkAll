@@ -3,7 +3,31 @@
     <!-- 默认第一项为 title  -->
     <div id="title">
       <h1 class="title">{{this.item.style[0].value}}</h1>
-      <Tag v-bind:item="this.item"></Tag>
+      <!-- <div style="margin-bottom:2%;" class="template"> -->
+      <!-- <el-tag size="small" type="success">{{this.item.template_name}}</el-tag> -->
+      <!-- </div> -->
+
+      <div class="tag">
+        <!-- <el-button plain size="small" v-for="tag in this.item.tags" :key="tag">{{tag}}</el-button> -->
+        <el-tag type="success">{{this.item.template_name}}</el-tag>
+        <el-tag
+          :key="tag"
+          v-for="tag in this.item.tags"
+          closable
+          :disable-transitions="false"
+          @close="handleClose(tag)"
+        >{{tag}}</el-tag>
+        <el-input
+          size="mini"
+          class="input-new-tag"
+          v-if="inputVisible"
+          v-model="inputValue"
+          ref="saveTagInput"
+          @keyup.enter.native="handleInputConfirm"
+          @blur="handleInputConfirm"
+        ></el-input>
+        <el-button size="mini" v-else class="button-new-tag" @click="showInput">+ Tag</el-button>
+      </div>
     </div>
     <div id="style">
       <div
@@ -23,12 +47,10 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import { getItemByID, editItemByID } from "#/db/mapper/itemMapper";
 import { getTemplateByName } from "#/db/mapper/templateMapper";
 import { stylePraser } from "@/utils/stylePraser";
-
-import Tag from "@/components/style/Tag.vue";
+const SCHEMA = {};
+// import { checkJson } from "@/utils/checkJson";
 @Component({
-  components: {
-    Tag
-  }
+  components: {}
 })
 export default class extends Vue {
   template: TemplateType = {
@@ -102,6 +124,21 @@ export default class extends Vue {
         flex-direction: row;
       }
     }
+  }
+  .el-tag + .el-tag {
+    margin-left: 10px;
+  }
+  .button-new-tag {
+    margin-left: 10px;
+    height: 32px;
+    line-height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .input-new-tag {
+    width: 90px;
+    margin-left: 10px;
+    vertical-align: bottom;
   }
 }
 </style>
