@@ -52,6 +52,7 @@ export default class extends Vue {
   showInput() {
     this.inputVisible = true;
     this.$nextTick(() => {
+      // @ts-ignore
       this.$refs["input"].focus();
     });
   }
@@ -73,6 +74,7 @@ export default class extends Vue {
     this.inputVisible = true;
     this.editFlag = false;
     this.$nextTick(() => {
+      // @ts-ignore
       this.$refs["input"].focus();
     });
   }
