@@ -1,10 +1,10 @@
 <template>
   <div class="tag">
     <!-- <el-button plain size="small" v-for="tag in this.item.tags" :key="tag">{{tag}}</el-button> -->
-    <el-tag class="template" type="success">{{item.template_name}}</el-tag>
+    <!-- <el-tag class="template" type="success">{{item.template_name}}</el-tag> -->
     <el-tag
       :key="tag"
-      v-for="tag in item.tags"
+      v-for="tag in tags"
       closable
       :disable-transitions="false"
       @click="editFlag && editTag(tag)"
@@ -42,7 +42,7 @@ import { ipcRenderer, Item } from "electron";
 })
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;
-  @Prop() item!: ItemType;
+  @Prop() tags!: Array<string>;
   inputVisible: boolean = false;
   inputValue: string = "";
   editFlag: boolean = true;
@@ -52,32 +52,36 @@ export default class extends Vue {
     this.inputVisible = true;
   }
   handleClose(tag: string) {
-    var index = this.item.tags.indexOf(tag);
+    // 删除标签
+    var index = this.tags.indexOf(tag);
     if (index > -1) {
-      this.item.tags.splice(index, 1);
+      this.tags.splice(index, 1);
     }
+    this.$emit("updateMainPage", this.tags);
   }
   editTag(tag: string) {
-    var index = this.item.tags.indexOf(tag);
+    // 编辑标签
+    var index = this.tags.indexOf(tag);
     if (index > -1) {
-      this.item.tags.splice(index, 1);
+      this.tags.splice(index, 1);
     }
     this.inputValue = tag;
     this.inputVisible = true;
     this.editFlag = false;
   }
   handleInputConfirm() {
+    // 编辑与添加标签
     // 不可空
     if (this.inputValue.trim() === "") {
       this.inputVisible = false;
       return;
     }
     // 不可重复
-    if (this.item.tags.indexOf(this.inputValue) != -1) {
+    if (this.tags.indexOf(this.inputValue) != -1) {
       this.inputVisible = false;
       return;
     }
-    this.item.tags.push(this.inputValue);
+    this.tags.push(this.inputValue);
     this.inputValue = "";
     this.inputVisible = false;
     this.editFlag = true;
@@ -92,8 +96,8 @@ export default class extends Vue {
     margin-bottom: 1%;
   }
 }
-.template,
-.el-tag + .el-tag {
+// .template,
+.el-tag {
   margin-right: 10px;
 }
 .button-new-tag,

@@ -3,7 +3,10 @@
     <!-- 默认第一项为 title  -->
     <div id="title">
       <h1 class="title">{{this.item.style[0].value}}</h1>
-      <Tag v-bind:item="this.item"></Tag>
+      <div class="sub-title">
+        <el-tag class="template" type="success">{{this.item.template_name}}</el-tag>
+        <Tag v-bind:tags="this.item.tags"></Tag>
+      </div>
     </div>
     <div id="style">
       <div
@@ -15,8 +18,6 @@
     </div>
   </div>
 </template>
-
-
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
@@ -31,10 +32,6 @@ import Tag from "@/components/style/Tag.vue";
   }
 })
 export default class extends Vue {
-  template: TemplateType = {
-    name: "",
-    style: []
-  };
   item: ItemType = {
     id: "",
     template_name: "",
@@ -51,7 +48,6 @@ export default class extends Vue {
   created() {
     let id = this.$route.params.id;
     this.item = getItemByID(id);
-    this.template = getTemplateByName(this.item.template_name);
 
     // 可视化渲染 json
 
@@ -103,5 +99,17 @@ export default class extends Vue {
       }
     }
   }
+  h1 {
+    // margin-bottom: 1%;
+  }
+  .sub-title {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  // .template {
+  //   width: 100%;
+  //   margin-bottom: 2%;
+  //   // margin-top: 0;
+  // }
 }
 </style>
