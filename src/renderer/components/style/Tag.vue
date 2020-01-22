@@ -7,8 +7,17 @@
       v-for="tag in item.tags"
       closable
       :disable-transitions="false"
+      @click="editFlag && editTag(tag)"
       @close="handleClose(tag)"
     >{{tag}}</el-tag>
+    <!-- <el-input
+      size="mini"
+      class="edit-tag"
+      v-if="editVisible"
+      v-model="inputValue"
+      @keyup.enter.native="handleInputConfirm"
+    ></el-input>-->
+
     <el-input
       size="mini"
       class="input-new-tag"
@@ -36,16 +45,28 @@ export default class extends Vue {
   @Prop() item!: ItemType;
   inputVisible: boolean = false;
   inputValue: string = "";
+  editFlag: boolean = true;
   created() {}
 
   showInput() {
-    // this.inputVisible = this.inputVisible === false ? true : false;
     this.inputVisible = true;
   }
+  handleClose(tag: string) {
+    var index = this.item.tags.indexOf(tag);
+    if (index > -1) {
+      this.item.tags.splice(index, 1);
+    }
+  }
+  editTag(tag: string) {
+    var index = this.item.tags.indexOf(tag);
+    if (index > -1) {
+      this.item.tags.splice(index, 1);
+    }
+    this.inputValue = tag;
+    this.inputVisible = true;
+    this.editFlag = false;
+  }
   handleInputConfirm() {
-    // this.inputVisible = this.inputVisible === false ? true : false;
-    // add tag
-    // this.$emit("updateItem", this.item);
     // 不可空
     if (this.inputValue.trim() === "") {
       this.inputVisible = false;
@@ -59,6 +80,7 @@ export default class extends Vue {
     this.item.tags.push(this.inputValue);
     this.inputValue = "";
     this.inputVisible = false;
+    this.editFlag = true;
   }
 }
 </script>
@@ -74,14 +96,16 @@ export default class extends Vue {
 .el-tag + .el-tag {
   margin-right: 10px;
 }
-.button-new-tag {
+.button-new-tag,
+.edit-tag {
   margin-right: 10px;
   height: 32px;
   line-height: 30px;
   padding-top: 0;
   padding-bottom: 0;
 }
-.input-new-tag {
+.input-new-tag,
+.edit-tag {
   width: 90px;
   margin-left: 10px;
   vertical-align: bottom;
