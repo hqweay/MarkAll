@@ -23,7 +23,8 @@
       class="input-new-tag"
       v-if="inputVisible"
       v-model="inputValue"
-      ref="saveTagInput"
+      ref="input"
+      @blur="handleInputConfirm"
       @keyup.enter.native="handleInputConfirm"
     ></el-input>
     <el-button size="mini" v-else class="button-new-tag" @click="showInput">+ Tag</el-button>
@@ -50,6 +51,9 @@ export default class extends Vue {
 
   showInput() {
     this.inputVisible = true;
+    this.$nextTick(() => {
+      this.$refs["input"].focus();
+    });
   }
   handleClose(tag: string) {
     // 删除标签
@@ -68,6 +72,9 @@ export default class extends Vue {
     this.inputValue = tag;
     this.inputVisible = true;
     this.editFlag = false;
+    this.$nextTick(() => {
+      this.$refs["input"].focus();
+    });
   }
   handleInputConfirm() {
     // 编辑与添加标签
