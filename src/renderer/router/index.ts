@@ -54,7 +54,7 @@ const routes = [
 
     children: [
       {
-        path: 'info',
+        path: 'info/:id',
         name: 'item-info',
         meta: {
           title: '条目信息'

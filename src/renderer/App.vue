@@ -24,5 +24,6 @@ body,
 div {
   margin: 0;
   padding: 0;
+  border: 0px;
 }
 </style>

@@ -1,5 +1,4 @@
 import {
-  app,
   BrowserWindow,
 } from 'electron';
 
@@ -27,7 +26,7 @@ export const createItemWindow = (type: string, data: any) => {
         nodeIntegration: true, // electron5.0 以上 render require is not defined
       }
     })
-    itemWin.loadURL('http://localhost:8080/#/item/info');
+    itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
 
     itemWin.on('closed', () => {
       itemWin = null;

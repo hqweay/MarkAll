@@ -25,21 +25,46 @@
       {
         "name": "封面",
         "type": "IMAGE",
-        "value": "https://img3.doubanio.com/view/photo/raw/public/p2553435803.jpg"
+        "value": "https://leay.net/img/avatar.png"
       },
       {
         "name": "截图",
         "type": "LIST_IMAGE",
         "value": [
-          "https://img3.doubanio.com/view/photo/raw/public/p2553435803.jpg",
-          "https://img3.doubanio.com/view/photo/raw/public/p2553435802.jpg",
-          "https://img3.doubanio.com/view/photo/raw/public/p2553435801.jpg"
+          "https://leay.net/img/avatar.png",
+          "https://leay.net/img/avatar.png",
+          "https://leay.net/img/avatar.png",
+          "https://leay.net/img/avatar.png",
+          "https://leay.net/img/avatar.png",
+          "https://leay.net/img/avatar.png",
+          "https://leay.net/img/avatar.png"
         ]
       },
       {
         "name": "地址",
         "type": "URL",
-        "value": "https://movie.douban.com/subject/22265687/"
+        "value": {
+          "name": "影片地址",
+          "url": "https://movie.douban.com/subject/22265687/"
+        }
+      },
+      {
+        "name": "测试urls",
+        "type": "LIST_URL",
+        "value": [
+          {
+            "name": "影片地址",
+            "url": "https://movie.douban.com/subject/22265687/"
+          },
+          {
+            "name": "影片地址",
+            "url": "https://movie.douban.com/subject/22265687/"
+          },
+          {
+            "name": "影片地址",
+            "url": "https://movie.douban.com/subject/22265687/"
+          }
+        ]
       },
       {
         "name": "简介",

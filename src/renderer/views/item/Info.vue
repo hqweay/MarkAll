@@ -1,37 +1,41 @@
 <template>
   <div class="container">
-    <title>条目信息</title>
+    <!-- 默认第一项为 title  -->
+    <div id="title">
+      <h1 class="title">{{this.item.style[0].value}}</h1>
+      <!-- <div style="margin-bottom:2%;" class="template"> -->
+      <!-- <el-tag size="small" type="success">{{this.item.template_name}}</el-tag> -->
+      <!-- </div> -->
 
-    <div class="card">
-      <div class="add-container">
-        <!-- <div class="test"> -->
-        <el-row type="flex" align="middle">
-          <el-col>
-            <el-card class="box-card" shadow="hover">
-              <div slot="header" class="clearfix">
-                <!-- <span>{{item.template_style.name}}</span> -->
-                <span>条目信息</span>
-                <el-button
-                  style="float: right; padding: 3px 0"
-                  type="text"
-                  @click="showStyle()"
-                >{{style.message}}</el-button>
-              </div>
-              <ul v-for="styleItem in this.item.style" :key="styleItem.name">
-                <li>{{ styleItem }}</li>
-              </ul>
-
-              <!-- <el-collapse-transition>
-                <div v-if="style.isShow == true" class="style">
-                  <pre class="json">{{ item }}</pre>
-                </div>
-              </el-collapse-transition>-->
-
-              <!-- 遍历项，根据不同 type 渲染不同效果。 -->
-            </el-card>
-          </el-col>
-        </el-row>
+      <div class="tag">
+        <!-- <el-button plain size="small" v-for="tag in this.item.tags" :key="tag">{{tag}}</el-button> -->
+        <el-tag type="success">{{this.item.template_name}}</el-tag>
+        <el-tag
+          :key="tag"
+          v-for="tag in this.item.tags"
+          closable
+          :disable-transitions="false"
+          @close="handleClose(tag)"
+        >{{tag}}</el-tag>
+        <el-input
+          size="mini"
+          class="input-new-tag"
+          v-if="inputVisible"
+          v-model="inputValue"
+          ref="saveTagInput"
+          @keyup.enter.native="handleInputConfirm"
+          @blur="handleInputConfirm"
+        ></el-input>
+        <el-button size="mini" v-else class="button-new-tag" @click="showInput">+ Tag</el-button>
       </div>
+    </div>
+    <div id="style">
+      <div
+        v-for="styleItem in this.item.style"
+        :key="styleItem.name"
+        :class="getStyleType(styleItem)"
+        v-html="stylePraser(styleItem)"
+      ></div>
     </div>
   </div>
 </template>
@@ -41,8 +45,8 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { getItemByID, editItemByID } from "#/db/mapper/itemMapper";
-
 import { getTemplateByName } from "#/db/mapper/templateMapper";
+import { stylePraser } from "@/utils/stylePraser";
 const SCHEMA = {};
 // import { checkJson } from "@/utils/checkJson";
 @Component({
@@ -65,10 +69,7 @@ export default class extends Vue {
     style: [],
     tags: []
   };
-  style = {
-    isShow: false,
-    message: "展开"
-  };
+  inputVisible: boolean = false;
   created() {
     let id = this.$route.params.id;
     this.item = getItemByID(id);
@@ -82,81 +83,62 @@ export default class extends Vue {
     // this.oldItem = JSON.parse(JSON.stringify(this.item));
   }
 
-  showStyle() {
-    this.style.isShow = this.style.isShow !== true;
-    this.style.message = this.style.message === "折叠" ? "展开" : "折叠";
+  stylePraser(styleItem: any): string {
+    return stylePraser(styleItem);
   }
-  notify(message: string) {
-    const h = this.$createElement;
-    this.$notify({
-      title: "提示",
-      message: h("i", { style: "color: teal" }, message)
-    });
+  getStyleType(styleItem: any): string {
+    return styleItem.type;
   }
-  editItem(item: ItemType) {
-    // let newItem = [];
-    // if (typeof itemString == "string") {
-    //   try {
-    //     newItem = JSON.parse(itemString);
-    //   } catch (e) {
-    //     this.notify("请保证 json 格式");
-    //     return false;
-    //   }
-    // 有点问题
-    let status = editItemByID(item);
-    if (status === false) {
-      this.notify("未修改");
-      // return false;
-      // } else if (status === true) {
-      // 不会生效,应该允许该操作
-      this.notify("名称和已有数据重复");
-      return false;
-    } else {
-      this.notify("修改成功");
-      this.item = item;
+  getTags(tags: any): string {
+    let strs = "";
+    for (let tag in tags) {
+      strs += tag + "/";
     }
-  }
-  reset() {
-    this.item = this.oldItem;
+    return strs;
   }
 }
-</script>
+</script> 
 
 <style scoped lang="scss">
-.card {
-  background-color: #26a4c4;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  width: 100%;
-  min-height: 700px;
-  height: 100%;
-  border-radius: 5px;
-  cursor: pointer;
+* {
   display: flex;
-  // flex-direction: column;
-  align-items: center;
-  .add-container {
-    width: 100%;
-    display: flex;
-    .el-row {
-      margin: 20px 0 20px 0;
-      width: 100%;
+
+  .container {
+    margin-left: 2%;
+    margin-right: 2%;
+    flex-direction: column;
+    #title {
       flex-direction: column;
-      .el-col {
-        width: 80%;
-        margin: 0 auto;
-        pre {
-          white-space: pre-wrap;
-          word-wrap: break-word;
-        }
+    }
+    #style {
+      flex-direction: column;
+      * {
+        flex-direction: column;
+        margin-top: 2%;
+      }
+      .TEXT,
+      .LIST_TEXT,
+      .DATE,
+      .IMAGE,
+      .URL {
+        flex-direction: row;
       }
     }
   }
-}
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-.container {
-  padding: 2px 16px;
+  .el-tag + .el-tag {
+    margin-left: 10px;
+  }
+  .button-new-tag {
+    margin-left: 10px;
+    height: 32px;
+    line-height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .input-new-tag {
+    width: 90px;
+    margin-left: 10px;
+    vertical-align: bottom;
+  }
 }
 </style>
