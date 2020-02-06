@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <el-row type="flex">
-      <el-col :span="6">
+    <el-row :gutter="40" type="flex">
+      <el-col :span="7">
         <div class="grid-content bg-purple">
           <div class="siderbar">
             <div class="siderbar-header">
@@ -41,8 +41,8 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="18">
-        <div>
+      <el-col :span="17">
+        <div class="grid-content bg-purple">
           <div class="content">
             <!-- <index/> -->
             <router-view></router-view>
@@ -102,7 +102,7 @@ export default class extends Vue {}
     }
   }
   .content {
-    width: 76%;
+    width: 70%;
     top: 0;
     bottom: 0;
     overflow: auto;

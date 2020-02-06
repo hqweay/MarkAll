@@ -24,11 +24,11 @@ function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     height: 800, // 高
-    width: 1280, // 宽
     maxHeight: 800,
     minHeight: 600,
-    maxWidth: 1400,
-    minWidth: 1180,
+    width: 1100, // 宽
+    maxWidth: 1450,
+    minWidth: 1100,
     show: true, // 创建后是否显示
     frame: true, // 是否创建frameless窗口
     fullscreenable: false, // 是否允许全屏
