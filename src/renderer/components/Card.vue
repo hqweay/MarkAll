@@ -3,7 +3,7 @@
     <div v-bind:class="['card', 'card-'+type]">
       <span class="show item-name">
         <h1>
-          <a target="_blank" v-if="type === 'item'">{{data.style[0].value}}</a>
+          <a target="_blank" v-if="type === 'item'">{{data.style_content[0].value}}</a>
           <a target="_blank" v-else-if="type === 'template'">{{data.name}}</a>
           <a target="_blank" v-else-if="type === 'tag'">{{data}}</a>
         </h1>

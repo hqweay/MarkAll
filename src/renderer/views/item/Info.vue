@@ -2,7 +2,7 @@
   <div class="container">
     <!-- 默认第一项为 title  -->
     <div id="title">
-      <h1 class="title">{{this.item.style[0].value}}</h1>
+      <h1 class="title">{{this.item.style_content[0].value}}</h1>
       <div class="sub-title">
         <el-tag class="template" type="success">{{this.item.template_name}}</el-tag>
         <Tag v-bind:tags="this.item.tags"></Tag>
@@ -10,7 +10,7 @@
     </div>
     <div id="style">
       <div
-        v-for="styleItem in this.item.style"
+        v-for="styleItem in this.item.style_content"
         :key="styleItem.name"
         :class="getStyleType(styleItem)"
         v-html="stylePraser(styleItem)"
@@ -35,13 +35,13 @@ export default class extends Vue {
   item: ItemType = {
     id: "",
     template_name: "",
-    style: [],
+    style_content: [],
     tags: []
   };
   oldItem: ItemType = {
     id: "",
     template_name: "",
-    style: [],
+    style_content: [],
     tags: []
   };
   inputVisible: boolean = false;
@@ -94,7 +94,8 @@ export default class extends Vue {
       .LIST_TEXT,
       .DATE,
       .IMAGE,
-      .URL {
+      .URL,
+      .LIST_URL {
         flex-direction: row;
       }
     }

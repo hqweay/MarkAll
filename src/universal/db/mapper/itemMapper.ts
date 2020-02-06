@@ -106,14 +106,14 @@ export function editItemByID(item: ItemType): boolean {
   // bug
   // 应该允许重名啊!!
   // if (db.read().get('items').find({ template_name: item.template_name }).value() != null) {
-  //     if (db.read().get('items').find(["style.name", item.style.name]).value() != null) {
+  //     if (db.read().get('items').find(["style.name", item.style_content.name]).value() != null) {
   //         return 1;
   //     }
   // }
 
   db.read().get('items').value().getById(item.id).assign({
     template_name: item.template_name,
-    style: item.style,
+    style: item.style_content,
     tags: item.tags
   }).write();
   return true;

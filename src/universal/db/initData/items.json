@@ -2,7 +2,7 @@
   {
     "id": 1,
     "template_name": "豆瓣电影",
-    "style": [
+    "style_content": [
       {
         "name": "名称",
         "type": "TEXT",
@@ -25,19 +25,51 @@
       {
         "name": "封面",
         "type": "IMAGE",
-        "value": "https://leay.net/img/avatar.png"
+        "value": {
+          "name": "01",
+          "url": "https://leay.net/img/avatar.png",
+          "description": "https://leay.net/img/avatar.png"
+        }
       },
       {
         "name": "截图",
         "type": "LIST_IMAGE",
         "value": [
-          "https://leay.net/img/avatar.png",
-          "https://leay.net/img/avatar.png",
-          "https://leay.net/img/avatar.png",
-          "https://leay.net/img/avatar.png",
-          "https://leay.net/img/avatar.png",
-          "https://leay.net/img/avatar.png",
-          "https://leay.net/img/avatar.png"
+          {
+            "name": "01",
+            "url": "https://leay.net/img/avatar.png",
+            "description": "https://leay.net/img/avatar.png"
+          },
+          {
+            "name": "02",
+            "url": "https://leay.net/img/avatar.png",
+            "description": "https://leay.net/img/avatar.png"
+          },
+          {
+            "name": "03",
+            "url": "https://leay.net/img/avatar.png",
+            "description": "https://leay.net/img/avatar.png"
+          },
+          {
+            "name": "04",
+            "url": "https://leay.net/img/avatar.png",
+            "description": "https://leay.net/img/avatar.png"
+          },
+          {
+            "name": "05",
+            "url": "https://leay.net/img/avatar.png",
+            "description": "https://leay.net/img/avatar.png"
+          },
+          {
+            "name": "06",
+            "url": "https://leay.net/img/avatar.png",
+            "description": "https://leay.net/img/avatar.png"
+          },
+          {
+            "name": "07",
+            "url": "https://leay.net/img/avatar.png",
+            "description": "https://leay.net/img/avatar.png"
+          }
         ]
       },
       {
@@ -54,15 +86,18 @@
         "value": [
           {
             "name": "影片地址",
-            "url": "https://movie.douban.com/subject/22265687/"
+            "url": "https://movie.douban.com/subject/22265687/",
+            "description": "测试描述"
           },
           {
             "name": "影片地址",
-            "url": "https://movie.douban.com/subject/22265687/"
+            "url": "https://movie.douban.com/subject/22265687/",
+            "description": "测试描述"
           },
           {
             "name": "影片地址",
-            "url": "https://movie.douban.com/subject/22265687/"
+            "url": "https://movie.douban.com/subject/22265687/",
+            "description": "测试描述"
           }
         ]
       },
@@ -84,7 +119,14 @@
       {
         "name": "状态",
         "type": "ENUM",
-        "value": "看过"
+        "value": {
+          "enums": [
+            "未看",
+            "在看",
+            "看过"
+          ],
+          "state": ""
+        }
       }
     ],
     "tags": [
@@ -95,21 +137,29 @@
   {
     "id": 2,
     "template_name": "专辑",
-    "style": [
+    "style_content": [
       {
         "name": "名称",
+        "type": "TEXT",
         "value": "这个世界会好吗"
       },
       {
         "name": "封面",
-        "value": "https://img3.doubanio.com/view/subject/m/public/s2745500.jpg"
+        "type": "LIST_IMAGE",
+        "value": {
+          "name": "封面",
+          "url": "https://img3.doubanio.com/view/subject/m/public/s2745500.jpg",
+          "description": "https://leay.net/img/avatar.png"
+        }
       },
       {
         "name": "创作人",
+        "type": "TEXT",
         "value": "李志"
       },
       {
         "name": "曲目",
+        "type": "LIST_TEXT",
         "value": [
           "妈妈",
           "喀纳斯",
@@ -118,6 +168,7 @@
       },
       {
         "name": "日期",
+        "type": "DATE",
         "value": "2006-11"
       }
     ],

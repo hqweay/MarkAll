@@ -2,7 +2,7 @@
 // import { TemplateStyleEnum } from "./enum"
 // 用 import 会把这个文件当作 export
 
-declare enum TemplateStyleEnum {
+declare enum TemplateStyleItemEnum {
   TEXT = "text",
   URL = "url",
   DATE = "date",
@@ -11,7 +11,26 @@ declare enum TemplateStyleEnum {
   LIST_TEXT = "list of text",
   LIST_URL = "list of urls",
   MARKDOWN = "markdown",
-  FILE = "file"
+  FILE = "file",
+  RATE = "rate",
+  ENUM = "EnumType"
+}
+
+interface ImageType {
+  name: string,
+  url: string,
+  description: string,
+}
+
+interface UrlType {
+  name: string,
+  url: string,
+  description: string,
+}
+
+interface EnumType {
+  "enums": Array<string>,
+  "state": string
 }
 
 /**
@@ -21,10 +40,10 @@ declare enum TemplateStyleEnum {
     type: "DATE"
   }
  */
-interface TemplateStyleType {
+interface TemplateStyleItemType {
   name: string,
-  description: string
-  type: TemplateStyleEnum
+  description: string,
+  type: TemplateStyleItemEnum,
 }
 
 /**
@@ -46,7 +65,7 @@ interface TemplateStyleType {
  */
 interface TemplateType {
   name: string,
-  style: Array<TemplateStyleType>
+  style: Array<TemplateStyleItemType>,
 }
 
 
@@ -61,7 +80,7 @@ interface TemplateType {
  * {
   id: 2,
   template_name: '专辑',
-  style: [{
+  style_content: [{
     name: "名称", value: "这个世界会好吗"
   }, {
     name: "封面", value: "https://img3.doubanio.com/view/subject/m/public/s2745500.jpg"
@@ -80,8 +99,8 @@ interface TemplateType {
 interface ItemType {
   id: string,
   template_name: string,
-  style: Array<{ name: string, value: any }>,
-  tags: Array<string>
+  style_content: Array<{ name: string, value: any }>,
+  tags: Array<string>,
 }
 
 // TemplateType 的 style 类型 ： string，url，image...

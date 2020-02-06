@@ -63,13 +63,13 @@ export default class extends Vue {
   item: ItemType = {
     id: "",
     template_name: "",
-    style: [],
+    style_content: [],
     tags: []
   };
   oldItem: ItemType = {
     id: "",
     template_name: "",
-    style: [],
+    style_content: [],
     tags: []
   };
   style = {

@@ -1,3 +1,4 @@
+// @deprecated 抽取为 Vue 组件
 // @ts-ignore
 export function stylePraser(styleItem: any): string {
   if (styleItem.type === 'TEXT') {
@@ -38,14 +39,14 @@ export function stylePraser(styleItem: any): string {
       + `</div>`
       + `<div class="value">`
       + `<div class="image">`
-      + `<img width="68%" src="` + styleItem.value + `">`
+      + `<img width="68%" src="` + styleItem.value.url + `">`
       + `</img>`
       + `</div>`
       + `</div>`;
   } else if (styleItem.type === 'LIST_IMAGE') {
     let imgs = `<div class="list-image">`;
     for (let imgUrl in styleItem.value) {
-      imgs += `<img width="30%" style="margin-right: 1%;" src="` + styleItem.value[imgUrl] + `">` + `</img>`
+      imgs += `<img width="30%" style="margin-right: 1%;" title="` + styleItem.value[imgUrl].description + `" src="` + styleItem.value[imgUrl].url + `">` + `</img>`
     }
     imgs += `</div>`
     return `<div class= "name">`
@@ -75,7 +76,7 @@ export function stylePraser(styleItem: any): string {
         + styleItem.value[url].name + `</a>` + `</br>`;
     }
     urls += `</div>`;
-    return `<div class= "name" >`
+    return `<div style="width:30%; class= "name" >`
       + styleItem.name
       + `</div>`
       + `<div class="value" >`
