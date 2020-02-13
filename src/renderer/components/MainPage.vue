@@ -77,10 +77,13 @@ export default class extends Vue {
   }
   // type 没用，先留着。
   updateUI(type: string, obj: any) {
-    var index = this.data.indexOf(obj);
-    if (index > -1) {
-      this.data.splice(index, 1);
-    }
+    // 本地删除
+    // var index = this.data.indexOf(obj);
+    // if (index > -1) {
+    //   this.data.splice(index, 1);
+    // }
+    this.data.remove(obj);
+    // 数据库也得相应删除
   }
 }
 </script>

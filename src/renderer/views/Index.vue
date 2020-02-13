@@ -31,6 +31,11 @@
                     <span class="tab-link">其它</span>
                   </router-link>
                 </li>
+                <li>
+                  <router-link class="tab-item" to="/other">
+                    <span class="tab-link" @click="test()">测试</span>
+                  </router-link>
+                </li>
                 <!-- <li>
                   <router-link class="tab-item" to="/item-info">
                     <span class="tab-link">ceui1</span>
@@ -55,8 +60,18 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+// import {createDoubanDataGetter} from "markall-douban-backup";
 @Component({})
-export default class extends Vue {}
+export default class extends Vue {
+  test() {
+    // 存储路径
+    const STORE_PATH = "douban-data-backup/";
+
+    // let getDoubanWatchedMovies = createDoubanDataGetter("watchedMovies");
+
+    // getDoubanWatchedMovies("hqweay", STORE_PATH);
+  }
+}
 </script>
 
 <style scoped lang="scss">

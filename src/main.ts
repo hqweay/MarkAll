@@ -26,3 +26,10 @@ new Vue({
   render: (h) => h(App),
 }).$mount('#app');
 
+//@ts-ignore
+Array.prototype.remove = function (obj: any) {
+  let index = this.indexOf(obj);
+  if (index > -1) {
+    this.splice(index, 1);
+  }
+}

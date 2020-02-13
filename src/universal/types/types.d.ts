@@ -16,6 +16,7 @@ declare enum TemplateStyleItemEnum {
   ENUM = "EnumType"
 }
 
+// 用键值对的话不方便扩展
 interface ImageType {
   name: string,
   url: string,

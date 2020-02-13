@@ -8,13 +8,27 @@
         <Tag v-bind:tags="this.item.tags"></Tag>
       </div>
     </div>
-    <div id="style">
-      <div
+
+    <div id="style-content">
+      <el-timeline>
+        <el-timeline-item
+          v-for="styleItem in this.item.style_content"
+          :key="styleItem.name"
+          :class="[getStyleItemType(styleItem), 'style-item']"
+          :timestamp="styleItem.name"
+          placement="top"
+        >
+          <el-card class="style-item-card">
+            <div v-html="stylePraser(styleItem)"></div>
+          </el-card>
+        </el-timeline-item>
+      </el-timeline>
+      <!-- <div
         v-for="styleItem in this.item.style_content"
         :key="styleItem.name"
-        :class="getStyleType(styleItem)"
+        :class="[getStyleItemType(styleItem), 'style-item']"
         v-html="stylePraser(styleItem)"
-      ></div>
+      ></div>-->
     </div>
   </div>
 </template>
@@ -60,8 +74,8 @@ export default class extends Vue {
   stylePraser(styleItem: any): string {
     return stylePraser(styleItem);
   }
-  getStyleType(styleItem: any): string {
-    return styleItem.type;
+  getStyleItemType(styleItem: any): string {
+    return styleItem.type.toLowerCase();
   }
   getTags(tags: any): string {
     let strs = "";
@@ -76,15 +90,18 @@ export default class extends Vue {
 <style scoped lang="scss">
 * {
   display: flex;
-
   .container {
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 8%;
+    // margin-right: 1%;
     flex-direction: column;
     #title {
       flex-direction: column;
+      .sub-title {
+        display: flex;
+        flex-wrap: wrap;
+      }
     }
-    #style {
+    #style-content {
       flex-direction: column;
       * {
         flex-direction: column;
@@ -100,17 +117,11 @@ export default class extends Vue {
       }
     }
   }
-  h1 {
-    // margin-bottom: 1%;
+  .el-timeline {
+    padding-left: 0;
   }
-  .sub-title {
-    display: flex;
-    flex-wrap: wrap;
+  .style-item-card {
+    width: 90%;
   }
-  // .template {
-  //   width: 100%;
-  //   margin-bottom: 2%;
-  //   // margin-top: 0;
-  // }
 }
 </style>
