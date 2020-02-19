@@ -36,7 +36,7 @@
     </ul>
     <!-- tag -->
     <ul class="tag-list list" v-if="type === 'tag'">
-      <li class="tag" @click="add()">
+      <li class="tag" @click="addTag()">
         <div class="container">
           <div class="card card-add">
             <ul class="tag-attr">
@@ -57,6 +57,8 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import Card from "@/components/card/index.vue";
+import { addTag } from "#/db/mapper/tagMapper";
+
 @Component({
   components: {
     Card
@@ -76,14 +78,50 @@ export default class extends Vue {
     });
   }
   // type 没用，先留着。
-  updateUI(type: string, obj: any) {
+  updateUI(type: string, obj: any, newObj: any) {
     // 本地删除
-    // var index = this.data.indexOf(obj);
-    // if (index > -1) {
-    //   this.data.splice(index, 1);
-    // }
+
     this.data.remove(obj);
-    // 数据库也得相应删除
+    if (newObj !== null) {
+      this.data.push(newObj);
+    }
+  }
+  addTag() {
+    this.$prompt("添加标签", "提示", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消"
+      // inputErrorMessage: "该标签与已有标签重复",
+    })
+      //@ts-ignore
+      .then(({ value }) => {
+        let newTag = value;
+        if (newTag === null || newTag.trim() === "") {
+          this.$message({
+            type: "info",
+            message: "未做添加"
+          });
+          return;
+        }
+        if (addTag(newTag) === false) {
+          this.$message({
+            type: "error",
+            message: "标签 " + newTag + " 已存在"
+          });
+        } else {
+          this.$message({
+            type: "success",
+            message: "添加标签 " + newTag
+          });
+
+          this.data.push(newTag);
+        }
+      })
+      .catch(() => {
+        this.$message({
+          type: "info",
+          message: "取消添加"
+        });
+      });
   }
 }
 </script>

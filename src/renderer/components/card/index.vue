@@ -28,7 +28,7 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 import { deleteItemByID } from "#/db/mapper/itemMapper";
-import { deleteTagByName } from "#/db/mapper/tagMapper";
+import { deleteTagByName, getTags, editTagByName } from "#/db/mapper/tagMapper";
 import { deleteTemplateByName } from "#/db/mapper/templateMapper";
 import { ipcRenderer } from "electron";
 @Component({
@@ -49,11 +49,54 @@ export default class extends Vue {
         break;
       case "tag":
         // 不必
+        this.editTag(data);
         break;
       default:
         break;
     }
   }
+  editTag(oldTag: any) {
+    this.$prompt("修改标签名", "提示", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      inputPlaceholder: oldTag
+    })
+      //@ts-ignore
+      .then(({ value }) => {
+        let newTag = value;
+        if (
+          newTag === null ||
+          newTag.trim() === "" ||
+          newTag.trim() === oldTag
+        ) {
+          newTag = oldTag;
+          this.$message({
+            type: "info",
+            message: "未做修改"
+          });
+          return;
+        }
+        if (editTagByName(oldTag, newTag) === false) {
+          this.$message({
+            type: "error",
+            message: "标签 " + newTag + " 已存在"
+          });
+        } else {
+          this.$message({
+            type: "success",
+            message: "修改标签为：" + newTag
+          });
+          this.$emit("updateMainPage", this.type, oldTag, newTag);
+        }
+      })
+      .catch(() => {
+        this.$message({
+          type: "info",
+          message: "取消修改"
+        });
+      });
+  }
+
   edit(data: any) {
     // if (this.type === "item") {
     // }
@@ -69,7 +112,7 @@ export default class extends Vue {
       } else {
         this.$notify.error({
           title: "错误",
-          message: "删除失败！"
+          message: "删除条目失败！"
         });
       }
     } else if (this.type === "template") {

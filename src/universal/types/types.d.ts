@@ -1,7 +1,5 @@
-// text,date,url,image(string,url or path)
 // import { TemplateStyleEnum } from "./enum"
 // 用 import 会把这个文件当作 export
-
 declare enum TemplateStyleItemEnum {
   TEXT = "text",
   URL = "url",
