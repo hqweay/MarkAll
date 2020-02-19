@@ -5,21 +5,32 @@
       <h1 class="title">{{this.item.style_content[0].value}}</h1>
       <div class="sub-title">
         <el-tag class="template" type="success">{{this.item.template_name}}</el-tag>
-        <Tag v-bind:tags="this.item.tags"></Tag>
+        <tagTemplate v-bind:tags="this.item.tags"></tagTemplate>
       </div>
     </div>
 
     <div id="style-content">
       <el-timeline>
         <el-timeline-item
-          v-for="styleItem in this.item.style_content"
-          :key="styleItem.name"
-          :class="[getStyleItemType(styleItem), 'style-item']"
-          :timestamp="styleItem.name"
+          v-for="templateItem in this.item.style_content"
+          :key="templateItem.name"
+          :class="[getStyleItemType(templateItem), 'style-item']"
+          :timestamp="templateItem.name"
           placement="top"
         >
+          <!-- <el-card class="style-item-card">
+            <div v-html="stylePraser(templateItem)"></div>
+          </el-card>-->
           <el-card class="style-item-card">
-            <div v-html="stylePraser(styleItem)"></div>
+            <textTemplate v-if="templateItem.type === 'TEXT'" v-bind:text="templateItem"></textTemplate>
+            <listTextTemplate
+              v-else-if="templateItem.type === 'LIST_TEXT'"
+              v-bind:listText="templateItem"
+            ></listTextTemplate>
+            <imageTemplate
+              v-else-if="templateItem.type === 'IMAGE'"
+              v-bind:imageItem="templateItem"
+            ></imageTemplate>
           </el-card>
         </el-timeline-item>
       </el-timeline>
@@ -39,10 +50,16 @@ import { getItemByID, editItemByID } from "#/db/mapper/itemMapper";
 import { getTemplateByName } from "#/db/mapper/templateMapper";
 import { stylePraser } from "@/utils/stylePraser";
 
-import Tag from "@/components/template/tag/index.vue";
+import tagTemplate from "@/components/template/tag/index.vue";
+import textTemplate from "@/components/template/text/index.vue";
+import listTextTemplate from "@/components/template/listText/index.vue";
+import imageTemplate from "@/components/template/image/index.vue";
 @Component({
   components: {
-    Tag
+    tagTemplate,
+    textTemplate,
+    listTextTemplate,
+    imageTemplate
   }
 })
 export default class extends Vue {

@@ -1,5 +1,5 @@
 <template>
-  <div class="tag">
+  <div class="template-tag">
     <!-- <el-button plain size="small" v-for="tag in this.item.tags" :key="tag">{{tag}}</el-button> -->
     <!-- <el-tag class="template" type="success">{{item.template_name}}</el-tag> -->
     <el-tag
@@ -98,7 +98,7 @@ export default class extends Vue {
 }
 </script>
 <style lang='scss'>
-.tag {
+.template-tag {
   display: flex;
   flex-wrap: wrap;
   span {
