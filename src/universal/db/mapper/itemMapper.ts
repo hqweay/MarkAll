@@ -26,9 +26,9 @@ export function getItemsByPage(page: number, pageSize: number): Array<ItemType> 
 // 这个得改改！！！！！
 export function getItemByName(name: string): ItemType {
   // console.log(db.read().get('items').filter(["style.name", "测试"]).value());
-  // @ts-ignore
+  //@ts-ignore
   return db.read().get('items').filter(['style.name', name]).value()
-  // 这个似乎可以用 takewhile()
+  // 这个似乎可以用 takewhile() 
 }
 
 // 通过 id 获取 item

@@ -39,7 +39,7 @@ import { getItemByID, editItemByID } from "#/db/mapper/itemMapper";
 import { getTemplateByName } from "#/db/mapper/templateMapper";
 import { stylePraser } from "@/utils/stylePraser";
 
-import Tag from "@/components/style/Tag.vue";
+import Tag from "@/components/template/tag/index.vue";
 @Component({
   components: {
     Tag

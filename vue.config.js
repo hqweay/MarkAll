@@ -3,6 +3,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 module.exports = {
+
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src/renderer'))
@@ -59,5 +60,12 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "~@/assets/styles/index.scss";`
+      }
+    }
+  },
 }

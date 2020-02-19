@@ -33,7 +33,6 @@
   "devDependencies": {
     "@types/chai": "^4.2.5",
     "@types/fs-extra": "^8.0.1",
-    "@types/lodash": "^4.14.149",
     "@types/lowdb": "^1.0.9",
     "@types/mocha": "^5.2.4",
     "@types/node": "12.12.22",

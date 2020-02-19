@@ -56,7 +56,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import Card from "@/components/Card.vue";
+import Card from "@/components/card/index.vue";
 @Component({
   components: {
     Card
@@ -105,8 +105,6 @@ export default class extends Vue {
     margin-bottom: 40px;
     li {
       margin-top: 20px;
-      // margin-bottom: 40px;
-      // margin-right: 40px;
     }
     // 还是平起好看点
     .add {

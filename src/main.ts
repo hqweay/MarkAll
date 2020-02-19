@@ -5,8 +5,10 @@ import store from './renderer/store';
 
 // elementUi
 import ElementUI from 'element-ui'; //引入js
-import 'element-ui/lib/theme-chalk/index.css'; //引入css
-import './renderer/assets/element-variables.scss'; //引入自定义样式
+import './renderer/assets/styles/element-variables.scss'; //引入自定义样式
+
+
+
 Vue.use(ElementUI)
 
 
@@ -25,6 +27,7 @@ new Vue({
   store,
   render: (h) => h(App),
 }).$mount('#app');
+
 
 //@ts-ignore
 Array.prototype.remove = function (obj: any) {
