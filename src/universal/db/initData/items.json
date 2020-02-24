@@ -77,7 +77,8 @@
         "type": "URL",
         "value": {
           "name": "影片地址",
-          "url": "https://movie.douban.com/subject/22265687/"
+          "url": "https://movie.douban.com/subject/22265687/",
+          "description": "测试描述"
         }
       },
       {

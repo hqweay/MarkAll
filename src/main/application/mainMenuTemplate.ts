@@ -1,3 +1,4 @@
+import { app, protocol, BrowserWindow, Menu, shell } from 'electron';
 export const mainMenuTemplate = [{
   label: '查看',
   submenu: [{
@@ -39,7 +40,6 @@ export const mainMenuTemplate = [{
   submenu: [{
     label: '关于',
     click: function () {
-      // @ts-ignore
       shell.openExternal('https://github.com/hqweay/MarkAll')
     }
   }]
