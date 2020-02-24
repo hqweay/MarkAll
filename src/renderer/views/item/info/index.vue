@@ -47,6 +47,10 @@
               v-else-if="templateItem.type === 'DATE'"
               v-bind:dateItem="templateItem.value"
             ></dateTemplate>
+            <enumtemplate
+              v-else-if="templateItem.type === 'ENUM'"
+              v-bind:enumItem="templateItem.value"
+            ></enumtemplate>
           </el-card>
         </el-timeline-item>
       </el-timeline>
@@ -74,7 +78,7 @@ import listImage from "@/components/template/listImage/index.vue";
 import urlTemplate from "@/components/template/url/index.vue";
 import listUrlTemplate from "@/components/template/listUrl/index.vue";
 import dateTemplate from "@/components/template/date/index.vue";
-
+import enumtemplate from "@/components/template/enum/index.vue";
 @Component({
   components: {
     tagTemplate,
@@ -84,7 +88,8 @@ import dateTemplate from "@/components/template/date/index.vue";
     listImage,
     urlTemplate,
     listUrlTemplate,
-    dateTemplate
+    dateTemplate,
+    enumtemplate
   }
 })
 export default class extends Vue {

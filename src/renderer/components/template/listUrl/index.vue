@@ -1,7 +1,7 @@
 <template>
   <div class="template-list-url">
     <el-row class="list-container" :gutter="20">
-      <el-col class="template-url" :span="12" v-for="urlItem in listUrl" :key="urlItem.url">
+      <el-col class="template-url" :span="12" v-for="urlItem in listUrl" :key="urlItem.name">
         <el-link @click="openUrl">
           {{urlItem.name}}
           <i class="el-icon-view el-icon--right"></i>
