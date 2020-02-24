@@ -43,6 +43,10 @@
               v-else-if="templateItem.type === 'LIST_URL'"
               v-bind:listUrl="templateItem.value"
             ></listUrlTemplate>
+            <dateTemplate
+              v-else-if="templateItem.type === 'DATE'"
+              v-bind:dateItem="templateItem.value"
+            ></dateTemplate>
           </el-card>
         </el-timeline-item>
       </el-timeline>
@@ -69,6 +73,7 @@ import imageTemplate from "@/components/template/image/index.vue";
 import listImage from "@/components/template/listImage/index.vue";
 import urlTemplate from "@/components/template/url/index.vue";
 import listUrlTemplate from "@/components/template/listUrl/index.vue";
+import dateTemplate from "@/components/template/date/index.vue";
 
 @Component({
   components: {
@@ -78,7 +83,8 @@ import listUrlTemplate from "@/components/template/listUrl/index.vue";
     imageTemplate,
     listImage,
     urlTemplate,
-    listUrlTemplate
+    listUrlTemplate,
+    dateTemplate
   }
 })
 export default class extends Vue {
