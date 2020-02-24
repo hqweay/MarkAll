@@ -1,5 +1,5 @@
 <template>
-  <div class="template-text">{{text.value}}</div>
+  <div class="template-text">{{text}}</div>
 </template>
 
 <script lang="ts">

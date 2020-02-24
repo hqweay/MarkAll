@@ -22,10 +22,10 @@
             <div v-html="stylePraser(templateItem)"></div>
           </el-card>-->
           <el-card class="style-item-card">
-            <textTemplate v-if="templateItem.type === 'TEXT'" v-bind:text="templateItem"></textTemplate>
+            <textTemplate v-if="templateItem.type === 'TEXT'" v-bind:text="templateItem.value"></textTemplate>
             <listTextTemplate
               v-else-if="templateItem.type === 'LIST_TEXT'"
-              v-bind:listText="templateItem"
+              v-bind:listText="templateItem.value"
             ></listTextTemplate>
             <imageTemplate
               v-else-if="templateItem.type === 'IMAGE'"
