@@ -11,7 +11,7 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { openUrl } from "~/main/utils/openUrl";
 @Component({
-  name: "card"
+  name: "template-url"
 })
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;

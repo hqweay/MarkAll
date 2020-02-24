@@ -6,7 +6,7 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component({
-  name: "template-text"
+  name: "template-date"
 })
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;

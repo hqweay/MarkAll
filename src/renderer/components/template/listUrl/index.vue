@@ -15,7 +15,7 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { openUrl } from "~/main/utils/openUrl";
 @Component({
-  name: "listUrl"
+  name: "template-list-url"
 })
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;

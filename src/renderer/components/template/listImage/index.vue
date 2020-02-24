@@ -21,7 +21,7 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component({
-  name: "card"
+  name: "template-list-image"
 })
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;

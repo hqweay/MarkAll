@@ -39,7 +39,7 @@ import { deleteTagByName } from "#/db/mapper/tagMapper";
 import { deleteTemplateByName } from "#/db/mapper/templateMapper";
 import { ipcRenderer, Item } from "electron";
 @Component({
-  name: "card"
+  name: "template-tag"
 })
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;

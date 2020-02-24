@@ -12,7 +12,7 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component({
-  name: "card"
+  name: "template-list-text"
 })
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;
