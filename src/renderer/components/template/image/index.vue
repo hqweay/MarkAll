@@ -1,14 +1,16 @@
 <template>
   <div class="template-image">
-    <span class="demonstration">{{imageItem.value.name}}</span>
-    <el-image style="width:400px;" :src="imageItem.value.url" :lazy="true">
-      <div slot="error" class="image-slot">
-        <el-image :src="require('@/assets/images/error.png')"></el-image>
-      </div>
-      <div slot="placeholder" class="image-slot">
-        <el-image :src="require('@/assets/images/loading.png')"></el-image>
-      </div>
-    </el-image>
+    <div class="container">
+      <div class="demonstration">{{imageItem.name}}</div>
+      <el-image style="width:400px;" :src="imageItem.url" :lazy="true">
+        <div slot="placeholder" class="image-slot">
+          <el-image :src="require('@/assets/images/loading.png')"></el-image>
+        </div>
+        <div slot="error" class="image-slot">
+          <el-image :src="require('@/assets/images/error.png')"></el-image>
+        </div>
+      </el-image>
+    </div>
   </div>
 </template>
 
@@ -25,10 +27,11 @@ export default class extends Vue {
 }
 </script>
 <style lang='scss'>
+// fix el-image add hidden to body
+body {
+  overflow: auto !important;
+}
 .template-image {
   text-align: center;
-  .el-image {
-    margin: 0 auto;
-  }
 }
 </style>

@@ -29,8 +29,12 @@
             ></listTextTemplate>
             <imageTemplate
               v-else-if="templateItem.type === 'IMAGE'"
-              v-bind:imageItem="templateItem"
+              v-bind:imageItem="templateItem.value"
             ></imageTemplate>
+            <listImage
+              v-else-if="templateItem.type === 'LIST_IMAGE'"
+              v-bind:listImage="templateItem.value"
+            ></listImage>
           </el-card>
         </el-timeline-item>
       </el-timeline>
@@ -54,12 +58,14 @@ import tagTemplate from "@/components/template/tag/index.vue";
 import textTemplate from "@/components/template/text/index.vue";
 import listTextTemplate from "@/components/template/listText/index.vue";
 import imageTemplate from "@/components/template/image/index.vue";
+import listImage from "@/components/template/listImage/index.vue";
 @Component({
   components: {
     tagTemplate,
     textTemplate,
     listTextTemplate,
-    imageTemplate
+    imageTemplate,
+    listImage
   }
 })
 export default class extends Vue {
