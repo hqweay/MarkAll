@@ -1,7 +1,12 @@
 <template>
   <div class="template-list-image">
     <el-row class="list-container" :gutter="20">
-      <el-col class="template-image" :span="6" v-for="imageItem in listImage" :key="imageItem.name">
+      <el-col
+        class="template-image"
+        :span="6"
+        v-for="imageItem in listImage.value"
+        :key="imageItem.name"
+      >
         <div class="demonstration">{{imageItem.name}}</div>
 
         <el-image :src="imageItem.url" :lazy="true">

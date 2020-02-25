@@ -1,8 +1,8 @@
 <template>
   <div class="template-image">
     <div class="container">
-      <div class="demonstration">{{imageItem.name}}</div>
-      <el-image style="width:400px;" :src="imageItem.url" :lazy="true">
+      <div class="demonstration">{{imageItem.value.name}}</div>
+      <el-image style="width:400px;" :src="imageItem.value.url" :lazy="true">
         <div slot="placeholder" class="image-slot">
           <el-image :src="require('@/assets/images/loading.png')"></el-image>
         </div>

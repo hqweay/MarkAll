@@ -8,10 +8,10 @@
     >{{enumValue}}</el-radio>-->
     <el-radio-group>
       <el-radio-button
-        v-for="enumValue in enumItem.enums"
+        v-for="enumValue in enumItem.value.enums"
         :key="enumValue"
         :label="enumValue"
-        :disabled=" enumValue !== enumItem.state"
+        :disabled=" enumValue !== enumItem.value.state"
         v-on:click.prevent.self
       ></el-radio-button>
     </el-radio-group>

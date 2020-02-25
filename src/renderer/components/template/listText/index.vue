@@ -1,7 +1,7 @@
 <template>
   <div class="template-list-text">
     <el-row>
-      <el-col :span="12" v-for="text in listText" :key="text">
+      <el-col :span="12" v-for="text in listText.value" :key="text">
         <div class="grid-content bg-purple">{{text}}</div>
       </el-col>
     </el-row>

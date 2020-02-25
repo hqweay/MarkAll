@@ -1,13 +1,19 @@
 <template>
   <div class="template-date">
-    {{
-    date.getFullYear() +
-    " 年 " +
-    date.getMonth() +
-    " 月 " +
-    date.getDay() +
-    " 日"
-    }}
+    <div class="date-container" v-show="!isEdit">
+      <!-- {{
+      date.getFullYear() +
+      " 年 " +
+      date.getMonth() +
+      " 月 " +
+      date.getDay() +
+      " 日"
+      }}-->
+      {{dateItem.value}}
+    </div>
+    <div class="edit-text" v-show="isEdit">
+      <el-date-picker v-model="dateItem.value" type="datetime" placeholder="选择日期时间"></el-date-picker>
+    </div>
   </div>
 </template>
 
@@ -19,10 +25,20 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 })
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;
-  @Prop() dateItem!: string;
-  date: Date = new Date();
+  @Prop() dateItem!: any;
+  @Prop() readonly isEdit!: boolean;
+  // date: Date = new Date();
   created() {
-    this.date = new Date(this.dateItem);
+    // this.date = new Date(this.dateItem.value);
+  }
+
+  @Watch("isEdit")
+  editDate(val: boolean, oldVal: boolean) {
+    if (this.isEdit === false) {
+      // 提交 date
+      console.log(this.dateItem.value);
+      this.$emit("updateItem", this.dateItem);
+    }
   }
 }
 </script>

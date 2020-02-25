@@ -9,17 +9,16 @@ const routes = [
     path: '/',
     redirect: '/main', // 跳转
     name: 'index',
-    // component: () => import(/* webpackChunkName: "Index" */ '../views/Index.vue'),
   },
   {
     path: '/main',
     name: 'main',
-    component: () => import(/* webpackChunkName: "Item" */ '@/views/Index.vue'),
+    component: () => import('@/views/Index.vue'),
     children: [
       {
         path: 'item-list',
         name: 'item-list',
-        component: () => import(/* webpackChunkName: "Item" */ '@/views/item/ItemList.vue'),
+        component: () => import('@/views/item/ItemList.vue'),
         meta: {
           title: '条目'
         },
@@ -30,12 +29,12 @@ const routes = [
         meta: {
           title: '标签'
         },
-        component: () => import(/* webpackChunkName: "Item" */ '@/views/tag/TagList.vue'),
+        component: () => import('@/views/tag/TagList.vue'),
       },
       {
         path: 'template-list',
-        name: 'template-list', // 命名路由
-        component: () => import(/* webpackChunkName: "Item" */ '@/views/template/TemplateList.vue'),
+        name: 'template-list',
+        component: () => import('@/views/template/TemplateList.vue'),
         meta: {
           title: '模板'
         },
@@ -43,15 +42,14 @@ const routes = [
       {
         path: 'plugin',
         name: 'plugin', // 命名路由
-        component: () => import(/* webpackChunkName: "Item" */ '@/views/plugin/Index.vue'),
+        component: () => import('@/views/plugin/Index.vue'),
       },
     ]
   },
   {
     path: '/item',
     name: 'item',
-    component: () => import(/* webpackChunkName: "Item-Info" */ '@/views/item/info/index.vue'),
-
+    component: () => import('@/views/item/info/index.vue'),
     children: [
       {
         path: 'info/:id',
@@ -59,8 +57,20 @@ const routes = [
         meta: {
           title: '条目信息'
         },
-        // component: () => import(/* webpackChunkName: "Item-Info" */ '@/views/item/Info.vue'),
 
+      }
+    ]
+  }, {
+    path: '/template',
+    name: 'template',
+    component: () => import('@/views/template/info/index.vue'),
+    children: [
+      {
+        path: 'info/:id',
+        name: 'template-info',
+        meta: {
+          title: '条目信息'
+        },
       }
     ]
   }

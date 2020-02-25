@@ -1,0 +1,74 @@
+* {
+  display: flex;
+
+  .edit {
+    position: fixed;
+    right: 40px;
+    top: 40px;
+    background-color: #FFFFFF;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: teal;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 20px;
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    z-index: 5;
+  }
+  .edit:hover{ 
+    height: 50px;
+    width: 50px;
+  }
+  .el-dropdown-menu {
+    flex-direction: column;
+  }
+
+  .container {
+    margin-left: 8%;
+    // margin-right: 1%;
+    flex-direction: column;
+    #title {
+      flex-direction: column;
+      .sub-title {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+    #style-content {
+      flex-direction: column;
+      margin-top: 2%;
+      * {
+        flex-direction: column;
+      }
+      .TEXT,
+      .LIST_TEXT,
+      .DATE,
+      .IMAGE,
+      .URL,
+      .LIST_URL {
+        flex-direction: row;
+      }
+      .el-card {
+        width: 90%;
+        .el-card__body {
+          padding: 10px;
+        }
+      }
+    }
+  }
+  .el-timeline {
+    padding-left: 0;
+  }
+  .el-card {
+  }
+}

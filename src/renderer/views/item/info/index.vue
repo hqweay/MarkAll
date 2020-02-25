@@ -1,5 +1,28 @@
 <template>
   <div class="container">
+    <!-- <div class="edit">
+      <el-backtop :visibility-height="-200">
+        <el-dropdown @command="menuClick">
+          <span class="el-dropdown-link">菜单</span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="d" disabled>回到顶部（默认）</el-dropdown-item>
+            <el-dropdown-item command="edit">编辑</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </el-backtop>
+    </div>-->
+    <el-backtop :visibility-height="50"></el-backtop>
+    <!-- 编辑 -->
+    <div class="edit" @click="edit">
+      <i class="el-icon-edit-outline" v-show="!isEdit"></i>
+      <i class="el-icon-check" v-show="isEdit"></i>
+      <!-- <el-dropdown @command="menuClick">
+        <span class="el-dropdown-link">菜单</span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="edit">编辑</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>-->
+    </div>
     <!-- 默认第一项为 title  -->
     <div id="title">
       <h1 class="title">{{this.item.style_content[0].value}}</h1>
@@ -21,35 +44,55 @@
           <!-- <el-card class="style-item-card">
             <div v-html="stylePraser(templateItem)"></div>
           </el-card>-->
-          <el-card class="style-item-card">
-            <textTemplate v-if="templateItem.type === 'TEXT'" v-bind:text="templateItem.value"></textTemplate>
+
+          <el-card>
+            <textTemplate
+              v-if="templateItem.type === 'TEXT'"
+              :text="templateItem"
+              :isEdit="isEdit"
+              @updateItem="updateItem"
+            ></textTemplate>
             <listTextTemplate
               v-else-if="templateItem.type === 'LIST_TEXT'"
-              v-bind:listText="templateItem.value"
+              :listText="templateItem"
+              :isEdit="isEdit"
+              @updateItem="updateItem"
             ></listTextTemplate>
             <imageTemplate
               v-else-if="templateItem.type === 'IMAGE'"
-              v-bind:imageItem="templateItem.value"
+              :imageItem="templateItem"
+              :isEdit="isEdit"
+              @updateItem="updateItem"
             ></imageTemplate>
             <listImage
               v-else-if="templateItem.type === 'LIST_IMAGE'"
-              v-bind:listImage="templateItem.value"
+              :listImage="templateItem"
+              :isEdit="isEdit"
+              @updateItem="updateItem"
             ></listImage>
             <urlTemplate
               v-else-if="templateItem.type === 'URL'"
-              v-bind:urlItem="templateItem.value"
+              :urlItem="templateItem"
+              :isEdit="isEdit"
+              @updateItem="updateItem"
             ></urlTemplate>
             <listUrlTemplate
               v-else-if="templateItem.type === 'LIST_URL'"
-              v-bind:listUrl="templateItem.value"
+              :listUrl="templateItem"
+              :isEdit="isEdit"
+              @updateItem="updateItem"
             ></listUrlTemplate>
             <dateTemplate
               v-else-if="templateItem.type === 'DATE'"
-              v-bind:dateItem="templateItem.value"
+              :dateItem="templateItem"
+              :isEdit="isEdit"
+              @updateItem="updateItem"
             ></dateTemplate>
             <enumtemplate
               v-else-if="templateItem.type === 'ENUM'"
-              v-bind:enumItem="templateItem.value"
+              :enumItem="templateItem"
+              :isEdit="isEdit"
+              @updateItem="updateItem"
             ></enumtemplate>
           </el-card>
         </el-timeline-item>
@@ -105,17 +148,14 @@ export default class extends Vue {
     style_content: [],
     tags: []
   };
-  inputVisible: boolean = false;
+  isEdit: boolean = false;
+
   created() {
     let id = this.$route.params.id;
     this.item = getItemByID(id);
 
-    // 可视化渲染 json
-
-    // this.schema = templatePraseSchema(this.template);
-
     // 深拷贝做个备份
-    // this.oldItem = JSON.parse(JSON.stringify(this.item));
+    this.oldItem = JSON.parse(JSON.stringify(this.item));
   }
 
   stylePraser(styleItem: any): string {
@@ -131,44 +171,29 @@ export default class extends Vue {
     }
     return strs;
   }
+  edit() {
+    this.isEdit = this.isEdit === true ? false : true;
+  }
+  updateItem(newItemField: any) {
+    // console.log(this.item.style_content);
+    if (newItemField.type === "TEXT") {
+      //@ts-ignore
+      _.chain(this.item.style_content).set(
+        newItemField.value,
+        newItemField["value"]
+      );
+    } else if (newItemField.type === "DATE") {
+      //@ts-ignore
+      _.chain(this.item.style_content).set(
+        newItemField.value,
+        newItemField["value"]
+      );
+    }
+    console.log(this.item.style_content);
+  }
 }
 </script> 
 
-<style scoped lang="scss">
-* {
-  display: flex;
-  .container {
-    margin-left: 8%;
-    // margin-right: 1%;
-    flex-direction: column;
-    #title {
-      flex-direction: column;
-      .sub-title {
-        display: flex;
-        flex-wrap: wrap;
-      }
-    }
-    #style-content {
-      flex-direction: column;
-      * {
-        flex-direction: column;
-        margin-top: 2%;
-      }
-      .TEXT,
-      .LIST_TEXT,
-      .DATE,
-      .IMAGE,
-      .URL,
-      .LIST_URL {
-        flex-direction: row;
-      }
-    }
-  }
-  .el-timeline {
-    padding-left: 0;
-  }
-  .style-item-card {
-    width: 90%;
-  }
-}
+<style lang='scss' scoped>
+@import "./index.scss";
 </style>

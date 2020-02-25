@@ -1,6 +1,6 @@
 <template>
   <div class="template-url">
-    <el-link @click="openUrl(urlItem.url)">
+    <el-link @click="openUrl(urlItem.value.url)">
       {{urlItem.name}}
       <i class="el-icon-view el-icon--right"></i>
     </el-link>

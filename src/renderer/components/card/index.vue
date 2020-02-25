@@ -45,7 +45,7 @@ export default class extends Vue {
         ipcRenderer.send("showCardInfo", this.type, data);
         break;
       case "template":
-        this.$router.push("/main/template/info/" + data.id);
+        this.$router.push("/template/info/" + data.id);
         break;
       case "tag":
         // 不必
