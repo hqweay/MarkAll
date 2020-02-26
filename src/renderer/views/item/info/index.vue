@@ -174,21 +174,21 @@ export default class extends Vue {
   edit() {
     this.isEdit = this.isEdit === true ? false : true;
   }
-  updateItem(newItemField: any) {
+  updateItem(newItemField: ItemFiledType) {
     // console.log(this.item.style_content);
-    if (newItemField.type === "TEXT") {
-      //@ts-ignore
-      _.chain(this.item.style_content).set(
-        newItemField.value,
-        newItemField["value"]
-      );
-    } else if (newItemField.type === "DATE") {
-      //@ts-ignore
-      _.chain(this.item.style_content).set(
-        newItemField.value,
-        newItemField["value"]
-      );
-    }
+    // if (newItemField.type === "TEXT") {
+    //@ts-ignore
+    _.chain(this.item.style_content).set(
+      newItemField.value,
+      newItemField["value"]
+    );
+    // } else if (newItemField.type === "DATE") {
+    //   //@ts-ignore
+    //   _.chain(this.item.style_content).set(
+    //     newItemField.value,
+    //     newItemField["value"]
+    //   );
+    // }
     console.log(this.item.style_content);
   }
 }

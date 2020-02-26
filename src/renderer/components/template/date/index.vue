@@ -25,6 +25,7 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 })
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;
+  // prop 传递是值传递 oh yeah
   @Prop() dateItem!: any;
   @Prop() readonly isEdit!: boolean;
   // date: Date = new Date();

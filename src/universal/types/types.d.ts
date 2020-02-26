@@ -32,74 +32,28 @@ interface EnumType {
   "state": string
 }
 
-/**
- * {
-    name: "时间",
-    description: "时间",
-    type: "DATE"
-  }
- */
-interface TemplateStyleItemType {
+interface TemplateFiledType {
   name: string,
   description: string,
   type: TemplateStyleItemEnum,
 }
 
-/**
- * {
-  name: '日记！',
-  style: [{
-    name: "标题",
-    description: "",
-    type: "TEXT"
-  }, {
-    name: "内容",
-    description: "文章内容",
-    type: "MARKDOWN"
-  }, {
-    name: "时间",
-    description: "时间",
-    type: "DATE"
-  }
- */
 interface TemplateType {
   name: string,
-  style: Array<TemplateStyleItemType>,
+  style: Array<TemplateFiledType>,
 }
 
 
-/**
- * ["童年,快乐"]
- */
-// interface TagsType {
-//   tags: Array<string>
-// }
-
-/**
- * {
-  id: 2,
-  template_name: '专辑',
-  style_content: [{
-    name: "名称", value: "这个世界会好吗"
-  }, {
-    name: "封面", value: "https://img3.doubanio.com/view/subject/m/public/s2745500.jpg"
-  }, {
-    name: "创作人", value: "李志"
-  }, {
-    name: "曲目", value: ["妈妈",
-      "喀纳斯",
-      "和你在一起"]
-  }, {
-    name: "日期", value: "2006-11"
-  }],
-  tags: ['童年']
+interface ItemFiledType {
+  name: string,
+  type: string,
+  value: any
 }
- */
+
 interface ItemType {
   id: string,
   template_name: string,
-  style_content: Array<{ name: string, value: any }>,
+  style_content: Array<ItemFiledType>,
   tags: Array<string>,
 }
 
-// TemplateType 的 style 类型 ： string，url，image...
