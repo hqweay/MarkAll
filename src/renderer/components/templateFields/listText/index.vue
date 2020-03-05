@@ -50,6 +50,7 @@ export default class extends Vue {
   addText() {
     this.newTextVisiable = true;
     this.$nextTick(() => {
+      // @ts-ignore
       this.$refs.editText.focus();
     });
 
