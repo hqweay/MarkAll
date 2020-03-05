@@ -53,8 +53,6 @@ export default class extends Vue {
       // @ts-ignore
       this.$refs.editText.focus();
     });
-
-    console.log();
   }
   handleInputConfirm() {
     // 不可空
