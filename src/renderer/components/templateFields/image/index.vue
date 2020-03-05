@@ -1,7 +1,7 @@
 <template>
   <div class="template-image">
     <div class="container" v-show="!isEdit">
-      <div class="demonstration">{{imageItem.value.name}}</div>
+      <!-- <div class="demonstration">{{imageItem.value.name}}</div> -->
       <el-image style="width:200px;" :src="imageItem.value.url" :lazy="true">
         <div slot="placeholder" class="image-slot">
           <el-image :src="require('@/assets/images/loading.png')"></el-image>
@@ -12,15 +12,15 @@
       </el-image>
     </div>
     <div class="edit-image" v-show="isEdit">
-      <el-input placeholder="请输入内容" v-model="imageItem.value.name">
-        <template slot="prepend">名称</template>
-      </el-input>
       <el-input placeholder="请输入内容" v-model="imageItem.value.url">
         <template slot="prepend">URL</template>
       </el-input>
+      <!-- <el-input placeholder="请输入内容" v-model="imageItem.value.name">
+        <template slot="prepend">名称</template>
+      </el-input>
       <el-input placeholder="请输入内容" v-model="imageItem.value.description">
         <template slot="prepend">描述</template>
-      </el-input>
+      </el-input>-->
     </div>
   </div>
 </template>

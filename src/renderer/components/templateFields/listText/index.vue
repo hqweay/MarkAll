@@ -1,16 +1,16 @@
 <template>
   <div class="template-list-text">
     <el-row v-show="!isEdit">
-      <el-col :span="12" v-for="text in listText.value" :key="text">
+      <el-col class="col-text" :span="12" v-for="text in listText.value" :key="text">
         <div class="grid-content bg-purple" v-show="!isEdit">{{text}}</div>
       </el-col>
     </el-row>
 
-    <el-row :gutter="20" v-show="isEdit">
-      <el-col :span="24">
+    <el-row class="list-text-edit" :gutter="20" v-show="isEdit">
+      <el-col class="col-edit edit-button" :span="24">
         <el-button size="small" type="primary" @click="addText">添加</el-button>
       </el-col>
-      <el-col :span="12" v-show="newTextVisiable">
+      <el-col class="col-edit" :span="24" v-show="newTextVisiable">
         <el-input
           @blur="handleInputConfirm"
           ref="editText"
@@ -21,7 +21,7 @@
         ></el-input>
       </el-col>
 
-      <el-col :span="12" v-for="(value,key) of listText.value" :key="key">
+      <el-col class="col-edit" :span="12" v-for="(value,key) of listText.value" :key="key">
         <el-input
           @blur="editCheck(key)"
           type="textarea"
@@ -79,11 +79,13 @@ export default class extends Vue {
   }
 }
 </script>
-<style lang='scss'>
-.el-col {
-  margin-bottom: 20px;
-  &:last-child {
-    margin-bottom: 0;
+<style lang='scss' scoped>
+.template-list-text {
+  .col-edit {
+    margin-top: 15px;
+  }
+  .edit-button {
+    margin-top: 0;
   }
 }
 </style>

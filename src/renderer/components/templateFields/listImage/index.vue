@@ -7,8 +7,7 @@
         v-for="imageItem in listImage.value"
         :key="imageItem.name"
       >
-        <div class="demonstration">{{imageItem.name}}</div>
-
+        <!-- <div class="demonstration">{{imageItem.name}}</div> -->
         <el-image :src="imageItem.url" :lazy="true">
           <div slot="error" class="image-slot">
             <el-image :src="require('@/assets/images/error.png')"></el-image>
@@ -35,12 +34,12 @@ export default class extends Vue {
 }
 </script>
 <style lang='scss' scoped>
-.template-list-image {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  .template-image {
-    text-align: center;
+.template-image {
+  // margin: 0;
+  // line-height: 100px;
+  margin-top: 15px;
+  &:nth-child(-n + 4) {
+    margin-top: 0;
   }
 }
 </style>
