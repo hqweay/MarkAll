@@ -2,7 +2,13 @@
   <div class="template-text">
     <div class="text-container" v-show="!isEdit">{{newText.value}}</div>
     <div class="edit-text" v-show="isEdit">
-      <el-input placeholder="请输入内容" v-model="newText.value" clearable @change="editText"></el-input>
+      <el-input
+        type="textarea"
+        placeholder="请输入内容"
+        autosize
+        v-model="newText.value"
+        @change="editText"
+      ></el-input>
     </div>
   </div>
 </template> 

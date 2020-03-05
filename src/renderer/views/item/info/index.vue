@@ -113,15 +113,15 @@ import { getItemByID, editItemByID } from "#/db/mapper/itemMapper";
 import { getTemplateByName } from "#/db/mapper/templateMapper";
 import { stylePraser } from "@/utils/stylePraser";
 
-import tagTemplate from "@/components/template/tag/index.vue";
-import textTemplate from "@/components/template/text/index.vue";
-import listTextTemplate from "@/components/template/listText/index.vue";
-import imageTemplate from "@/components/template/image/index.vue";
-import listImage from "@/components/template/listImage/index.vue";
-import urlTemplate from "@/components/template/url/index.vue";
-import listUrlTemplate from "@/components/template/listUrl/index.vue";
-import dateTemplate from "@/components/template/date/index.vue";
-import enumtemplate from "@/components/template/enum/index.vue";
+import tagTemplate from "@/components/templateFields/tag/index.vue";
+import textTemplate from "@/components/templateFields/text/index.vue";
+import listTextTemplate from "@/components/templateFields/listText/index.vue";
+import imageTemplate from "@/components/templateFields/image/index.vue";
+import listImage from "@/components/templateFields/listImage/index.vue";
+import urlTemplate from "@/components/templateFields/url/index.vue";
+import listUrlTemplate from "@/components/templateFields/listUrl/index.vue";
+import dateTemplate from "@/components/templateFields/date/index.vue";
+import enumtemplate from "@/components/templateFields/enum/index.vue";
 @Component({
   components: {
     tagTemplate,
