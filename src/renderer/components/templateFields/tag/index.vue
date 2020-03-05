@@ -83,14 +83,16 @@ export default class extends Vue {
     // 不可空
     if (this.inputValue.trim() === "") {
       this.inputVisible = false;
+      this.inputValue = "";
       return;
     }
     // 不可重复
     if (this.tags.indexOf(this.inputValue) != -1) {
       this.inputVisible = false;
+      this.inputValue = "";
       return;
     }
-    this.tags.push(this.inputValue);
+    this.tags.push(this.inputValue.trim());
     this.inputValue = "";
     this.inputVisible = false;
     this.editFlag = true;
