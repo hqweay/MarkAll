@@ -16,6 +16,15 @@ const routes = [
     component: () => import('@/views/Index.vue'),
     children: [
       {
+        // 测试用
+        path: 'test',
+        name: 'test',
+        component: () => import('@/components/imageUploader/index.vue'),
+        meta: {
+          title: '测试'
+        },
+      },
+      {
         path: 'item-list',
         name: 'item-list',
         component: () => import('@/views/item/ItemList.vue'),

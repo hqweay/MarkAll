@@ -27,15 +27,15 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link class="tab-item" to="/other">
+                  <router-link class="tab-item" to="/main/test">
                     <span class="tab-link">其它</span>
                   </router-link>
                 </li>
-                <li>
+                <!-- <li>
                   <router-link class="tab-item" to="/other">
                     <span class="tab-link" @click="test()">测试</span>
                   </router-link>
-                </li>
+                </li>-->
                 <!-- <li>
                   <router-link class="tab-item" to="/item-info">
                     <span class="tab-link">ceui1</span>
