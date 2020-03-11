@@ -14,31 +14,28 @@ async function hasFileByItemId(itemId: number) {
   }
 }
 
-function getFileName(fileName: string, itemId: number, count = 1): any {
-  // const exists = await fs.pathExists(STORE_PATH + 'images/' + itemId + '/' + fileName);
-  // if (exists) {
-  //   return getFileName(fileName + '-' + count, itemId, count++).then();
-  // } else {
-  //   return count == 1 ? fileName : fileName + '-' + count;
-  // }
-  console.log("ssss");
+function getImageName(fileName: string, itemId: number): any {
+  let fileNameArr: string[] = fileName.split('.');
+  return getImageNameHelper(fileName, itemId, fileNameArr);
+}
+
+function getImageNameHelper(fileName: string, itemId: number, fileNameArr: string[], count = 1): any {
   return fs.pathExists(STORE_PATH + 'images/' + itemId + '/' + fileName)
     .then(exists => {
-
       if (exists) {
-        console.log("111111");
-        return getFileName(fileName + '-' + count, itemId, count++);
+        count++;
+        return getImageNameHelper(fileNameArr[0] + '-' + count + '.' + fileNameArr[1], itemId, fileNameArr, count);
       } else {
-        console.log("22222222");
-        return count == 1 ? fileName : fileName + '-' + count;
+        return count == 1 ? fileName : fileNameArr[0] + '-' + count + '.' + fileNameArr[1];
       }
     })
 }
 
-
 // file : [name, path]
 async function copyImageToUserByFile(file: any, itemId: number) {
   try {
+    getImageName(file.name, itemId).then()
+
     let newPath: string = "";
 
     await fs.copy(file.path, STORE_PATH + 'images/' + itemId + '/' + newPath);
@@ -48,4 +45,4 @@ async function copyImageToUserByFile(file: any, itemId: number) {
   }
 }
 
-export { getFileName }
+export { getImageName }

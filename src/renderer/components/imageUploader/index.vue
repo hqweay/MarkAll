@@ -18,7 +18,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 
-import { getFileName } from "#/fs/file/index";
+import { getImageName } from "#/fs/file/index";
 export default class extends Vue {
   created() {
     console.log("ssssss");
@@ -38,7 +38,7 @@ export default class extends Vue {
 
     // console.log(getFileName("/dd", 1));
 
-    getFileName("1.txt", 1).then(value => {
+    getImageName("1.txt", 1).then(value => {
       console.log(value);
     });
 
