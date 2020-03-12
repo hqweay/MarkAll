@@ -8,7 +8,20 @@
         :key="imageItem.name"
       >
         <!-- <div class="demonstration">{{imageItem.name}}</div> -->
-        <el-image :src="imageItem.url" :lazy="true">
+
+        <!-- <el-image :src="require('/home/hqweay/.config/markall/user/images/60/11-1.jpg.jpg')"></el-image> -->
+
+        <el-image v-if="isLocal(imageItem.url)" :src="'file://'+ imageItem.url" :lazy="true">
+          <div slot="error" class="image-slot">
+            <el-image :src="require('@/assets/images/error.png')"></el-image>
+          </div>
+          <div slot="placeholder" class="image-slot">
+            <el-image :src="require('@/assets/images/loading.png')"></el-image>
+          </div>
+        </el-image>
+        <!-- <img v-if="isLocal(imageItem.url)" :src="imageItem.url" alt /> -->
+
+        <el-image v-if="!isLocal(imageItem.url)" :src="imageItem.url" :lazy="true">
           <div slot="error" class="image-slot">
             <el-image :src="require('@/assets/images/error.png')"></el-image>
           </div>
@@ -17,20 +30,49 @@
           </div>
         </el-image>
       </el-col>
+
+      <el-col class="template-image" :span="6" v-show="isEdit">
+        <!-- <keep-alive> -->
+        <imageUploader @updateListImage="updateUI"></imageUploader>
+        <!-- </keep-alive> -->
+      </el-col>
     </el-row>
+    <!-- <div class="edit-list-image" v-if="isEdit"> -->
+
+    <!-- </div> -->
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import imageUploader from "@/components/imageUploader/index.vue";
 
 @Component({
-  name: "template-list-image"
+  name: "template-list-image",
+  components: {
+    imageUploader
+  }
 })
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;
   @Prop() listImage!: Array<any>;
+  @Prop() isEdit!: boolean;
   created() {}
+  isLocal(url: string): boolean {
+    let reg = new RegExp("^((https|http|ftp|rtsp|mms)?://)");
+    if (reg.test(url)) {
+      console.log("ulr: " + url);
+      return false;
+    } else {
+      console.log("nono: " + url);
+      return true;
+    }
+  }
+  updateUI(newImage: any) {
+    // console.log(newImage);
+    //@ts-ignore
+    this.listImage.value.push(newImage);
+  }
 }
 </script>
 <style lang='scss' scoped>

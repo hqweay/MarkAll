@@ -15,12 +15,6 @@
       <el-input placeholder="请输入内容" v-model="imageItem.value.url">
         <template slot="prepend">URL</template>
       </el-input>
-      <!-- <el-input placeholder="请输入内容" v-model="imageItem.value.name">
-        <template slot="prepend">名称</template>
-      </el-input>
-      <el-input placeholder="请输入内容" v-model="imageItem.value.description">
-        <template slot="prepend">描述</template>
-      </el-input>-->
     </div>
   </div>
 </template>

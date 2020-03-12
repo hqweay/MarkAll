@@ -5,52 +5,50 @@
     :auto-upload="true"
     action="http://localhost:8080/"
     :http-request="myUpload"
+    :show-file-list="false"
     multiple
   >
     <i class="el-icon-upload"></i>
-    <div class="el-upload__text">
+    <!-- <div class="el-upload__text">
       将文件拖到此处，或
       <em>点击上传</em>
-    </div>
+    </div>-->
     <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
   </el-upload>
 </template>
+
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 import { copyImageToUserByFile } from "#/fs/file/index";
+
+@Component({
+  name: "image-uploader"
+})
 export default class extends Vue {
+  // test!: "ssssss";
   created() {
-    console.log("ssssss");
+    // console.log("created");
   }
-  myUpload(content: any): boolean {
-    console.log(content.file);
-    // 复制至用户目录
-    // const STORE_PATH = APP.getPath("userData");
-
-    // fs.ensureDir(STORE_PATH + "/user")
-    //   .then(() => {
-    //     console.log("创建用户文件夹成功！");
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-
-    // console.log(getFileName("/dd", 1));
-
-    copyImageToUserByFile(content.file, 1).then(flag => {
-      console.log(flag);
-    });
-
+  async myUpload(content: any) {
+    let newImage = await copyImageToUserByFile(content.file, 60);
+    // console.log(newImage);
+    this.$emit("updateListImage", newImage);
     content.onSuccess("配时文件上传成功");
     return true;
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 .image-uploader {
-  height: 100px;
-  width: 100px;
   // border: 2px dashed #dddddd;
+}
+.el-upload-dragger {
+  width: 130px;
+  height: 130px;
+
+  .el-icon-upload {
+    margin: 30px 0 10px;
+  }
 }
 </style>

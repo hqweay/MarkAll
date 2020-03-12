@@ -36,16 +36,24 @@ async function copyImageToUserByFile(file: any, itemId: number) {
 
   hasImageByItemId(itemId);
   //@ts-ignore
-  getImageName(file.name, itemId).then(function (newFileName) {
+  let newImage = await getImageName(file.name, itemId).then(function (newFileName) {
     try {
       fs.copySync(file.path, STORE_PATH + 'images/' + itemId + '/' + newFileName);
       console.log('image copied success!');
-      return true;
+      let newFilePath = STORE_PATH + 'images/' + itemId + '/' + newFileName;
+      let newImage = {
+        "name": newFileName,
+        "url": newFilePath,
+        "description": ""
+      };
+      return newImage;
     } catch (err) {
       console.error(err)
     }
-
   });
+
+
+  return newImage;
 }
 
 export { copyImageToUserByFile }

@@ -24,6 +24,7 @@ export const createItemWindow = (type: string, data: any) => {
       webPreferences: {
         backgroundThrottling: false, // 当页面被置于非激活窗口的时候是否停止动画和计时器
         nodeIntegration: true, // electron5.0 以上 render require is not defined
+        webSecurity: false,
       }
     })
     itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
