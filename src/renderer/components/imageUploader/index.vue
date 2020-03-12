@@ -18,7 +18,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 
-import { getImageName } from "#/fs/file/index";
+import { copyImageToUserByFile } from "#/fs/file/index";
 export default class extends Vue {
   created() {
     console.log("ssssss");
@@ -38,8 +38,8 @@ export default class extends Vue {
 
     // console.log(getFileName("/dd", 1));
 
-    getImageName("1.txt", 1).then(value => {
-      console.log(value);
+    copyImageToUserByFile(content.file, 1).then(flag => {
+      console.log(flag);
     });
 
     content.onSuccess("配时文件上传成功");
