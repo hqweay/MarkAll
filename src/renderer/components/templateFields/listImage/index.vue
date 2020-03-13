@@ -11,9 +11,18 @@
 
         <!-- <el-image :src="require('/home/hqweay/.config/markall/user/images/60/11-1.jpg.jpg')"></el-image> -->
 
-        <el-image v-if="isLocal(imageItem.url)" :src="'file://'+ imageItem.url" :lazy="true">
+        <el-image
+          v-bind:class="{ 'hover-delete': isEdit }"
+          @click="imageOperation(imageItem)"
+          v-if="isLocal(imageItem.url)"
+          :src="'file://'+ imageItem.url"
+          :lazy="true"
+        >
           <div slot="error" class="image-slot">
-            <el-image :src="require('@/assets/images/error.png')"></el-image>
+            <el-image
+              @click="imageOperation(imageItem)"
+              :src="require('@/assets/images/error.png')"
+            ></el-image>
           </div>
           <div slot="placeholder" class="image-slot">
             <el-image :src="require('@/assets/images/loading.png')"></el-image>
@@ -21,9 +30,18 @@
         </el-image>
         <!-- <img v-if="isLocal(imageItem.url)" :src="imageItem.url" alt /> -->
 
-        <el-image v-if="!isLocal(imageItem.url)" :src="imageItem.url" :lazy="true">
+        <el-image
+          v-bind:class="{ 'hover-delete': isEdit }"
+          @click="imageOperation(imageItem)"
+          v-if="!isLocal(imageItem.url)"
+          :src="imageItem.url"
+          :lazy="true"
+        >
           <div slot="error" class="image-slot">
-            <el-image :src="require('@/assets/images/error.png')"></el-image>
+            <el-image
+              @click="imageOperation(imageItem)"
+              :src="require('@/assets/images/error.png')"
+            ></el-image>
           </div>
           <div slot="placeholder" class="image-slot">
             <el-image :src="require('@/assets/images/loading.png')"></el-image>
@@ -33,7 +51,11 @@
 
       <el-col class="template-image" :span="6" v-show="isEdit">
         <!-- <keep-alive> -->
-        <imageUploader @updateListImage="updateUI"></imageUploader>
+        <imageUploader
+          :listImage="listImage"
+          :saveFloderName="saveFloderName"
+          @updateListImage="updateUI"
+        ></imageUploader>
         <!-- </keep-alive> -->
       </el-col>
     </el-row>
@@ -57,6 +79,7 @@ export default class extends Vue {
   // @Prop() readonly item!: ItemType;
   @Prop() listImage!: Array<any>;
   @Prop() isEdit!: boolean;
+  @Prop() saveFloderName!: string;
   created() {}
   isLocal(url: string): boolean {
     let reg = new RegExp("^((https|http|ftp|rtsp|mms)?://)");
@@ -73,6 +96,13 @@ export default class extends Vue {
     //@ts-ignore
     this.listImage.value.push(newImage);
   }
+  imageOperation(imageItem: any) {
+    console.log("进来了");
+    if (this.isEdit) {
+      //@ts-ignore
+      this.listImage.value.remove(imageItem);
+    }
+  }
 }
 </script>
 <style lang='scss' scoped>
@@ -82,6 +112,10 @@ export default class extends Vue {
   margin-top: 15px;
   &:nth-child(-n + 4) {
     margin-top: 0;
+  }
+  .hover-delete:hover {
+    opacity: 0.3;
+    transition: 1s;
   }
 }
 </style>

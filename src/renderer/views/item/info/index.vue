@@ -35,62 +35,63 @@
     <div id="style-content">
       <el-timeline>
         <el-timeline-item
-          v-for="templateItem in this.item.style_content"
-          :key="templateItem.name"
-          :class="[getStyleItemType(templateItem), 'style-item']"
-          :timestamp="templateItem.name"
+          v-for="templateField in this.item.style_content"
+          :key="templateField.name"
+          :class="[getStyleItemType(templateField), 'style-item']"
+          :timestamp="templateField.name"
           placement="top"
         >
           <!-- <el-card class="style-item-card">
-            <div v-html="stylePraser(templateItem)"></div>
+            <div v-html="stylePraser(templateField)"></div>
           </el-card>-->
 
           <el-card>
             <textTemplate
-              v-if="templateItem.type === 'TEXT'"
-              :text="templateItem"
+              v-if="templateField.type === 'TEXT'"
+              :text="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></textTemplate>
             <listTextTemplate
-              v-else-if="templateItem.type === 'LIST_TEXT'"
-              :listText="templateItem"
+              v-else-if="templateField.type === 'LIST_TEXT'"
+              :listText="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></listTextTemplate>
             <imageTemplate
-              v-else-if="templateItem.type === 'IMAGE'"
-              :imageItem="templateItem"
+              v-else-if="templateField.type === 'IMAGE'"
+              :imageItem="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></imageTemplate>
             <listImage
-              v-else-if="templateItem.type === 'LIST_IMAGE'"
-              :listImage="templateItem"
+              v-else-if="templateField.type === 'LIST_IMAGE'"
+              :listImage="templateField"
+              :saveFloderName="getSaveFloderName(templateField)"
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></listImage>
             <urlTemplate
-              v-else-if="templateItem.type === 'URL'"
-              :urlItem="templateItem"
+              v-else-if="templateField.type === 'URL'"
+              :urlItem="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></urlTemplate>
             <listUrlTemplate
-              v-else-if="templateItem.type === 'LIST_URL'"
-              :listUrl="templateItem"
+              v-else-if="templateField.type === 'LIST_URL'"
+              :listUrl="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></listUrlTemplate>
             <dateTemplate
-              v-else-if="templateItem.type === 'DATE'"
-              :dateItem="templateItem"
+              v-else-if="templateField.type === 'DATE'"
+              :dateItem="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></dateTemplate>
             <enumtemplate
-              v-else-if="templateItem.type === 'ENUM'"
-              :enumItem="templateItem"
+              v-else-if="templateField.type === 'ENUM'"
+              :enumItem="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></enumtemplate>
@@ -156,6 +157,22 @@ export default class extends Vue {
 
     // 深拷贝做个备份
     this.oldItem = JSON.parse(JSON.stringify(this.item));
+  }
+
+  getSaveFloderName(listImage: any): string {
+    let folderId = this.item.id;
+    if (folderId.length > 5) {
+      folderId = folderId.substr(0, 5);
+    }
+
+    // return this.item.id + "-" + this.item.template_name + "-" + listImage.name;
+    return (
+      this.item.template_name +
+      "-" +
+      this.item.style_content[0].value +
+      "-" +
+      folderId
+    );
   }
 
   stylePraser(styleItem: any): string {

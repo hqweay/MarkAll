@@ -146,7 +146,7 @@
       },
       {
         "name": "封面",
-        "type": "LIST_IMAGE",
+        "type": "IMAGE",
         "value": {
           "name": "封面",
           "url": "https://img3.doubanio.com/view/subject/m/public/s2745500.jpg",

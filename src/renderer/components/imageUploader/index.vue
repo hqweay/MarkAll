@@ -26,12 +26,17 @@ import { copyImageToUserByFile } from "#/fs/file/index";
   name: "image-uploader"
 })
 export default class extends Vue {
+  @Prop() saveFloderName!: string;
   // test!: "ssssss";
   created() {
     // console.log("created");
   }
   async myUpload(content: any) {
-    let newImage = await copyImageToUserByFile(content.file, 60);
+    let newImage = await copyImageToUserByFile(
+      content.file,
+      //@ts-ignore
+      this.saveFloderName
+    );
     // console.log(newImage);
     this.$emit("updateListImage", newImage);
     content.onSuccess("配时文件上传成功");
