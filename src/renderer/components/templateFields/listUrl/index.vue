@@ -106,10 +106,11 @@ export default class extends Vue {
   }
   .delete {
     position: relative;
-    // top: px;
+
     font-size: 18px;
     color: red;
     left: 99%;
+    top: -10px;
     cursor: pointer;
   }
   .delete:hover {
