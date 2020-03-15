@@ -5,13 +5,17 @@
     "style_content": [
       {
         "name": "名称",
-        "type": "TEXT",
-        "value": "星球大战9"
+        "type": "LIST_TEXT",
+        "value": [
+          "星球大战9"
+        ]
       },
       {
         "name": "导演",
-        "type": "TEXT",
-        "value": "不知道"
+        "type": "LIST_TEXT",
+        "value": [
+          "不知道"
+        ]
       },
       {
         "name": "主演",
@@ -115,8 +119,10 @@
       },
       {
         "name": "评论",
-        "type": "TEXT",
-        "value": "不失为一部佳作。"
+        "type": "LIST_TEXT",
+        "value": [
+          "不失为一部佳作。"
+        ]
       },
       {
         "name": "时间",
@@ -147,8 +153,10 @@
     "style_content": [
       {
         "name": "名称",
-        "type": "TEXT",
-        "value": "这个世界会好吗"
+        "type": "LIST_TEXT",
+        "value": [
+          "这个世界会好吗"
+        ]
       },
       {
         "name": "封面",
@@ -161,8 +169,10 @@
       },
       {
         "name": "创作人",
-        "type": "TEXT",
-        "value": "李志"
+        "type": "LIST_TEXT",
+        "value": [
+          "李志"
+        ]
       },
       {
         "name": "曲目",

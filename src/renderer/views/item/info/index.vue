@@ -25,7 +25,7 @@
     </div>
     <!-- 默认第一项为 title  -->
     <div id="title">
-      <h1 class="title">{{this.item.style_content[0].value}}</h1>
+      <h1 class="title">{{this.item.style_content[0].value[0]}}</h1>
       <div class="sub-title">
         <el-tag class="template" type="success">{{this.item.template_name}}</el-tag>
         <tagTemplate v-bind:tags="this.item.tags"></tagTemplate>
