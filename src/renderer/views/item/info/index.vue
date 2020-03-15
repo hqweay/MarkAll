@@ -46,25 +46,29 @@
           </el-card>-->
 
           <el-card>
-            <textTemplate
+            <!-- TEXT is deprecated-->
+            <!-- <textTemplate
               v-if="templateField.type === 'TEXT'"
               :text="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
-            ></textTemplate>
+            ></textTemplate>-->
+
             <listTextTemplate
-              v-else-if="templateField.type === 'LIST_TEXT'"
+              v-if="templateField.type === 'LIST_TEXT'"
               :listText="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></listTextTemplate>
+
             <!-- IMAGE is deprecated-->
-            <imageTemplate
+            <!-- <imageTemplate
               v-else-if="templateField.type === 'IMAGE'"
               :imageItem="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
-            ></imageTemplate>
+            ></imageTemplate>-->
+
             <listImage
               v-else-if="templateField.type === 'LIST_IMAGE'"
               :listImage="templateField"
@@ -74,12 +78,12 @@
             ></listImage>
 
             <!-- URL is deprecated-->
-            <urlTemplate
+            <!-- <urlTemplate
               v-else-if="templateField.type === 'URL'"
               :urlItem="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
-            ></urlTemplate>
+            ></urlTemplate>-->
 
             <listUrlTemplate
               v-else-if="templateField.type === 'LIST_URL'"

@@ -1,7 +1,21 @@
 <template>
   <div class="template-list-text">
     <el-row v-show="!isEdit">
-      <el-col class="col-text" :span="12" v-for="text in listText.value" :key="text">
+      <el-col
+        class="col-text"
+        v-show="listText.value.length === 1"
+        v-for="text in listText.value"
+        :key="text"
+      >
+        <div class="grid-content bg-purple" v-show="!isEdit">{{text}}</div>
+      </el-col>
+      <el-col
+        class="col-text"
+        v-show="listText.value.length !== 1"
+        :span="12"
+        v-for="text in listText.value"
+        :key="text"
+      >
         <div class="grid-content bg-purple" v-show="!isEdit">{{text}}</div>
       </el-col>
     </el-row>
@@ -21,7 +35,27 @@
         ></el-input>
       </el-col>
 
-      <el-col class="col-edit" :span="12" v-for="(value,key) of listText.value" :key="key">
+      <el-col
+        class="col-edit"
+        v-show="listText.value.length === 1"
+        v-for="(value,key) of listText.value"
+        :key="key"
+      >
+        <el-input
+          @blur="editCheck(key)"
+          type="textarea"
+          placeholder="留空则删除"
+          autosize
+          v-model="listText.value[key]"
+        ></el-input>
+      </el-col>
+      <el-col
+        class="col-edit"
+        v-show="listText.value.length !== 1"
+        :span="12"
+        v-for="(value,key) of listText.value"
+        :key="key"
+      >
         <el-input
           @blur="editCheck(key)"
           type="textarea"
