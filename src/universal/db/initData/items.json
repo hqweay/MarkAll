@@ -24,12 +24,14 @@
       },
       {
         "name": "封面",
-        "type": "IMAGE",
-        "value": {
-          "name": "01",
-          "url": "https://leay.net/images/avatar.png",
-          "description": "https://leay.net/images/avatar.png"
-        }
+        "type": "LIST_IMAGE",
+        "value": [
+          {
+            "name": "01",
+            "url": "https://leay.net/images/avatar.png",
+            "description": "https://leay.net/images/avatar.png"
+          }
+        ]
       },
       {
         "name": "截图",

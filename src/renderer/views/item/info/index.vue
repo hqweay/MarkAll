@@ -58,6 +58,7 @@
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></listTextTemplate>
+            <!-- IMAGE is deprecated-->
             <imageTemplate
               v-else-if="templateField.type === 'IMAGE'"
               :imageItem="templateField"
@@ -71,12 +72,15 @@
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></listImage>
+
+            <!-- URL is deprecated-->
             <urlTemplate
               v-else-if="templateField.type === 'URL'"
               :urlItem="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></urlTemplate>
+
             <listUrlTemplate
               v-else-if="templateField.type === 'LIST_URL'"
               :listUrl="templateField"
