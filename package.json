@@ -53,5 +53,10 @@
     "vue-cli-plugin-electron-builder": "^1.4.4",
     "vue-json-ui-editor": "^1.0.0",
     "vue-template-compiler": "^2.6.10"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
