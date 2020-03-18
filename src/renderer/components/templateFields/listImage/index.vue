@@ -1,9 +1,15 @@
 <template>
   <div class="template-list-image">
     <el-row class="list-container" :gutter="20">
-      <el-col
+      <!-- <el-col
         class="template-image"
         :span="6"
+        v-for="imageItem in listImage.value"
+        :key="imageItem.name"
+      >-->
+      <el-col
+        class="template-image"
+        style="width: 147px;"
         v-for="imageItem in listImage.value"
         :key="imageItem.name"
       >
@@ -126,8 +132,8 @@ export default class extends Vue {
     // top: px;
     font-size: 18px;
     color: red;
-    left: 45%;
-    top: 15px;
+    left: 92%;
+    top: 13px;
     cursor: pointer;
   }
   .delete:hover {

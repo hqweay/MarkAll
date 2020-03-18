@@ -93,16 +93,25 @@ export default class extends Vue {
   }
 }
 </script>
-<style lang='scss' >
+<style lang='scss' scoped>
 .template-url {
   &:nth-child(-n + 2) {
     margin-top: 0;
   }
   margin-top: 10px;
 }
+.el-input {
+  &:nth-child(-n + 1) {
+    margin-top: 0;
+  }
+  margin-top: 5px;
+}
+.el-button {
+  margin-top: 10px;
+}
 .edit-list-url {
   .el-card {
-    margin-top: 10px;
+    margin-top: 15px;
   }
   .delete {
     position: relative;
@@ -110,7 +119,7 @@ export default class extends Vue {
     font-size: 18px;
     color: red;
     left: 99%;
-    top: -10px;
+    top: -8px;
     cursor: pointer;
   }
   .delete:hover {

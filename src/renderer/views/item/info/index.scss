@@ -28,14 +28,18 @@
   .edit:hover{ 
     height: 50px;
     width: 50px;
+    transition: ease-in;
   }
   .el-dropdown-menu {
     flex-direction: column;
   }
 
+
   .container {
-    margin-left: 8%;
-    // margin-right: 1%;
+    // margin-left: 8%;
+    margin: 0 auto;
+    width: 90%;
+
     flex-direction: column;
     #title {
       flex-direction: column;
@@ -66,9 +70,16 @@
       }
     }
   }
+
+  @media screen and (min-width: 1201px) {
+    .container {
+      // margin-left: 8%;
+      margin: 0 auto;
+      width: 50%;
+    }
+  }
   .el-timeline {
     padding-left: 0;
   }
-  .el-card {
-  }
+
 }
