@@ -94,17 +94,17 @@
         "type": "LIST_URL",
         "value": [
           {
-            "name": "影片地址",
+            "name": "影片1地址",
             "url": "https://movie.douban.com/subject/22265687/",
             "description": "测试描述"
           },
           {
-            "name": "影片地址",
+            "name": "影片2地址",
             "url": "https://movie.douban.com/subject/22265687/",
             "description": "测试描述"
           },
           {
-            "name": "影片地址",
+            "name": "影片3地址",
             "url": "https://movie.douban.com/subject/22265687/",
             "description": "测试描述"
           }
@@ -139,6 +139,14 @@
             "看过"
           ],
           "state": "看过"
+        }
+      },
+      {
+        "name": "评分",
+        "type": "RATE",
+        "value": {
+          "max": 5,
+          "state": 2
         }
       }
     ],

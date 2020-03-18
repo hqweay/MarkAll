@@ -51,6 +51,11 @@
         "name": "状态",
         "description": "看过;未看;在看",
         "type": "ENUM"
+      },
+      {
+        "name": "评分",
+        "description": "无",
+        "type": "RATE"
       }
     ]
   },

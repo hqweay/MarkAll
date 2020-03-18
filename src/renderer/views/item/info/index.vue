@@ -97,12 +97,18 @@
               :isEdit="isEdit"
               @updateItem="updateItem"
             ></dateTemplate>
-            <enumtemplate
+            <enumTemplate
               v-else-if="templateField.type === 'ENUM'"
               :enumItem="templateField"
               :isEdit="isEdit"
               @updateItem="updateItem"
-            ></enumtemplate>
+            ></enumTemplate>
+            <rateTemplate
+              v-else-if="templateField.type === 'RATE'"
+              :rateItem="templateField"
+              :isEdit="isEdit"
+              @updateItem="updateItem"
+            ></rateTemplate>
           </el-card>
         </el-timeline-item>
       </el-timeline>
@@ -123,25 +129,24 @@ import { getTemplateByName } from "#/db/mapper/templateMapper";
 import { stylePraser } from "@/utils/stylePraser";
 
 import tagTemplate from "@/components/templateFields/tag/index.vue";
-import textTemplate from "@/components/templateFields/text/index.vue";
+// import textTemplate from "@/components/templateFields/text/index.vue";
 import listTextTemplate from "@/components/templateFields/listText/index.vue";
-import imageTemplate from "@/components/templateFields/image/index.vue";
+// import imageTemplate from "@/components/templateFields/image/index.vue";
 import listImage from "@/components/templateFields/listImage/index.vue";
-import urlTemplate from "@/components/templateFields/url/index.vue";
+// import urlTemplate from "@/components/templateFields/url/index.vue";
 import listUrlTemplate from "@/components/templateFields/listUrl/index.vue";
 import dateTemplate from "@/components/templateFields/date/index.vue";
-import enumtemplate from "@/components/templateFields/enum/index.vue";
+import enumTemplate from "@/components/templateFields/enum/index.vue";
+import rateTemplate from "@/components/templateFields/rate/index.vue";
 @Component({
   components: {
     tagTemplate,
-    textTemplate,
     listTextTemplate,
-    imageTemplate,
     listImage,
-    urlTemplate,
     listUrlTemplate,
     dateTemplate,
-    enumtemplate
+    enumTemplate,
+    rateTemplate
   }
 })
 export default class extends Vue {

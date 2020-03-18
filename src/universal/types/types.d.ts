@@ -11,7 +11,7 @@ declare enum TemplateStyleItemEnum {
   MARKDOWN = "markdown",
   FILE = "file",
   RATE = "rate",
-  ENUM = "EnumType"
+  ENUM = "EnumType",
 }
 
 // 用键值对的话不方便扩展
@@ -28,8 +28,15 @@ interface UrlType {
 }
 
 interface EnumType {
+  "name": string,
   "enums": Array<string>,
   "state": string
+}
+
+interface RateType {
+  name: string,
+  max: string,
+  state: string
 }
 
 interface TemplateFiledType {
