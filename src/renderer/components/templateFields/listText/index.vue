@@ -4,19 +4,20 @@
       <el-col
         class="col-text"
         v-show="listText.value.length === 1"
-        v-for="text in listText.value"
-        :key="text"
+        v-for="(value,key) of listText.value"
+        :key="'self-show-' + '-' + key"
       >
-        <div class="grid-content bg-purple" v-show="!isEdit">{{text}}</div>
+        <div class="grid-content bg-purple" v-show="!isEdit">{{listText.value[0]}}</div>
       </el-col>
+
       <el-col
         class="col-text"
         v-show="listText.value.length !== 1"
         :span="12"
-        v-for="text in listText.value"
-        :key="text"
+        v-for="(value,key) of listText.value"
+        :key="'show-' + listText.name + '-' + key"
       >
-        <div class="grid-content bg-purple" v-show="!isEdit">{{text}}</div>
+        <div class="grid-content bg-purple" v-show="!isEdit">{{listText.value[key]}}</div>
       </el-col>
     </el-row>
 
@@ -39,7 +40,7 @@
         class="col-edit"
         v-show="listText.value.length === 1"
         v-for="(value,key) of listText.value"
-        :key="key"
+        :key="'self-edit-' + listText.name + '-' + key"
       >
         <el-input
           @blur="editCheck(key)"
@@ -54,7 +55,7 @@
         v-show="listText.value.length !== 1"
         :span="12"
         v-for="(value,key) of listText.value"
-        :key="key"
+        :key="'edit-' + listText.name + '-' + key"
       >
         <el-input
           @blur="editCheck(key)"
