@@ -1,7 +1,5 @@
 # 说明
 
-正在推翻重写...
-
 原仓库查看：[https://github.com/hqweay/MarkAll/tree/master](https://github.com/hqweay/MarkAll/tree/master)
 
 Windows 与 Linux 用户可 [下载二进制文件](https://github.com/hqweay/MarkAll/releases) 试用。
@@ -12,7 +10,15 @@ Windows 与 Linux 用户可 [下载二进制文件](https://github.com/hqweay/Ma
 >
 > 此项目用于记录（标记）书影音...一切！（你可以自己添加想要标记的模板）
 
-# 效果
+# dev 施工中
+
+## info 界面重构了
+
+做了一些比较酷的事儿：文本、图片、链接、评分等的展示以及增、删、改。
+
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/info.png?raw=true)
+
+# 【过时】master 效果
 
 ## 导入用户的豆瓣数据
 
@@ -33,9 +39,10 @@ Windows 与 Linux 用户可 [下载二进制文件](https://github.com/hqweay/Ma
 * [vue-json-ui-editor](<https://github.com/yourtion/vue-json-ui-editor>)
 * [阿里巴巴矢量图标](https://www.iconfont.cn/)
 
-# 启动
+# 安装与启动
 
 ```bash
+yarn
 yarn electron:serve
 ```
 
