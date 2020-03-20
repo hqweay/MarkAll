@@ -52,10 +52,10 @@ export function getItemsByTagName(tagName: string): Array<ItemType> {
     // console.log(tagName);
     if (o.tags.indexOf(tagName) !== -1) {
       // console.log("true");
-      return true
+      return true;
     } else {
       // console.log("false");
-      return false
+      return false;
     }
   }).value()
 }
@@ -71,8 +71,8 @@ export function addItem(newItem: ItemType): boolean {
   // @ts-ignore
   if (db.read().get('items').find({ template_name: newItem.template_name }).value() != null) {
     // @ts-ignore
-    if (db.read().get('items').find(['style', newItem.style]).value() != null) {
-      return false
+    if (db.read().get('items').find(['style_content', newItem.style_content]).value() != null) {
+      return false;
     }
   }
   // @ts-ignore

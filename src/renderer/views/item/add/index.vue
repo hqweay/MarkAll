@@ -13,7 +13,7 @@
     </div>-->
     <el-backtop :visibility-height="50"></el-backtop>
     <!-- 编辑 -->
-    <div class="edit" v-show="!isAdd" @click="edit">
+    <div class="edit" @click="edit">
       <i class="el-icon-edit-outline" v-show="!isEdit"></i>
       <i class="el-icon-check" v-show="isEdit"></i>
       <!-- <el-dropdown @command="menuClick">
@@ -28,7 +28,7 @@
       <h1 class="title">{{this.item.style_content[0].value[0]}}</h1>
       <div class="sub-title">
         <el-tag class="template" type="success">{{this.item.template_name}}</el-tag>
-        <tagTemplate @updateItem="updateItemTags" v-bind:tags="this.item.tags"></tagTemplate>
+        <tagTemplate v-bind:tags="this.item.tags"></tagTemplate>
       </div>
     </div>
 
@@ -51,14 +51,14 @@
               v-if="templateField.type === 'TEXT'"
               :text="templateField"
               :isEdit="isEdit"
-              @updateItem="updateItemField"
+              @updateItem="updateItem"
             ></textTemplate>-->
 
             <listTextTemplate
               v-if="templateField.type === 'LIST_TEXT'"
               :listText="templateField"
               :isEdit="isEdit"
-              @updateItem="updateItemField"
+              @updateItem="updateItem"
             ></listTextTemplate>
 
             <!-- IMAGE is deprecated-->
@@ -66,7 +66,7 @@
               v-else-if="templateField.type === 'IMAGE'"
               :imageItem="templateField"
               :isEdit="isEdit"
-              @updateItem="updateItemField"
+              @updateItem="updateItem"
             ></imageTemplate>-->
 
             <listImage
@@ -74,7 +74,7 @@
               :listImage="templateField"
               :saveFloderName="getSaveFloderName(templateField)"
               :isEdit="isEdit"
-              @updateItem="updateItemField"
+              @updateItem="updateItem"
             ></listImage>
 
             <!-- URL is deprecated-->
@@ -82,32 +82,32 @@
               v-else-if="templateField.type === 'URL'"
               :urlItem="templateField"
               :isEdit="isEdit"
-              @updateItem="updateItemField"
+              @updateItem="updateItem"
             ></urlTemplate>-->
 
             <listUrlTemplate
               v-else-if="templateField.type === 'LIST_URL'"
               :listUrl="templateField"
               :isEdit="isEdit"
-              @updateItem="updateItemField"
+              @updateItem="updateItem"
             ></listUrlTemplate>
             <dateTemplate
               v-else-if="templateField.type === 'DATE'"
               :dateItem="templateField"
               :isEdit="isEdit"
-              @updateItem="updateItemField"
+              @updateItem="updateItem"
             ></dateTemplate>
             <enumTemplate
               v-else-if="templateField.type === 'ENUM'"
               :enumItem="templateField"
               :isEdit="isEdit"
-              @updateItem="updateItemField"
+              @updateItem="updateItem"
             ></enumTemplate>
             <rateTemplate
               v-else-if="templateField.type === 'RATE'"
               :rateItem="templateField"
               :isEdit="isEdit"
-              @updateItem="updateItemField"
+              @updateItem="updateItem"
             ></rateTemplate>
           </el-card>
         </el-timeline-item>
@@ -124,9 +124,9 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import { getItemByID, editItemByID, addItem } from "#/db/mapper/itemMapper";
+import { getItemByID, editItemByID } from "#/db/mapper/itemMapper";
 import { getTemplateByName } from "#/db/mapper/templateMapper";
-// import { stylePraser } from "@/utils/stylePraser";
+import { stylePraser } from "@/utils/stylePraser";
 
 import tagTemplate from "@/components/templateFields/tag/index.vue";
 // import textTemplate from "@/components/templateFields/text/index.vue";
@@ -138,10 +138,6 @@ import listUrlTemplate from "@/components/templateFields/listUrl/index.vue";
 import dateTemplate from "@/components/templateFields/date/index.vue";
 import enumTemplate from "@/components/templateFields/enum/index.vue";
 import rateTemplate from "@/components/templateFields/rate/index.vue";
-
-import { resolveTemplateField } from "./utils";
-
-import { ipcRenderer } from "electron";
 
 @Component({
   components: {
@@ -168,7 +164,6 @@ export default class extends Vue {
     tags: []
   };
   isEdit: boolean = false;
-  isAdd: boolean = false;
 
   created() {
     if (this.$route.params.id) {
@@ -177,20 +172,35 @@ export default class extends Vue {
       // 深拷贝做个备份
       this.oldItem = JSON.parse(JSON.stringify(this.item));
     } else if (this.$route.params.templateName) {
-      this.isEdit = true;
       let templateName = this.$route.params.templateName;
       // 先获得 template，再构造空 item
       let template = getTemplateByName(templateName);
 
       this.item = {
         id: "",
-        template_name: templateName,
+        template_name: "",
         style_content: [],
         tags: []
       };
-
+      this.item.template_name = templateName;
       template.style.forEach(field => {
-        resolveTemplateField(this.item, field);
+        if (field.type === "ENUM") {
+          let fieldEnums = field.extra.enums;
+          this.item.style_content.push({
+            name: field.name,
+            type: field.type,
+            value: {
+              enums: fieldEnums,
+              state: ""
+            }
+          });
+        } else {
+          this.item.style_content.push({
+            name: field.name,
+            type: field.type,
+            value: []
+          });
+        }
       });
     }
   }
@@ -200,6 +210,7 @@ export default class extends Vue {
     if (folderId.length > 5) {
       folderId = folderId.substr(0, 5);
     }
+
     // return this.item.id + "-" + this.item.template_name + "-" + listImage.name;
     return (
       this.item.template_name +
@@ -210,68 +221,38 @@ export default class extends Vue {
     );
   }
 
-  // stylePraser(styleItem: any): string {
-  //   return stylePraser(styleItem);
-  // }
+  stylePraser(styleItem: any): string {
+    return stylePraser(styleItem);
+  }
   getStyleItemType(styleItem: any): string {
     return styleItem.type.toLowerCase();
   }
-
+  getTags(tags: any): string {
+    let strs = "";
+    for (let tag in tags) {
+      strs += tag + "/";
+    }
+    return strs;
+  }
   edit() {
     this.isEdit = this.isEdit === true ? false : true;
   }
-  updateItemField(newItemField: ItemFieldType) {
+  updateItem(newItemField: ItemFieldType) {
+    // console.log(this.item.style_content);
+    // if (newItemField.type === "TEXT") {
     //@ts-ignore
     _.chain(this.item.style_content).set(
       newItemField.value,
       newItemField["value"]
     );
-    // if (this.isEdit == false) {
-    //   this.updateItem();
+    // } else if (newItemField.type === "DATE") {
+    //   //@ts-ignore
+    //   _.chain(this.item.style_content).set(
+    //     newItemField.value,
+    //     newItemField["value"]
+    //   );
     // }
-  }
-  async updateItemTags(newTags: Array<string>) {
-    this.item.tags = newTags;
-    this.updateItem();
-    // console.log(this.item.tags);
-  }
-  @Watch("isEdit")
-  updateItemWhenEdited() {
-    if (this.isEdit === false) {
-      this.updateItem();
-    }
-  }
-  updateItem() {
-    // 编辑
-    if (this.item.id != "") {
-      // update
-    } else {
-      // add
-      if (addItem(this.item)) {
-        this.$message({
-          type: "info",
-          message: "添加成功！"
-        });
-        this.isAdd = true;
-      } else {
-        this.$message({
-          type: "info",
-          message: "添加失败～已存在了～"
-        });
-      }
-    }
-    // this.$store.state.dialog.itemList =
-    //   this.$store.state.dialog.itemList == true ? false : true;
-    // console.log(this.$store.state.dialog.itemList);
-    // 通知 MainPage 更新
-    // IPC
-    console.log("send notify");
-    ipcRenderer.send("updateItemList");
-    let items: Array<ItemType> = [];
-    // ipcRenderer.on("updateItemList", items);
-    // ipcRenderer.on("updateItemList", (event: Event, items: ItemType[]) => {
-    //   console.log(items);
-    // });
+    console.log(this.item.style_content);
   }
 }
 </script> 

@@ -61,6 +61,14 @@ export default class extends Vue {
   };
 
   created() {}
+  @Watch("isEdit")
+  editDate(val: boolean, oldVal: boolean) {
+    if (this.isEdit === false) {
+      // 提交 date
+      // console.log(this.dateItem.value);
+      this.$emit("updateItem", this.listUrl);
+    }
+  }
   addUrl() {
     // 格式化一下
     this.newUrl.name = this.newUrl.name.trim();

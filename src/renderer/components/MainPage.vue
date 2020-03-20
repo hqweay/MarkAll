@@ -2,7 +2,7 @@
   <div class="main-page">
     <!-- item -->
     <ul class="item-list list" v-if="type === 'item'">
-      <li class="item" @click="add()">
+      <li class="item" @click="showAddItemDialog()">
         <div class="container">
           <div class="card card-add">
             <ul class="item-attr">
@@ -17,6 +17,20 @@
         <Card type="item" v-bind:data="item" @updateMainPage="updateUI"></Card>
       </li>
     </ul>
+
+    <div class="add-item">
+      <el-dialog :modal="false" title="选择需要添加条目的模板" :visible.sync="addItemVisible">
+        <div class="template-list">
+          <el-tag
+            @click="addItemByTemplate(template)"
+            :disable-transitions="false"
+            v-for="template in templates"
+            :key="template.name"
+          >{{template.name}}</el-tag>
+        </div>
+      </el-dialog>
+    </div>
+
     <!-- template -->
     <ul class="template-list list" v-if="type === 'template'">
       <li class="template" @click="add()">
@@ -58,6 +72,12 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import Card from "@/components/card/index.vue";
 import { addTag } from "#/db/mapper/tagMapper";
+import { getTemplates } from "#/db/mapper/templateMapper";
+import { ipcRenderer } from "electron";
+
+ipcRenderer.on("updateItemList", (event, message) => {
+  console.log("sssssss");
+});
 
 @Component({
   components: {
@@ -68,8 +88,11 @@ export default class extends Vue {
   @Prop() readonly type!: string;
   // data 是个 list
   @Prop() readonly data!: any;
-  created() {}
-
+  templates: Array<TemplateType> = [];
+  addItemVisible: boolean = false;
+  created() {
+    console.log("55");
+  }
   notify(message: string) {
     const h = this.$createElement;
     this.$notify({
@@ -80,17 +103,29 @@ export default class extends Vue {
   // type 没用，先留着。
   updateUI(type: string, obj: any, newObj: any) {
     // 本地删除
-
+    // console.log(obj);
     this.data.remove(obj);
-    if (newObj !== null) {
+
+    // 编辑 Tag
+    if (newObj !== undefined) {
       this.data.push(newObj);
     }
+  }
+  showAddItemDialog() {
+    // get templates
+    // ipcRenderer.send("additem");
+    this.templates = getTemplates();
+    this.addItemVisible = true;
+  }
+  addItemByTemplate(template: TemplateType) {
+    // console.log(template);
+    ipcRenderer.send("showCardInfo", "add", template);
+    this.addItemVisible = false;
   }
   addTag() {
     this.$prompt("添加标签", "提示", {
       confirmButtonText: "确定",
       cancelButtonText: "取消"
-      // inputErrorMessage: "该标签与已有标签重复",
     })
       //@ts-ignore
       .then(({ value }) => {
@@ -112,7 +147,6 @@ export default class extends Vue {
             type: "success",
             message: "添加标签 " + newTag
           });
-
           this.data.push(newTag);
         }
       })
@@ -128,25 +162,42 @@ export default class extends Vue {
 <style scoped lang="scss">
 * {
   display: flex;
-}
-.main-page {
-  a {
-    text-decoration: none;
-  }
-  ul {
-    list-style: none;
-    margin: 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .list {
-    margin-bottom: 40px;
-    li {
-      margin-top: 20px;
+  .main-page {
+    a {
+      text-decoration: none;
     }
-    // 还是平起好看点
-    .add {
-      margin-top: 0;
+    ul {
+      list-style: none;
+      margin: 0;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .list {
+      margin-bottom: 40px;
+      li {
+        margin-top: 20px;
+      }
+      // 还是平起好看点
+      .add {
+        margin-top: 0;
+      }
+    }
+    .add-item {
+      .template-list {
+        display: block;
+
+        height: 65vh;
+        overflow: auto;
+
+        .el-tag {
+          display: inline-block;
+          margin-right: 10px;
+          margin-bottom: 1%;
+        }
+        .el-tag:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }

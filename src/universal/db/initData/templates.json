@@ -4,57 +4,85 @@
     "style": [
       {
         "name": "片名",
-        "description": "电影名",
-        "type": "TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": "电影名"
+        }
       },
       {
         "name": "导演",
-        "description": "导演",
-        "type": "TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": "导演"
+        }
       },
       {
         "name": "主演",
-        "description": "主演们",
-        "type": "LIST_TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": "主演们"
+        }
       },
       {
         "name": "封面",
-        "description": "封面",
-        "type": "IMAGE"
+        "type": "LIST_IMAGE",
+        "extra": {
+          "description": "封面"
+        }
       },
       {
         "name": "截图",
-        "description": "封面",
-        "type": "LIST_IMAGE"
+        "type": "LIST_IMAGE",
+        "extra": {
+          "description": "封面"
+        }
       },
       {
         "name": "地址",
-        "description": "豆瓣地址",
-        "type": "URL"
+        "type": "LIST_URL",
+        "extra": {
+          "description": "豆瓣地址"
+        }
       },
       {
         "name": "简介",
-        "description": "简介",
-        "type": "TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": "简介"
+        }
       },
       {
         "name": "评论",
-        "description": "评论",
-        "type": "TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": "评论"
+        }
       },
       {
         "name": "时间",
-        "description": "标记的时间",
-        "type": "DATE"
+        "type": "DATE",
+        "extra": {
+          "description": "标记的时间"
+        }
       },
       {
         "name": "状态",
-        "description": "看过;未看;在看",
+        "extra": {
+          "description": "看过;未看;在看",
+          "enums": [
+            "看过",
+            "未看",
+            "在看"
+          ]
+        },
         "type": "ENUM"
       },
       {
         "name": "评分",
-        "description": "无",
+        "extra": {
+          "description": "无",
+          "max": 5
+        },
         "type": "RATE"
       }
     ]
@@ -64,18 +92,24 @@
     "style": [
       {
         "name": "地名",
-        "description": "",
-        "type": "TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": ""
+        }
       },
       {
         "name": "时间",
-        "description": "标记的时间",
-        "type": "TEXT"
+        "type": "DATE",
+        "extra": {
+          "description": "标记的时间"
+        }
       },
       {
         "name": "人物",
-        "description": "一起的朋友",
-        "type": "LIST_TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": "一起的朋友"
+        }
       }
     ]
   },
@@ -84,18 +118,24 @@
     "style": [
       {
         "name": "标题",
-        "description": "",
-        "type": "TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": ""
+        }
       },
       {
         "name": "内容",
-        "description": "文章内容",
-        "type": "MARKDOWN"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": "文章内容"
+        }
       },
       {
         "name": "时间",
-        "description": "时间",
-        "type": "DATE"
+        "type": "DATE",
+        "extra": {
+          "description": "时间"
+        }
       }
     ]
   },
@@ -104,28 +144,38 @@
     "style": [
       {
         "name": "名称",
-        "description": "专辑名",
-        "type": "TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": "专辑名"
+        }
       },
       {
         "name": "封面",
-        "description": "封面",
-        "type": "IMAGE"
+        "type": "LIST_IMAGE",
+        "extra": {
+          "description": "封面"
+        }
       },
       {
         "name": "曲目",
-        "description": "歌曲列表",
-        "type": "LIST_TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": "歌曲列表"
+        }
       },
       {
         "name": "创作人",
-        "description": "创作人",
-        "type": "TEXT"
+        "type": "LIST_TEXT",
+        "extra": {
+          "description": "创作人"
+        }
       },
       {
         "name": "日期",
-        "description": "发行时间",
-        "type": "DATE"
+        "type": "DATE",
+        "extra": {
+          "description": "发行时间"
+        }
       }
     ]
   }

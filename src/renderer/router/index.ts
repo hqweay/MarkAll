@@ -58,15 +58,22 @@ const routes = [
   {
     path: '/item',
     name: 'item',
-    component: () => import('@/views/item/info/index.vue'),
+    component: () => import('@/views/item/index.vue'),
     children: [
       {
         path: 'info/:id',
         name: 'item-info',
+        component: () => import('@/views/item/info/index.vue'),
         meta: {
           title: '条目信息'
         },
-
+      }, {
+        path: 'add/:templateName',
+        name: 'item-add',
+        component: () => import('@/views/item/info/index.vue'),
+        meta: {
+          title: '添加条目'
+        },
       }
     ]
   }, {

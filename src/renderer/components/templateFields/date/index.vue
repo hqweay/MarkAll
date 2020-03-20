@@ -9,10 +9,10 @@
       date.getDay() +
       " 日"
       }}-->
-      {{dateItem.value}}
+      {{dateItem.value[0]}}
     </div>
     <div class="edit-text" v-show="isEdit">
-      <el-date-picker v-model="dateItem.value" type="datetime" placeholder="选择日期时间"></el-date-picker>
+      <el-date-picker v-model="dateItem.value[0]" type="datetime" placeholder="选择日期时间"></el-date-picker>
     </div>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default class extends Vue {
   editDate(val: boolean, oldVal: boolean) {
     if (this.isEdit === false) {
       // 提交 date
-      console.log(this.dateItem.value);
+      // console.log(this.dateItem.value);
       this.$emit("updateItem", this.dateItem);
     }
   }

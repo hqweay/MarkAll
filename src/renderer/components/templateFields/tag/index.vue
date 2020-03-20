@@ -44,11 +44,20 @@ import { ipcRenderer, Item } from "electron";
 export default class extends Vue {
   // @Prop() readonly item!: ItemType;
   @Prop() tags!: Array<string>;
+
   inputVisible: boolean = false;
   inputValue: string = "";
   editFlag: boolean = true;
+
   created() {}
 
+  @Watch("tags")
+  editDate(val: boolean, oldVal: boolean) {
+    if (this.editFlag === true) {
+      // 有编辑、添加操作，才将数据向上传
+      this.$emit("updateItem", this.tags);
+    }
+  }
   showInput() {
     this.inputVisible = true;
     this.$nextTick(() => {
@@ -58,18 +67,14 @@ export default class extends Vue {
   }
   handleClose(tag: string) {
     // 删除标签
-    var index = this.tags.indexOf(tag);
-    if (index > -1) {
-      this.tags.splice(index, 1);
-    }
-    this.$emit("updateMainPage", this.tags);
+    //@ts-ignore
+    this.tags.remove(tag);
+    // this.$emit("updateItem", this.tags);
   }
   editTag(tag: string) {
     // 编辑标签
-    var index = this.tags.indexOf(tag);
-    if (index > -1) {
-      this.tags.splice(index, 1);
-    }
+    //@ts-ignore
+    this.tags.remove(tag);
     this.inputValue = tag;
     this.inputVisible = true;
     this.editFlag = false;
@@ -99,7 +104,7 @@ export default class extends Vue {
   }
 }
 </script>
-<style lang='scss'>
+<style lang='scss' scoped>
 .template-tag {
   display: flex;
   flex-wrap: wrap;

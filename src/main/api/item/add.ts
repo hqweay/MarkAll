@@ -1,15 +1,14 @@
+// 不必
 import {
   BrowserWindow,
 } from 'electron';
 
 let itemWin: BrowserWindow | null;
 
-// type: string, data: any
-export const createItemWindow = (type: string, data: any) => {
-
+export const createAddItemWindow = () => {
   if (itemWin == null) {
     itemWin = new BrowserWindow({
-      title: "条目详情",
+      title: "添加条目",
       minHeight: 800,
       minWidth: 800,
       height: 800, // 高
@@ -30,14 +29,7 @@ export const createItemWindow = (type: string, data: any) => {
         webSecurity: false,
       }
     })
-
-    if (type === "add") {
-      // 添加元素
-      let template = data;
-      itemWin.loadURL('http://localhost:8080/#/item/add/' + template.name);
-    } else {
-      itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
-    }
+    itemWin.loadURL('http://localhost:8080/#/item/add');
 
     itemWin.on('closed', () => {
       itemWin = null;

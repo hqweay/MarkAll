@@ -14,7 +14,7 @@ declare enum TemplateStyleItemEnum {
   ENUM = "EnumType",
 }
 
-// 用键值对的话不方便扩展
+// template field item
 interface ImageType {
   name: string,
   url: string,
@@ -28,39 +28,41 @@ interface UrlType {
 }
 
 interface EnumType {
-  "name": string,
-  "enums": Array<string>,
-  "state": string
-}
-
-interface RateType {
   name: string,
-  max: string,
+  enums: Array<string>,
   state: string
 }
-
-interface TemplateFiledType {
+interface RateType {
   name: string,
-  description: string,
-  type: TemplateStyleItemEnum,
+  max: number,
+  state: number
 }
 
+// template field
+// extra 用于 enums、rate 等记录额外信息(desprition 也迁移进来)
+interface TemplateFiledType {
+  name: string,
+  type: string,
+  extra: any,
+}
+// template
 interface TemplateType {
   name: string,
   style: Array<TemplateFiledType>,
 }
 
 
-interface ItemFiledType {
+// item field
+interface ItemFieldType {
   name: string,
   type: string,
   value: any
 }
-
+// item
 interface ItemType {
   id: string,
   template_name: string,
-  style_content: Array<ItemFiledType>,
+  style_content: Array<ItemFieldType>,
   tags: Array<string>,
 }
 

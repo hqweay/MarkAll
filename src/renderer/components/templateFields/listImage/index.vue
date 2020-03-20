@@ -71,7 +71,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import imageUploader from "@/components/imageUploader/index.vue";
 
 @Component({
@@ -86,13 +86,21 @@ export default class extends Vue {
   @Prop() isEdit!: boolean;
   @Prop() saveFloderName!: string;
   created() {}
+  @Watch("isEdit")
+  editDate(val: boolean, oldVal: boolean) {
+    if (this.isEdit === false) {
+      // 提交 date
+      // console.log(this.dateItem.value);
+      this.$emit("updateItem", this.listImage);
+    }
+  }
   isLocal(url: string): boolean {
     let reg = new RegExp("^((https|http|ftp|rtsp|mms)?://)");
     if (reg.test(url)) {
-      console.log("ulr: " + url);
+      // console.log("ulr: " + url);
       return false;
     } else {
-      console.log("nono: " + url);
+      // console.log("nono: " + url);
       return true;
     }
   }

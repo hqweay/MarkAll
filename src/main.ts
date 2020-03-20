@@ -9,10 +9,11 @@ import './renderer/assets/styles/element-variables.scss'; //引入自定义样�
 
 
 
-Vue.use(ElementUI)
-
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
+
+
 
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */

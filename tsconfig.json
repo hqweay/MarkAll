@@ -45,6 +45,7 @@
     "src/renderer/router/index.ts",
     "src/main.js",
     "tests/unit/renderer/components/MainPageTest.spec.js",
+    "src/renderer/views/item/info/resolve.js",
   ],
   "exclude": [
     "node_modules",

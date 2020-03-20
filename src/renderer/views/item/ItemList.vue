@@ -16,6 +16,9 @@ import {
 } from "#/db/mapper/itemMapper";
 
 import MainPage from "@/components/MainPage.vue";
+
+import { ipcRenderer } from "electron";
+
 @Component({
   components: {
     MainPage
@@ -42,6 +45,17 @@ export default class extends Vue {
       this.items = getItems();
     }
   }
+  updateTest() {}
+
+  // get itemListState() {
+  //   console.log(this.$store.state.dialog.itemList);
+  //   return this.$store.state.dialog.itemList;
+  // }
+
+  // @Watch("itemListState")
+  // test() {
+  //   console.log("itemListState");
+  // }
 
   @Watch("$route")
   private onChildChanged(val: any, oldVal: any) {

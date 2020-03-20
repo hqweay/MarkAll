@@ -43,6 +43,7 @@ export default class extends Vue {
       case "item":
         // this.$router.push("/main/item/info/" + data.id);
         ipcRenderer.send("showCardInfo", this.type, data);
+        // this.$electron.ipcRenderer.send("showCardInfo", this.type, data);
         break;
       case "template":
         this.$router.push("/template/info/" + data.id);
@@ -115,6 +116,7 @@ export default class extends Vue {
           message: "删除条目失败！"
         });
       }
+      // console.log(this.data);
     } else if (this.type === "template") {
       if (deleteTemplateByName(this.data.name)) {
         this.$emit("updateMainPage", this.type, this.data);

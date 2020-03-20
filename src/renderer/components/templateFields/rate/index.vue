@@ -23,6 +23,14 @@ export default class extends Vue {
   @Prop() rateItem!: any;
   @Prop() isEdit!: boolean;
   created() {}
+  @Watch("isEdit")
+  editDate(val: boolean, oldVal: boolean) {
+    if (this.isEdit === false) {
+      // 提交 date
+      // console.log(this.dateItem.value);
+      this.$emit("updateItem", this.rateItem);
+    }
+  }
 }
 </script>
 <style lang='scss'>
