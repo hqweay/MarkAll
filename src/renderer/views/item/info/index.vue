@@ -141,7 +141,7 @@ import rateTemplate from "@/components/templateFields/rate/index.vue";
 
 import { resolveTemplateField } from "./utils";
 
-import { ipcRenderer } from "electron";
+import { remote, ipcRenderer } from "electron";
 
 @Component({
   components: {
@@ -245,6 +245,17 @@ export default class extends Vue {
     // 编辑
     if (this.item.id != "") {
       // update
+      if (editItemByID(this.item)) {
+        this.$message({
+          type: "info",
+          message: "修改成功！"
+        });
+      } else {
+        this.$message({
+          type: "info",
+          message: "修改失败～已存在了～"
+        });
+      }
     } else {
       // add
       if (addItem(this.item)) {
@@ -260,18 +271,11 @@ export default class extends Vue {
         });
       }
     }
-    // this.$store.state.dialog.itemList =
-    //   this.$store.state.dialog.itemList == true ? false : true;
-    // console.log(this.$store.state.dialog.itemList);
-    // 通知 MainPage 更新
-    // IPC
-    console.log("send notify");
-    ipcRenderer.send("updateItemList");
-    let items: Array<ItemType> = [];
-    // ipcRenderer.on("updateItemList", items);
-    // ipcRenderer.on("updateItemList", (event: Event, items: ItemType[]) => {
-    //   console.log(items);
-    // });
+    // 通知 mainPage 更新页面
+    ipcRenderer.sendTo(
+      remote.getGlobal("mainWindow").webContents.id,
+      "updateItemList"
+    );
   }
 }
 </script> 

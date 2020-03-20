@@ -75,10 +75,6 @@ import { addTag } from "#/db/mapper/tagMapper";
 import { getTemplates } from "#/db/mapper/templateMapper";
 import { ipcRenderer } from "electron";
 
-ipcRenderer.on("updateItemList", (event, message) => {
-  console.log("sssssss");
-});
-
 @Component({
   components: {
     Card
@@ -90,9 +86,7 @@ export default class extends Vue {
   @Prop() readonly data!: any;
   templates: Array<TemplateType> = [];
   addItemVisible: boolean = false;
-  created() {
-    console.log("55");
-  }
+  created() {}
   notify(message: string) {
     const h = this.$createElement;
     this.$notify({

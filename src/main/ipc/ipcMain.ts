@@ -12,7 +12,7 @@ let itemWin: BrowserWindow | null;
 ipcMain.on('showCardInfo', (evt: IpcMainEvent, type: string, data: any) => {
 
   itemWin = createItemWindow(type, data);
-  itemWin.webContents.send('updateItemList', 'something');
+
 })
 
 
@@ -23,11 +23,15 @@ ipcMain.on('showCardInfo', (evt: IpcMainEvent, type: string, data: any) => {
 // })
 
 
-ipcMain.on("updateItemList", (event: IpcMainEvent) => {
-  console.log("ssssssssss"); // Prints 'whoooooooh!'
-  // const items: Array<ItemType> = []
-  // event.sender.send('updateItemList', items);
-  // event.returnValue = items;
+// ipcMain.on("updateItemList", (event: IpcMainEvent) => {
+//   console.log("ssssssssss"); // Prints 'whoooooooh!'
+//   // const items: Array<ItemType> = []
+//   // event.sender.send('updateItemList', items);
+//   // event.returnValue = items;
 
+//   console.log(itemWin);
+//   if (itemWin != null) {
+//     itemWin.webContents.send('updateItemList', 'something');
+//   }
 
-});
+// });

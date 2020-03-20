@@ -45,6 +45,9 @@ function createWindow() {
     // ... 以及其他可选配置
   })
 
+  //@ts-ignore
+  global.mainWindow = win;
+
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     win.loadURL(process.env.WEBPACK_DEV_SERVER_URL as string)

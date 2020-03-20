@@ -97,9 +97,9 @@ export function editItemByID(item: ItemType): boolean {
   // }
   // 未进行修改
   // @ts-ignore
-  if (db.read().get('items').find(item).value() != null) {
-    return false;
-  }
+  // if (db.read().get('items').find(item).value() != null) {
+  //   return false;
+  // }
   // 判断 模板名+条目名
   // 不能直接判断,因为有 id 影响
 
@@ -111,9 +111,16 @@ export function editItemByID(item: ItemType): boolean {
   //     }
   // }
 
-  db.read().get('items').value().getById(item.id).assign({
+
+  // db.read().get('items').value().getById(item.id).assign({
+  //   template_name: item.template_name,
+  //   style: item.style_content,
+  //   tags: item.tags
+  // }).write();
+  //@ts-ignore
+  db.read().get('items').updateById(item.id, {
     template_name: item.template_name,
-    style: item.style_content,
+    style_content: item.style_content,
     tags: item.tags
   }).write();
   return true;

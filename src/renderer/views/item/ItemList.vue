@@ -44,6 +44,18 @@ export default class extends Vue {
     } else {
       this.items = getItems();
     }
+
+    ipcRenderer.on("updateItemList", (event, message) => {
+      if (this.$route.params.temName) {
+        // 通过 模板名 获取 条目
+        this.items = getItemsByTemplateName(this.$route.params.temName);
+      } else if (this.$route.params.tagName) {
+        // 通过 标签名 获取 条目
+        this.items = getItemsByTagName(this.$route.params.tagName);
+      } else {
+        this.items = getItems();
+      }
+    });
   }
   updateTest() {}
 
