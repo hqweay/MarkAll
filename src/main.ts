@@ -6,8 +6,9 @@ import store from './renderer/store';
 // elementUi
 import ElementUI from 'element-ui'; //引入js
 import './renderer/assets/styles/element-variables.scss'; //引入自定义样式
+import logger from '#/utlis/logger';
 
-
+Vue.prototype.$logger = logger;
 
 Vue.use(ElementUI);
 
