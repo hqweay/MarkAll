@@ -22,20 +22,6 @@
     </el-row>
 
     <el-row class="list-text-edit" :gutter="20" v-show="isEdit">
-      <el-col class="col-edit edit-button" :span="24">
-        <el-button size="small" type="primary" @click="addText">添加</el-button>
-      </el-col>
-      <el-col class="col-edit" :span="24" v-show="newTextVisiable">
-        <el-input
-          @blur="handleInputConfirm"
-          ref="editText"
-          type="textarea"
-          placeholder="留空则删除"
-          autosize
-          v-model="newText"
-        ></el-input>
-      </el-col>
-
       <el-col
         class="col-edit"
         v-show="listText.value.length === 1"
@@ -64,6 +50,20 @@
           autosize
           v-model="listText.value[key]"
         ></el-input>
+      </el-col>
+
+      <el-col class="col-edit" :span="24" v-show="isEdit">
+        <el-input
+          @blur="handleInputConfirm"
+          ref="editText"
+          type="textarea"
+          placeholder="留空则删除"
+          autosize
+          v-model="newText"
+        ></el-input>
+      </el-col>
+      <el-col class="col-edit edit-button" :span="24">
+        <el-button size="small" type="primary" @click="addText">添加</el-button>
       </el-col>
     </el-row>
   </div>
@@ -125,10 +125,10 @@ export default class extends Vue {
 <style lang='scss' scoped>
 .template-list-text {
   .col-edit {
-    margin-top: 15px;
+    margin-bottom: 15px;
   }
   .edit-button {
-    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 </style>
