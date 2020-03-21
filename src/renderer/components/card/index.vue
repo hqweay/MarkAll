@@ -17,8 +17,15 @@
       <!-- <div class="edit" @click.stop="edit(data)">
         <img src="@/assets/icon/edit.png" alt />
       </div>-->
-      <div class="delete" @click.stop="del(data)">
+
+      <!-- <div class="delete" @click.stop="del(data)">
         <img src="@/assets/icon/trash.png" alt />
+      </div>-->
+      <div v-if="type !== 'item'" class="to-items" @click.stop="toItems(data)">
+        <i type="primary" class="el-icon-s-promotion"></i>
+      </div>
+      <div class="delete">
+        <i class="el-icon-delete" @click.stop="del(data)"></i>
       </div>
     </div>
   </div>
@@ -97,11 +104,27 @@ export default class extends Vue {
         });
       });
   }
+  toItems(data: any) {
+    if (data.name != undefined) {
+      // to items by templateName
+      this.$router.push({
+        path: "/main/item-list",
+        query: { temName: data.name }
+      });
+    } else {
+      // to items by tagName
+      this.$router.push({
+        path: "/main/item-list",
+        query: { tagName: data }
+      });
+    }
+  }
 
   edit(data: any) {
     // if (this.type === "item") {
     // }
   }
+  // 统一删除模板、条目、标签
   del(data: any) {
     if (this.type === "item") {
       if (deleteItemByID(this.data.id)) {

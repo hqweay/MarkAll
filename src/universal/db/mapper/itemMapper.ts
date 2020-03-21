@@ -24,7 +24,7 @@ export function getItemsByPage(page: number, pageSize: number): Array<ItemType> 
 // 应该获取多个 因为 不同的类别可能有多个 条目名相同的不同条目
 // 唯一性 则由 id 来保证
 // 这个得改改！！！！！
-export function getItemByName(name: string): ItemType {
+export function getItemsByName(name: string): ItemType {
   // console.log(db.read().get('items').filter(["style.name", "测试"]).value());
   //@ts-ignore
   return db.read().get('items').filter(['style.name', name]).value()
@@ -40,12 +40,12 @@ export function getItemByID(id: string): ItemType {
 // 通过 模板名 获取 条目
 export function getItemsByTemplateName(temName: string): ItemType[] {
   // @ts-ignore
-  return db.read().get('items').filter({ template_name: temName }).value()
+  return db.read().get('items').filter({ template_name: temName }).value();
 }
 
 // 通过 标签名 获取 条目
 // bug 应该判断 tagName 是否在 tag 列表里
-export function getItemsByTagName(tagName: string): Array<ItemType> {
+export function getItemsByTagName(tagName: string): ItemType[] {
   // 我可太他妈聪明了
   // @ts-ignore
   return db.read().get('items').filter(function (o: any) {
@@ -57,7 +57,7 @@ export function getItemsByTagName(tagName: string): Array<ItemType> {
       // console.log("false");
       return false;
     }
-  }).value()
+  }).value();
 }
 
 // 添加 条目

@@ -35,12 +35,13 @@ export default class extends Vue {
   };
   page: number = 10;
   created() {
-    if (this.$route.params.temName) {
+    if (this.$route.query.temName) {
       // 通过 模板名 获取 条目
-      this.items = getItemsByTemplateName(this.$route.params.temName);
-    } else if (this.$route.params.tagName) {
+
+      this.items = getItemsByTemplateName(this.$route.query.temName.toString());
+    } else if (this.$route.query.tagName) {
       // 通过 标签名 获取 条目
-      this.items = getItemsByTagName(this.$route.params.tagName);
+      this.items = getItemsByTagName(this.$route.query.tagName.toString());
     } else {
       this.items = getItems();
     }
@@ -58,16 +59,6 @@ export default class extends Vue {
     });
   }
   updateTest() {}
-
-  // get itemListState() {
-  //   console.log(this.$store.state.dialog.itemList);
-  //   return this.$store.state.dialog.itemList;
-  // }
-
-  // @Watch("itemListState")
-  // test() {
-  //   console.log("itemListState");
-  // }
 
   @Watch("$route")
   private onChildChanged(val: any, oldVal: any) {

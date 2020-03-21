@@ -17,7 +17,7 @@
         <Card type="item" v-bind:data="item" @updateMainPage="updateUI"></Card>
       </li>
     </ul>
-
+    <!-- dialog 选择项：选择想要添加条目的模块 -->
     <div class="add-item">
       <el-dialog :modal="false" title="选择需要添加条目的模板" :visible.sync="addItemVisible">
         <div class="template-list">

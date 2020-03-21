@@ -43,20 +43,57 @@
     white-space: normal;
   }
   position: relative;
-  .edit {
+  // .edit {
+  //   position: absolute;
+  //   top: 22px;
+  //   right: 10px;
+  //   img {
+  //     height: 40px;
+  //     width: 40px;
+  //     -webkit-transition: all 0.5s ease-out;
+  //     -moz-transition: all 0.5s ease;
+  //     -o-transition: all 0.5s ease;
+  //   }
+  //   img:hover {
+  //     height: 50px;
+  //     width: 50px;
+  //     -webkit-transform: rotate(-7deg);
+  //     -moz-transform: rotate(-7deg);
+  //     -o-transform: rotate(-7deg);
+  //   }
+  // }
+
+  // .delete {
+  //   position: absolute;
+  //   bottom: 10px;
+  //   right: 10px;
+  //   img {
+  //     height: 40px;
+  //     width: 40px;
+  //     -webkit-transition: all 0.5s ease-out;
+  //     -moz-transition: all 0.5s ease;
+  //     -o-transition: all 0.5s ease;
+  //   }
+  //   img:hover {
+  //     height: 50px;
+  //     width: 50px;
+  //     -webkit-transform: rotate(-7deg);
+  //     -moz-transform: rotate(-7deg);
+  //     -o-transform: rotate(-7deg);
+  //   }
+  // }
+  .to-items {
     position: absolute;
     top: 22px;
     right: 10px;
-    img {
-      height: 40px;
-      width: 40px;
+    i {
+      font-size: 40px;
       -webkit-transition: all 0.5s ease-out;
       -moz-transition: all 0.5s ease;
       -o-transition: all 0.5s ease;
     }
-    img:hover {
-      height: 50px;
-      width: 50px;
+    i:hover {
+      font-size: 35px;
       -webkit-transform: rotate(-7deg);
       -moz-transform: rotate(-7deg);
       -o-transform: rotate(-7deg);
@@ -66,19 +103,16 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
-    img {
-      height: 40px;
-      width: 40px;
+    i {
+      font-size: 40px;
       -webkit-transition: all 0.5s ease-out;
       -moz-transition: all 0.5s ease;
       -o-transition: all 0.5s ease;
     }
-    img:hover {
-      height: 50px;
-      width: 50px;
-      -webkit-transform: rotate(-7deg);
-      -moz-transform: rotate(-7deg);
-      -o-transform: rotate(-7deg);
+    i:hover {
+      opacity: 0.3;
+        transition: 1s;
+      -webkit-transform: rotate(-3deg);
     }
   }
 }
