@@ -1,4 +1,4 @@
-import { app, protocol, BrowserWindow, Menu, shell } from 'electron';
+import { shell } from 'electron';
 export const mainMenuTemplate = [{
   label: '查看',
   submenu: [{

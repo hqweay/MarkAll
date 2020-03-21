@@ -1,4 +1,4 @@
-import { app, protocol, BrowserWindow, Menu, shell } from 'electron'
+import { app, Menu } from 'electron'
 let contextMenu: Menu | null
 import { mainMenuTemplate } from '~/main/application/mainMenuTemplate'
 function createMaintMenu() {

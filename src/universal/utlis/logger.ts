@@ -36,8 +36,14 @@ class Logger {
         console.error(err)
       })
   }
-  error(info = "") {
-    info = date.toLocaleString() + " : ERROR: " + info + "\n";
+  error(info = "", type?: string) {
+    if (type === "render") {
+      info = date.toLocaleString() + " : render ERROR: " + info + "\n";
+    } else if (type == "main") {
+      info = date.toLocaleString() + " : main ERROR: " + info + "\n";
+    } else {
+      info = date.toLocaleString() + " : ERROR: " + info + "\n";
+    }
     console.error(info);
     fs.appendFile(errorFilePath, info)
       .catch(err => {

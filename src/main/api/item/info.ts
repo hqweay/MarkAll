@@ -1,14 +1,16 @@
-// 不必
 import {
   BrowserWindow,
 } from 'electron';
+import logger from '~/universal/utlis/logger';
 
 let itemWin: BrowserWindow | null;
 
-export const createAddItemWindow = () => {
+// type: string, data: any
+export const createItemWindow = (type: string, data: any) => {
+
   if (itemWin == null) {
     itemWin = new BrowserWindow({
-      title: "添加条目",
+      title: "条目详情",
       minHeight: 800,
       minWidth: 800,
       height: 800, // 高
@@ -29,12 +31,21 @@ export const createAddItemWindow = () => {
         webSecurity: false,
       }
     })
-    itemWin.loadURL('http://localhost:8080/#/item/add');
+
+    if (type === "add") {
+      // 添加元素
+      let template = data;
+      itemWin.loadURL('http://localhost:8080/#/item/add/' + template.name);
+    } else {
+      itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
+    }
+
+    logger.error("996");
+    logger.error("sss", "render");
 
     itemWin.on('closed', () => {
       itemWin = null;
     })
-
 
   } else {
     itemWin.show();

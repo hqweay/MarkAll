@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 // import Home from '../views/Home.vue';
 
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -9,10 +10,9 @@ const routes = [
     path: '/',
     redirect: '/main', // 跳转
     name: 'index',
-  },
-  {
+  }, {
     path: '/main',
-    name: 'main',
+    name: 'main-page',
     component: () => import('@/views/Index.vue'),
     children: [
       {
@@ -25,7 +25,7 @@ const routes = [
         },
       },
       {
-        path: 'item-list',
+        path: 'item',
         name: 'item-list',
         component: () => import('@/views/item/ItemList.vue'),
         meta: {
@@ -33,7 +33,7 @@ const routes = [
         },
       },
       {
-        path: 'tag-list',
+        path: 'tag',
         name: 'tag-list',
         meta: {
           title: '标签'
@@ -41,7 +41,7 @@ const routes = [
         component: () => import('@/views/tag/TagList.vue'),
       },
       {
-        path: 'template-list',
+        path: 'template',
         name: 'template-list',
         component: () => import('@/views/template/TemplateList.vue'),
         meta: {
@@ -50,12 +50,11 @@ const routes = [
       },
       {
         path: 'plugin',
-        name: 'plugin', // 命名路由
+        name: 'plugin-list',
         component: () => import('@/views/plugin/Index.vue'),
       },
     ]
-  },
-  {
+  }, {
     path: '/item',
     name: 'item',
     component: () => import('@/views/item/index.vue'),
@@ -85,7 +84,13 @@ const routes = [
         path: 'info/:id',
         name: 'template-info',
         meta: {
-          title: '条目信息'
+          title: '模板信息'
+        },
+      }, {
+        path: 'add',
+        name: 'template-add',
+        meta: {
+          title: '添加模板'
         },
       }
     ]
@@ -94,6 +99,7 @@ const routes = [
 
 const router = new VueRouter({
   // mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes,
 });

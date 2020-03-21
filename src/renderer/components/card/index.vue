@@ -38,6 +38,7 @@ import { deleteItemByID } from "#/db/mapper/itemMapper";
 import { deleteTagByName, getTags, editTagByName } from "#/db/mapper/tagMapper";
 import { deleteTemplateByName } from "#/db/mapper/templateMapper";
 import { ipcRenderer } from "electron";
+import logger from "../../../universal/utlis/logger";
 @Component({
   name: "card"
 })
@@ -109,14 +110,14 @@ export default class extends Vue {
       // to items by templateName
       this.$store.state.view.list = "template";
       this.$router.push({
-        path: "/main/item-list",
+        path: "/main/item",
         query: { temName: data.name }
       });
     } else {
       // to items by tagName
       this.$store.state.view.list = "tag";
       this.$router.push({
-        path: "/main/item-list",
+        path: "/main/item",
         query: { tagName: data }
       });
     }

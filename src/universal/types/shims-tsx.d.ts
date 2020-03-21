@@ -1,5 +1,7 @@
 import Vue, { VNode } from 'vue'
-
+import log from '#/utlis/logger';
+import { type } from 'os';
+// declare global 扩展全局变量
 declare global {
   namespace JSX {
     // tslint:disable no-empty-interface
@@ -10,4 +12,5 @@ declare global {
       [elem: string]: any
     }
   }
+
 }

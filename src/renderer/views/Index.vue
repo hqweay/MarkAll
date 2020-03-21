@@ -12,17 +12,17 @@
             <div class="siderbar-body">
               <ul>
                 <li>
-                  <router-link class="tab-item" to="/main/template-list">
+                  <router-link class="tab-item" to="/main/template">
                     <span class="tab-link">模板</span>
                   </router-link>
                 </li>
                 <li>
-                  <router-link class="tab-item" to="/main/tag-list">
+                  <router-link class="tab-item" to="/main/tag">
                     <span class="tab-link">标签</span>
                   </router-link>
                 </li>
                 <li>
-                  <router-link class="tab-item" to="/main/item-list">
+                  <router-link class="tab-item" to="/main/item">
                     <span class="tab-link">条目</span>
                   </router-link>
                 </li>

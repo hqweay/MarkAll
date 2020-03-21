@@ -1,37 +1,15 @@
 import {
-  app,
   BrowserWindow,
-  ipcMain, IpcMainEvent
+  ipcMain,
+  IpcMainEvent
 } from 'electron';
 
-import { createItemWindow } from '~/main/api/Card'
-import { createAddItemWindow } from '~/main/api/item/add'
+import { createItemWindow } from '~/main/api/item/info'
 
-let itemWin: BrowserWindow | null;
+
 
 ipcMain.on('showCardInfo', (evt: IpcMainEvent, type: string, data: any) => {
 
-  itemWin = createItemWindow(type, data);
+  createItemWindow(type, data);
 
 })
-
-
-// ipcMain.on('additem', (evt: IpcMainEvent) => {
-
-//   itemInfoWindow = createAddItemWindow();
-
-// })
-
-
-// ipcMain.on("updateItemList", (event: IpcMainEvent) => {
-//   console.log("ssssssssss"); // Prints 'whoooooooh!'
-//   // const items: Array<ItemType> = []
-//   // event.sender.send('updateItemList', items);
-//   // event.returnValue = items;
-
-//   console.log(itemWin);
-//   if (itemWin != null) {
-//     itemWin.webContents.send('updateItemList', 'something');
-//   }
-
-// });
