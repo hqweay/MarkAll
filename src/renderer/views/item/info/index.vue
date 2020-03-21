@@ -271,7 +271,7 @@ export default class extends Vue {
         });
       }
     }
-    // 通知 mainPage 更新页面
+    // 通知 itemList.vue 更新页面
     ipcRenderer.sendTo(
       remote.getGlobal("mainWindow").webContents.id,
       "updateItemList"

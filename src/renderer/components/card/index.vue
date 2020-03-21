@@ -107,12 +107,14 @@ export default class extends Vue {
   toItems(data: any) {
     if (data.name != undefined) {
       // to items by templateName
+      this.$store.state.view.list = "template";
       this.$router.push({
         path: "/main/item-list",
         query: { temName: data.name }
       });
     } else {
       // to items by tagName
+      this.$store.state.view.list = "tag";
       this.$router.push({
         path: "/main/item-list",
         query: { tagName: data }

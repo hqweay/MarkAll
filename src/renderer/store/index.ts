@@ -7,6 +7,9 @@ export default new Vuex.Store({
   state: {
     dialog: {
       itemList: false
+    },
+    view: {
+      list: "item"
     }
   },
   mutations: {

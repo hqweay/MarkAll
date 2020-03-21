@@ -10,7 +10,7 @@ import {
   getItems,
   getItemsByPage,
   deleteItemByID,
-  getItemByName,
+  getItemsByName,
   getItemsByTemplateName,
   getItemsByTagName
 } from "#/db/mapper/itemMapper";
@@ -35,24 +35,35 @@ export default class extends Vue {
   };
   page: number = 10;
   created() {
-    if (this.$route.query.temName) {
+    // if (this.$route.query.temName) {
+    //   // 通过 模板名 获取 条目
+    //   this.items = getItemsByTemplateName(this.$route.query.temName.toString());
+    // } else if (this.$route.query.tagName) {
+    //   // 通过 标签名 获取 条目
+    //   this.items = getItemsByTagName(this.$route.query.tagName.toString());
+    // } else {
+    //   this.items = getItems();
+    // }
+    if (this.$store.state.view.list == "template") {
       // 通过 模板名 获取 条目
-
       this.items = getItemsByTemplateName(this.$route.query.temName.toString());
-    } else if (this.$route.query.tagName) {
+    } else if (this.$store.state.view.list == "tag") {
       // 通过 标签名 获取 条目
       this.items = getItemsByTagName(this.$route.query.tagName.toString());
     } else {
       this.items = getItems();
     }
 
+    // 接受 info/index.vue 添加或编辑 item 后，更新 list。
     ipcRenderer.on("updateItemList", (event, message) => {
-      if (this.$route.params.temName) {
+      if (this.$store.state.view.list == "template") {
         // 通过 模板名 获取 条目
-        this.items = getItemsByTemplateName(this.$route.params.temName);
-      } else if (this.$route.params.tagName) {
+        this.items = getItemsByTemplateName(
+          this.$route.query.temName.toString()
+        );
+      } else if (this.$store.state.view.list == "tag") {
         // 通过 标签名 获取 条目
-        this.items = getItemsByTagName(this.$route.params.tagName);
+        this.items = getItemsByTagName(this.$route.query.tagName.toString());
       } else {
         this.items = getItems();
       }
@@ -62,8 +73,9 @@ export default class extends Vue {
 
   @Watch("$route")
   private onChildChanged(val: any, oldVal: any) {
-    console.log(val, oldVal);
-    // this.items = getItemsByPage(10, 10);
+    // console.log(val, oldVal);
+    this.$store.state.view.list = "item";
+    this.items = getItems(); //getItemsByPage(10, 10);
   }
   notify(message: string) {
     const h = this.$createElement;
