@@ -8,6 +8,7 @@ import ElementUI from 'element-ui'; //引入js
 import './renderer/assets/styles/element-variables.scss'; //引入自定义样式
 import logger from '#/utlis/logger';
 
+// 挂载 logger 至 Vue
 Vue.prototype.$logger = logger;
 
 Vue.use(ElementUI);
@@ -31,7 +32,8 @@ new Vue({
 }).$mount('#app');
 
 
-//@ts-ignore
+
+// 在 global 声明，编译期就不会报错了。
 Array.prototype.remove = function (obj: any) {
   let index = this.indexOf(obj);
   if (index > -1) {

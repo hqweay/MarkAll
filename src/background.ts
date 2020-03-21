@@ -8,6 +8,13 @@ import {
   installVueDevtools,
 } from 'vue-cli-plugin-electron-builder/lib'
 
+import log from '#/utlis/logger';
+
+
+global.logger = log;
+
+
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will

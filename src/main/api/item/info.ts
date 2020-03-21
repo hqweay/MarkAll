@@ -1,7 +1,7 @@
 import {
   BrowserWindow,
 } from 'electron';
-import logger from '~/universal/utlis/logger';
+// import logger from '~/universal/utlis/logger';
 
 let itemWin: BrowserWindow | null;
 
@@ -40,8 +40,8 @@ export const createItemWindow = (type: string, data: any) => {
       itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
     }
 
-    logger.error("996");
-    logger.error("sss", "render");
+
+
 
     itemWin.on('closed', () => {
       itemWin = null;

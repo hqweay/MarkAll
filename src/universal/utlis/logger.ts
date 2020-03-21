@@ -21,7 +21,7 @@ class Logger {
       })
     fs.ensureFile(logFilePath)
       .then(() => {
-        console.log('error log created success!')
+        console.log('info log created success!')
       })
       .catch(err => {
         console.error(err)
@@ -36,14 +36,24 @@ class Logger {
         console.error(err)
       })
   }
-  error(info = "", type?: string) {
-    if (type === "render") {
-      info = date.toLocaleString() + " : render ERROR: " + info + "\n";
-    } else if (type == "main") {
-      info = date.toLocaleString() + " : main ERROR: " + info + "\n";
-    } else {
-      info = date.toLocaleString() + " : ERROR: " + info + "\n";
-    }
+  // error(type?: loggerEnum, info: string = "") {
+  //   if (type == loggerEnum.render) {
+  //     info = date.toLocaleString() + " : render ERROR: " + info + "\n";
+  //   } else if (type == loggerEnum.main) {
+  //     info = date.toLocaleString() + " : main ERROR: " + info + "\n";
+  //   } else {
+  //     info = date.toLocaleString() + " : ERROR: " + info + "\n";
+  //   }
+  //   console.error(info);
+  //   fs.appendFile(errorFilePath, info)
+  //     .catch(err => {
+  //       console.error(err)
+  //     })
+  // }
+  error(info: string = "") {
+
+    info = date.toLocaleString() + " : ERROR: " + info + "\n";
+
     console.error(info);
     fs.appendFile(errorFilePath, info)
       .catch(err => {

@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
-import log from '#/utlis/logger';
-import { type } from 'os';
+// import { type } from 'os';
 // declare global 扩展全局变量
 declare global {
   namespace JSX {
@@ -12,5 +11,7 @@ declare global {
       [elem: string]: any
     }
   }
-
+  interface Array<T> {
+    remove(obj: any): void
+  }
 }

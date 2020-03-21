@@ -8,7 +8,7 @@ declare module '*.vue' {
 // 全局声明，解决查找模块路径的问题。
 declare module 'vue/types/vue' {
   interface Vue {
-    $router: VueRouter, // 这表示this下有这个东西
+    $router: VueRouter, // 声明 Vue 下有这个东西
     $route: Route,
     $logger: typeof logger
     // $notify: ElNotification

@@ -38,7 +38,7 @@ import { deleteItemByID } from "#/db/mapper/itemMapper";
 import { deleteTagByName, getTags, editTagByName } from "#/db/mapper/tagMapper";
 import { deleteTemplateByName } from "#/db/mapper/templateMapper";
 import { ipcRenderer } from "electron";
-import logger from "../../../universal/utlis/logger";
+// import logger from "../../../universal/utlis/logger";
 @Component({
   name: "card"
 })
