@@ -35,24 +35,24 @@ export default class extends Vue {
   };
   page: number = 10;
   created() {
-    // if (this.$route.query.temName) {
-    //   // 通过 模板名 获取 条目
-    //   this.items = getItemsByTemplateName(this.$route.query.temName.toString());
-    // } else if (this.$route.query.tagName) {
-    //   // 通过 标签名 获取 条目
-    //   this.items = getItemsByTagName(this.$route.query.tagName.toString());
-    // } else {
-    //   this.items = getItems();
-    // }
-    if (this.$store.state.view.list == "template") {
+    if (this.$route.query.temName) {
       // 通过 模板名 获取 条目
       this.items = getItemsByTemplateName(this.$route.query.temName.toString());
-    } else if (this.$store.state.view.list == "tag") {
+    } else if (this.$route.query.tagName) {
       // 通过 标签名 获取 条目
       this.items = getItemsByTagName(this.$route.query.tagName.toString());
     } else {
       this.items = getItems();
     }
+    // if (this.$store.state.view.list == "template") {
+    //   // 通过 模板名 获取 条目
+    //   this.items = getItemsByTemplateName(this.$route.query.temName.toString());
+    // } else if (this.$store.state.view.list == "tag") {
+    //   // 通过 标签名 获取 条目
+    //   this.items = getItemsByTagName(this.$route.query.tagName.toString());
+    // } else {
+    //   this.items = getItems();
+    // }
 
     // 接受 info/index.vue 添加或编辑 item 后，更新 list。
     ipcRenderer.on("updateItemList", (event, message) => {
