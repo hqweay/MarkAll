@@ -32,13 +32,13 @@ export const createItemWindow = (type: string, data: any) => {
       }
     })
 
-    if (type === "add") {
-      // 添加元素
-      let template = data;
-      itemWin.loadURL('http://localhost:8080/#/item/add/' + template.name);
-    } else {
-      itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
-    }
+    // if (type === "add") {
+    //   // 添加元素
+    //   let template = data;
+    //   itemWin.loadURL('http://localhost:8080/#/item/add/' + template.name);
+    // } else {
+    //   itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
+    // }
 
 
     itemWin.on('closed', () => {
@@ -47,6 +47,13 @@ export const createItemWindow = (type: string, data: any) => {
 
   } else {
     itemWin.show();
+  }
+  if (type === "add") {
+    // 添加元素
+    let template = data;
+    itemWin.loadURL('http://localhost:8080/#/item/add/' + template.name);
+  } else {
+    itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
   }
   return itemWin;
 }
