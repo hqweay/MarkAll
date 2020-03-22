@@ -47,12 +47,10 @@
         </div>
       </el-col>
       <el-col :span="18">
-        <div>
-          <div class="content">
-            <!-- <index/> -->
-            <router-view></router-view>
-          </div>
-        </div>
+        <!-- <index/> -->
+        <keep-alive :include="['item-list', 'tag-list', 'template-list']">
+          <router-view class="content"></router-view>
+        </keep-alive>
       </el-col>
     </el-row>
   </div>

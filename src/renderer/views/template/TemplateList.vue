@@ -1,7 +1,5 @@
 <template>
-  <keep-alive>
-    <MainPage type="template" v-bind:data="templates"></MainPage>
-  </keep-alive>
+  <MainPage type="template" v-bind:data="templates"></MainPage>
 </template>
 
 <script lang="ts">
@@ -13,6 +11,7 @@ import {
 
 import MainPage from "@/components/MainPage.vue";
 @Component({
+  name: "template-list",
   components: {
     MainPage
   }

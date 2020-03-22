@@ -1,7 +1,5 @@
 <template>
-  <keep-alive>
-    <MainPage type="item" v-bind:data="items"></MainPage>
-  </keep-alive>
+  <MainPage type="item" v-bind:data="items"></MainPage>
 </template>
  
 <script lang="ts">
@@ -20,6 +18,7 @@ import MainPage from "@/components/MainPage.vue";
 import { ipcRenderer } from "electron";
 
 @Component({
+  name: "item-list",
   components: {
     MainPage
   }

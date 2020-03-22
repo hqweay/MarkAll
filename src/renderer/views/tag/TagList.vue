@@ -1,14 +1,13 @@
 <template>
-  <keep-alive>
-    <MainPage type="tag" :data="tags"></MainPage>
-  </keep-alive>
+  <MainPage type="tag" :data="tags"></MainPage>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
-import { getTags, deleteTagByName } from "#/db/mapper/tagMapper";
+import { Component, Vue } from "vue-property-decorator";
+import { getTags } from "#/db/mapper/tagMapper";
 import MainPage from "@/components/MainPage.vue";
 @Component({
+  name: "tag-list",
   components: {
     MainPage
   }
