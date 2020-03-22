@@ -12,9 +12,9 @@ const STORE_PATH = APP.getPath('userData') + '/user/';
 async function hasImageBySaveFolder(saveFolder: string) {
   try {
     await fs.ensureDir(APP_PATH.IMAGE_PATH + saveFolder);
-    console.log(APP_PATH.IMAGE_PATH + saveFolder + ' exists!');
+    global.logger.info(APP_PATH.IMAGE_PATH + saveFolder + ' exists!');
   } catch (err) {
-    console.error(err);
+    global.logger.error(err)
   }
 }
 
@@ -52,7 +52,7 @@ async function copyImageToUserByFile(file: any, saveFolder: string) {
       };
       return newImage;
     } catch (err) {
-      console.error(err)
+      global.logger.error(err)
     }
   });
 

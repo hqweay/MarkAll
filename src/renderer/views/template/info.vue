@@ -33,37 +33,37 @@ import {
   getTemplateByName,
   editTemplateByName,
   deleteTemplateByName
-} from '@/../shared/db/mapper/templateMapper'
-import { checkJson } from '@/utils/checkJson'
+} from "@/../shared/db/mapper/templateMapper";
+import { checkJson } from "@/utils/checkJson";
 export default {
-  data () {
+  data() {
     return {
       template: {},
-      templateString: ''
-    }
+      templateString: ""
+    };
   },
-  created: function () {
-    this.template = getTemplateByName(this.$route.params.name)
+  created: function() {
+    this.template = getTemplateByName(this.$route.params.name);
     // 对象转 json 再 格式化(缩进)
-    this.templateString = checkJson(JSON.stringify(this.template))
+    this.templateString = checkJson(JSON.stringify(this.template));
   },
   methods: {
-    editTemplate (oldName, templateString) {
-      let newTemplate = []
-      if (typeof templateString === 'string') {
+    editTemplate(oldName, templateString) {
+      let newTemplate = [];
+      if (typeof templateString === "string") {
         try {
-          newTemplate = JSON.parse(templateString)
+          newTemplate = JSON.parse(templateString);
         } catch (e) {
-          // console.log(e);
-          this.errorNotify()
-          return false
+          this.$logger.error(e);
+          this.errorNotify();
+          return false;
         }
         if (editTemplateByName(oldName, newTemplate) == false) {
-          this.notify('修改后的数据与已有数据重复了...')
-          return false
+          this.notify("修改后的数据与已有数据重复了...");
+          return false;
         }
-        this.successNotify()
-        this.template = newTemplate
+        this.successNotify();
+        this.template = newTemplate;
       }
     },
     // 首页删除就行了
@@ -72,21 +72,21 @@ export default {
     //   this.$router.push("/template");
     //   this.notify("删除成功");
     // },
-    notify (message) {
-      const h = this.$createElement
+    notify(message) {
+      const h = this.$createElement;
       this.$notify({
-        title: '提示',
-        message: h('i', { style: 'color: teal' }, message)
-      })
+        title: "提示",
+        message: h("i", { style: "color: teal" }, message)
+      });
     },
-    errorNotify () {
-      this.notify('出错啦!!要保证 json 格式哦!!!')
+    errorNotify() {
+      this.notify("出错啦!!要保证 json 格式哦!!!");
     },
-    successNotify () {
-      this.notify('成功啦!!!')
+    successNotify() {
+      this.notify("成功啦!!!");
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

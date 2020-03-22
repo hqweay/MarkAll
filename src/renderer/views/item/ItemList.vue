@@ -73,7 +73,6 @@ export default class extends Vue {
 
   @Watch("$route")
   private onChildChanged(val: any, oldVal: any) {
-    // console.log(val, oldVal);
     this.$store.state.view.list = "item";
     this.items = getItems(); //getItemsByPage(10, 10);
   }

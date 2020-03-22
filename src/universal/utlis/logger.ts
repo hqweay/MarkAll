@@ -8,7 +8,7 @@ import { APP_PATH } from '#/static/appPath'
 
 const errorFilePath = APP_PATH.logger.ERROR_PATH;
 const infoFilePath = APP_PATH.logger.INFO_PATH;
-
+const warnFilePath = APP_PATH.logger.WARN_PATH;
 
 let date = new Date();
 
@@ -36,12 +36,40 @@ class Logger {
       .catch(err => {
         console.error(err)
       })
+    fs.ensureFile(warnFilePath)
+      .then(() => {
+        console.log('warn log created success!')
+      })
+      .catch(err => {
+        console.error(err)
+      })
   }
 
   info(info = "") {
-    info = date.toLocaleString() + " : ERROR: " + info + "\n";
+    if (this.type == loggerEnum.render) {
+      info = date.toLocaleString() + " : render INFO: " + info + "\n";
+    } else if (this.type == loggerEnum.main) {
+      info = date.toLocaleString() + " : main INFO: " + info + "\n";
+    } else {
+      info = date.toLocaleString() + " : INFO: " + info + "\n";
+    }
     console.info(info);
     fs.appendFile(infoFilePath, info)
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
+  warn(info: string) {
+    if (this.type == loggerEnum.render) {
+      info = date.toLocaleString() + " : render WARN: " + info + "\n";
+    } else if (this.type == loggerEnum.main) {
+      info = date.toLocaleString() + " : main WARN: " + info + "\n";
+    } else {
+      info = date.toLocaleString() + " : WARN: " + info + "\n";
+    }
+    console.warn(info);
+    fs.appendFile(warnFilePath, info)
       .catch(err => {
         console.error(err)
       })

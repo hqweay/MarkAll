@@ -1,6 +1,5 @@
 import db from '#/db/datastore';
 
-
 // 获取 条目
 export function getItems(): Array<ItemType> {
   // console.log(db.get('items').value())
@@ -13,7 +12,8 @@ export function getItemsByPage(page: number, pageSize: number): Array<ItemType> 
   // return db.read().get('items').value();
   console.log(page)
   // @ts-ignore
-  return db.read().get('items').take(page).takeRight(pageSize).value()
+  return db.read().get('items').take(page).takeRight(pageSize).value();
+
 }
 
 // lowdb 不支持深查询

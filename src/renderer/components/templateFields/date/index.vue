@@ -37,7 +37,6 @@ export default class extends Vue {
   editDate(val: boolean, oldVal: boolean) {
     if (this.isEdit === false) {
       // 提交 date
-      // console.log(this.dateItem.value);
       this.$emit("updateItem", this.dateItem);
     }
   }

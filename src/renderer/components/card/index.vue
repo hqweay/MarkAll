@@ -142,7 +142,6 @@ export default class extends Vue {
           message: "删除条目失败！"
         });
       }
-      // console.log(this.data);
     } else if (this.type === "template") {
       if (deleteTemplateByName(this.data.name)) {
         this.$emit("updateMainPage", this.type, this.data);

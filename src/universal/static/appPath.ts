@@ -7,7 +7,7 @@ const appPath = APP.getPath('userData'); // 获取electron应用的用户目录
 
 const userFolderPath = appPath + '/user/'; // 自定义 user 目录
 
-const logFolderPath = userFolderPath + 'user/log/';
+const logFolderPath = userFolderPath + 'log/';
 const errorFilePath = logFolderPath + 'error.log';
 const infoFilePath = logFolderPath + 'info.log';
 
@@ -18,6 +18,7 @@ const dbPath = userFolderPath;
 const LOG = {
   FOLDER_PATH: logFolderPath,
   ERROR_PATH: errorFilePath,
+  WARN_PATH: userFolderPath + 'log/warn.log',
   INFO_PATH: infoFilePath
 }
 

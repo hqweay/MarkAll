@@ -2,8 +2,6 @@ import { getTags } from "#/db/mapper/tagMapper";
 export function templatePraseSchema(template) {
 
 
-    // console.log(333333333);
-    // console.log(template);
     let tags = getTags();
     let SCHEMA = {
         type: "object",
@@ -30,10 +28,10 @@ export function templatePraseSchema(template) {
             }
         },
     };
-    // console.log(template);
+
 
     tags.forEach(key => {
-        // console.log(key);
+
         SCHEMA.properties.tag_name.anyOf.push({ value: key, label: key });
     })
 
@@ -51,6 +49,6 @@ export function templatePraseSchema(template) {
 
         };  //push({ key: { title: key } });
     })
-    // console.log(SCHEMA);
+
     return SCHEMA;
 }

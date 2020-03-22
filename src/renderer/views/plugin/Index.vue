@@ -67,11 +67,11 @@ export default {
           });
           getMoviesBySpider(value).then(() => {
             this.notify(" 数据获取成功！！");
-            console.log(" 爬取成功！！！");
+            this.$logger.info("数据爬取成功！！！");
             importDoubanMovies().then(res => {
               this.notify(" 数据导入成功！！");
               loading.close();
-              console.log(" 导入成功！！！");
+              this.$logger.info("数据导入成功");
             });
           });
         })

@@ -97,7 +97,6 @@ export default class extends Vue {
   // type 没用，先留着。
   updateUI(type: string, obj: any, newObj: any) {
     // 本地删除
-    // console.log(obj);
     this.data.remove(obj);
 
     // 编辑 Tag
@@ -112,7 +111,6 @@ export default class extends Vue {
     this.addItemVisible = true;
   }
   addItemByTemplate(template: TemplateType) {
-    // console.log(template);
     ipcRenderer.send("showCardInfo", "add", template);
     this.addItemVisible = false;
   }

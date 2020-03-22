@@ -21,7 +21,6 @@ export default class extends Vue {
   templates: Array<TemplateType> = [];
   created() {
     this.templates = getTemplates();
-    console.log(this.templates);
   }
 }
 </script>

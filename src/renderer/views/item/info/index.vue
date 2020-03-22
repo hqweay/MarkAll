@@ -142,7 +142,7 @@ import rateTemplate from "@/components/templateFields/rate/index.vue";
 import { resolveTemplateField } from "./utils";
 
 import { remote, ipcRenderer } from "electron";
-
+import _ from "lodash";
 @Component({
   components: {
     tagTemplate,
@@ -221,7 +221,6 @@ export default class extends Vue {
     this.isEdit = this.isEdit === true ? false : true;
   }
   updateItemField(newItemField: ItemFieldType) {
-    //@ts-ignore
     _.chain(this.item.style_content).set(
       newItemField.value,
       newItemField["value"]
@@ -233,7 +232,6 @@ export default class extends Vue {
   async updateItemTags(newTags: Array<string>) {
     this.item.tags = newTags;
     this.updateItem();
-    // console.log(this.item.tags);
   }
   @Watch("isEdit")
   updateItemWhenEdited() {

@@ -170,12 +170,14 @@
       },
       {
         "name": "封面",
-        "type": "IMAGE",
-        "value": {
-          "name": "封面",
-          "url": "https://img3.doubanio.com/view/subject/m/public/s2745500.jpg",
-          "description": "https://leay.net/images/avatar.png"
-        }
+        "type": "LIST_IMAGE",
+        "value": [
+          {
+            "name": "封面",
+            "url": "https://img3.doubanio.com/view/subject/m/public/s2745500.jpg",
+            "description": "https://leay.net/images/avatar.png"
+          }
+        ]
       },
       {
         "name": "创作人",

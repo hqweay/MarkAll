@@ -16,61 +16,61 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { checkJson } from '@/utils/checkJson'
-import { addTemplate } from '@/../shared/db/mapper/templateMapper'
+import { checkJson } from "@/utils/checkJson";
+import { addTemplate } from "@/../shared/db/mapper/templateMapper";
 export default {
-  data () {
+  data() {
     return {
       template: {
-        name: '书',
+        name: "书",
         style: {
-          书名: '爱的供养',
-          作者: 'Hqweay',
-          出版社: 'SWPU',
-          状态: '未读',
-          标记时间: '2019-02-10',
-          想法: '不错的一本书哟4'
+          书名: "爱的供养",
+          作者: "Hqweay",
+          出版社: "SWPU",
+          状态: "未读",
+          标记时间: "2019-02-10",
+          想法: "不错的一本书哟4"
         }
       },
-      templateString: ''
-    }
+      templateString: ""
+    };
   },
-  created: function () {
-    this.templateString = checkJson(JSON.stringify(this.template))
+  created: function() {
+    this.templateString = checkJson(JSON.stringify(this.template));
   },
   methods: {
-    notify (message) {
-      const h = this.$createElement
+    notify(message) {
+      const h = this.$createElement;
       this.$notify({
-        title: '提示',
-        message: h('i', { style: 'color: teal' }, message)
-      })
+        title: "提示",
+        message: h("i", { style: "color: teal" }, message)
+      });
     },
-    addTemplateNow (templateString) {
-      if (templateString == '') {
-        this.notify('不能为空啊...')
-        return false
+    addTemplateNow(templateString) {
+      if (templateString == "") {
+        this.notify("不能为空啊...");
+        return false;
       }
-      let template = []
+      let template = [];
       try {
-        template = JSON.parse(templateString)
+        template = JSON.parse(templateString);
       } catch (e) {
-        console.log(e)
-        this.notify('保证 json 格式哦亲...')
-        return false
+        this.$logger.error(e);
+        this.notify("保证 json 格式哦亲...");
+        return false;
       }
 
       if (addTemplate(template) == false) {
-        console.log(template)
-        this.notify('添加失败,可能重复了...')
-        return false
+        this.$logger.warn("添加模板失败");
+        this.notify("添加失败,可能重复了...");
+        return false;
       }
       // 成功后跳转
-      this.$router.push('/template')
-      this.notify('添加成功')
+      this.$router.push("/template");
+      this.notify("添加成功");
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

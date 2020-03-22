@@ -40,10 +40,10 @@ class DB {
     // 确保保存用户数据的文件夹存在
     fs.ensureDir(APP_PATH.db.FOLDER_PATH)
       .then(() => {
-        // console.log("创建用户文件夹成功！");
+        global.logger.info("用户文件夹存在！");
       })
       .catch(err => {
-        console.log(err);
+        global.logger.error("用户文件夹不存在！");
       })
 
     // const adapter = new FileSync(path.join(APP_PATH.DB_PATH, '/data.json')); // 初始化lowdb读写的json文件名以及存储路径

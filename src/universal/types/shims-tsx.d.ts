@@ -11,7 +11,4 @@ declare global {
       [elem: string]: any
     }
   }
-  interface Array<T> {
-    remove(obj: any): void
-  }
 }

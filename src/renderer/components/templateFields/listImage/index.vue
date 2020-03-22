@@ -90,22 +90,18 @@ export default class extends Vue {
   editDate(val: boolean, oldVal: boolean) {
     if (this.isEdit === false) {
       // 提交 date
-      // console.log(this.dateItem.value);
       this.$emit("updateItem", this.listImage);
     }
   }
   isLocal(url: string): boolean {
     let reg = new RegExp("^((https|http|ftp|rtsp|mms)?://)");
     if (reg.test(url)) {
-      // console.log("ulr: " + url);
       return false;
     } else {
-      // console.log("nono: " + url);
       return true;
     }
   }
   updateUI(newImage: any) {
-    // console.log(newImage);
     //@ts-ignore
     this.listImage.value.push(newImage);
   }

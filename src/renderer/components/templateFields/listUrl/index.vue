@@ -46,6 +46,9 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { openUrl } from "~/main/utils/openUrl";
+
+import _ from "lodash";
+
 @Component({
   name: "template-list-url"
 })
@@ -65,7 +68,6 @@ export default class extends Vue {
   editDate(val: boolean, oldVal: boolean) {
     if (this.isEdit === false) {
       // 提交 date
-      // console.log(this.dateItem.value);
       this.$emit("updateItem", this.listUrl);
     }
   }
@@ -76,12 +78,33 @@ export default class extends Vue {
 
     // 不可空
     if (this.newUrl.name === "" || this.newUrl.value === "") {
-      console.log("不能为空");
+      this.$logger.warn("the name of item's url can't be blank string");
       return;
     }
     // 不可重复
-    if (this.listUrl.value.name.indexOf(this.newUrl.name) != -1) {
-      console.log("不可重复");
+    // if (this.listUrl.value.name.indexOf(this.newUrl.name) != -1) {
+    // if (this.listUrl.value.find(name, this.newUrl.name) != null) {
+    //   global.logger.warn("the name of item's url can't be same");
+    //   this.newUrl = "";
+    //   return;
+    // }
+
+    // let flag = this.listUrl.value.forEach(element => {
+    //   if (element.name == this.newUrl.name) return true;
+    // });
+
+    // if (flag) {
+    //   global.logger.warn("the name of item's url can't be same");
+    //   this.newUrl = "";
+    //   return;
+    // }
+
+    if (
+      _(this.listUrl.value).findIndex(o => {
+        return o.name == this.newUrl.name;
+      }) >= 0
+    ) {
+      this.$logger.warn("the name of item's url can't be same");
       this.newUrl = "";
       return;
     }

@@ -18,9 +18,9 @@ async function createImageFloderByItem(item: ItemType) {
   let path = APP_PATH.IMAGE_PATH + item.id;
   try {
     await fs.ensureDir(path);
-    console.log('create ' + path + ' success!');
+    global.logger.info('create ' + path + ' success!');
   } catch (err) {
-    console.error(err);
+    global.logger.error(err);
   }
 }
 
