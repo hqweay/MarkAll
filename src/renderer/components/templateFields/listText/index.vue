@@ -1,19 +1,9 @@
 <template>
   <div class="template-list-text">
-    <el-row v-show="!isEdit">
+    <el-row class="list-text" v-show="!isEdit">
       <el-col
         class="col-text"
-        v-show="listText.value.length === 1"
-        v-for="(value,key) of listText.value"
-        :key="'self-show-' + '-' + key"
-      >
-        <div class="grid-content bg-purple" v-show="!isEdit">{{listText.value[0]}}</div>
-      </el-col>
-
-      <el-col
-        class="col-text"
-        v-show="listText.value.length !== 1"
-        :span="12"
+        :span="textWidth"
         v-for="(value,key) of listText.value"
         :key="'show-' + listText.name + '-' + key"
       >
@@ -23,8 +13,8 @@
 
     <el-row class="list-text-edit" :gutter="20" v-show="isEdit">
       <el-col
+        :span="textWidth"
         class="col-edit"
-        v-show="listText.value.length === 1"
         v-for="(value,key) of listText.value"
         :key="'self-edit-' + listText.name + '-' + key"
       >
@@ -33,38 +23,25 @@
           type="textarea"
           placeholder="留空则删除"
           autosize
-          v-model="listText.value[key]"
-        ></el-input>
-      </el-col>
-      <el-col
-        class="col-edit"
-        v-show="listText.value.length !== 1"
-        :span="12"
-        v-for="(value,key) of listText.value"
-        :key="'edit-' + listText.name + '-' + key"
-      >
-        <el-input
-          @blur="editCheck(key)"
-          type="textarea"
-          placeholder="留空则删除"
-          autosize
+          @keyup.ctrl.enter.native="editCheck(key)"
           v-model="listText.value[key]"
         ></el-input>
       </el-col>
 
       <el-col class="col-edit" :span="24" v-show="isEdit">
         <el-input
-          @blur="handleInputConfirm"
-          ref="editText"
+          @blur="addText"
+          ref="addText"
           type="textarea"
-          placeholder="留空则删除"
+          placeholder="添加"
           autosize
+          @keyup.ctrl.enter.native="addText"
           v-model="newText"
         ></el-input>
       </el-col>
-      <el-col class="col-edit edit-button" :span="24">
+      <!-- <el-col class="col-edit edit-button" :span="24">
         <el-button size="small" type="primary" @click="addText">添加</el-button>
-      </el-col>
+      </el-col>-->
     </el-row>
   </div>
 </template>
@@ -79,9 +56,24 @@ export default class extends Vue {
   // @Prop() readonly item!: ItemType;
   @Prop() listText!: any;
   @Prop() isEdit!: boolean;
+  textWidth: number = 12;
   newText: string = "";
-  newTextVisiable: boolean = false;
-  created() {}
+  created() {
+    if (this.listText.value.length === 1) {
+      this.textWidth = 24;
+    } else {
+      this.textWidth = 12;
+    }
+  }
+  @Watch("listText", { deep: true })
+  changeTextWidth() {
+    if (this.listText.value.length === 1) {
+      this.textWidth = 24;
+    } else {
+      this.textWidth = 12;
+    }
+  }
+
   @Watch("isEdit")
   editDate(val: boolean, oldVal: boolean) {
     if (this.isEdit === false) {
@@ -89,29 +81,34 @@ export default class extends Vue {
       this.$emit("updateItem", this.listText);
     }
   }
-  addText() {
-    this.newTextVisiable = true;
+  // addText() {
+  //   this.$nextTick(() => {
+  //     // @ts-ignore
+  //     this.$refs.editText.focus();
+  //   });
+  // }
+  addInputFocus() {
     this.$nextTick(() => {
       // @ts-ignore
-      this.$refs.editText.focus();
+      this.$refs.addText.focus();
     });
   }
-  handleInputConfirm() {
+  addText() {
+    console.log(this.newText);
     // 不可空
     if (this.newText.trim() === "") {
-      this.newTextVisiable = false;
       this.newText = "";
       return;
     }
     // 不可重复
     if (this.listText.value.indexOf(this.newText) != -1) {
-      this.newTextVisiable = false;
       this.newText = "";
+      this.addInputFocus();
       return;
     }
     this.listText.value.push(this.newText.trim());
     this.newText = "";
-    this.newTextVisiable = false;
+    this.addInputFocus();
   }
   editCheck(key: number) {
     // 为空就删除之
