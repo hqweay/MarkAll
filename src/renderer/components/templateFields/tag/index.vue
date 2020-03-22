@@ -5,18 +5,11 @@
     <el-tag
       :key="tag"
       v-for="tag in tags"
-      closable
+      :closable="isEdit"
       :disable-transitions="false"
-      @click="editFlag && editTag(tag)"
+      @click="isEdit && editTag(tag)"
       @close="handleClose(tag)"
     >{{tag}}</el-tag>
-    <!-- <el-input
-      size="mini"
-      class="edit-tag"
-      v-if="editVisible"
-      v-model="inputValue"
-      @keyup.enter.native="handleInputConfirm"
-    ></el-input>-->
 
     <el-input
       size="mini"
@@ -24,10 +17,10 @@
       v-if="inputVisible"
       v-model="inputValue"
       ref="input"
-      @blur="handleInputConfirm"
-      @keyup.enter.native="handleInputConfirm"
+      @blur="addAndEditConfirm"
+      @keyup.enter.native="addAndEditConfirm"
     ></el-input>
-    <el-button size="mini" v-else class="button-new-tag" @click="showInput">+ Tag</el-button>
+    <el-button v-show="isEdit" size="mini" v-else class="button-new-tag" @click="showInput">+ Tag</el-button>
   </div>
 </template>
 
@@ -42,19 +35,17 @@ import { ipcRenderer, Item } from "electron";
   name: "template-tag"
 })
 export default class extends Vue {
-  // @Prop() readonly item!: ItemType;
   @Prop() tags!: Array<string>;
-
+  @Prop() isEdit!: boolean;
   inputVisible: boolean = false;
   inputValue: string = "";
-  editFlag: boolean = true;
 
   created() {}
 
-  @Watch("tags")
+  @Watch("isEdit")
   editDate(val: boolean, oldVal: boolean) {
-    if (this.editFlag === true) {
-      // 有编辑、添加操作，才将数据向上传
+    // 有编辑、添加操作，才将数据向上传
+    if (this.isEdit == false) {
       this.$emit("updateItem", this.tags);
     }
   }
@@ -67,24 +58,19 @@ export default class extends Vue {
   }
   handleClose(tag: string) {
     // 删除标签
-    //@ts-ignore
     this.tags.remove(tag);
     // this.$emit("updateItem", this.tags);
   }
   editTag(tag: string) {
     // 编辑标签
-    //@ts-ignore
     this.tags.remove(tag);
     this.inputValue = tag;
-    this.inputVisible = true;
-    this.editFlag = false;
-    this.$nextTick(() => {
-      // @ts-ignore
-      this.$refs["input"].focus();
-    });
+    // this.editFlag = false;
+    this.showInput();
   }
-  handleInputConfirm() {
+  addAndEditConfirm() {
     // 编辑与添加标签
+    // 编辑通过 => 删除，再添加新元素。
     // 不可空
     if (this.inputValue.trim() === "") {
       this.inputVisible = false;
@@ -100,7 +86,7 @@ export default class extends Vue {
     this.tags.push(this.inputValue.trim());
     this.inputValue = "";
     this.inputVisible = false;
-    this.editFlag = true;
+    // this.editFlag = true;
   }
 }
 </script>
