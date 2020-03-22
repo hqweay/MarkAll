@@ -5,7 +5,7 @@ import LodashId from 'lodash-id'; // 通过._mixin()引入 lodash-id
 import path from 'path';
 import fs from 'fs-extra';
 import { app, remote } from 'electron'; // 引入remote模块
-
+import { APP_PATH } from '#/static/appPath'
 
 // 创建数据库,表放这里比较合适
 // 模板
@@ -22,27 +22,23 @@ const tags = require('./initData/tags.json');
 
 const APP = process.type === 'renderer' ? remote.app : app; // 根据process.type来分辨在哪种模式使用哪种模块
 
-const STORE_PATH = APP.getPath('userData'); // 获取electron应用的用户目录
+const STORE_PATH = APP_PATH.db.FOLDER_PATH; //APP.getPath('userData'); // 获取electron应用的用户目录
 // /home/hqweay/.config/Electron
 // /home/hqweay/.config/allmark
+// 确保 electron 软件文件夹存在
 if (process.type !== 'renderer') {
-  if (!fs.pathExistsSync(STORE_PATH)) {
-    fs.mkdirpSync(STORE_PATH);
+  if (!fs.pathExistsSync(APP_PATH.STORE_PATH)) {
+    fs.mkdirpSync(APP_PATH.STORE_PATH);
   }
 }
 
 
-console.log(STORE_PATH);
 
 class DB {
   private db: Datastore.LowdbSync<Datastore.AdapterSync>;
   constructor() {
-
-    // 创建 user 文件夹 保存相关数据
-    // fs.ensureDir(STORE_PATH + '/user', err => {
-    //   console.log(err);
-    // })
-    fs.ensureDir(STORE_PATH + '/user')
+    // 确保保存用户数据的文件夹存在
+    fs.ensureDir(APP_PATH.db.FOLDER_PATH)
       .then(() => {
         // console.log("创建用户文件夹成功！");
       })
@@ -50,8 +46,8 @@ class DB {
         console.log(err);
       })
 
-    const adapter = new FileSync(path.join(STORE_PATH, '/user/data.json')); // 初始化lowdb读写的json文件名以及存储路径
-
+    // const adapter = new FileSync(path.join(APP_PATH.DB_PATH, '/data.json')); // 初始化lowdb读写的json文件名以及存储路径
+    const adapter = new FileSync(APP_PATH.db.DATA_PATH);
 
     this.db = Datastore(adapter); //lowdb接管该文件
     this.db._.mixin(LodashId); //lodash-id

@@ -3,10 +3,12 @@ import { app, remote } from 'electron';
 
 const APP = process.type === 'renderer' ? remote.app : app // 根据process.type来分辨在哪种模式使用哪种模块
 
-const STORE_PATH = APP.getPath('userData') // 获取electron应用的用户目录
 
-const errorFilePath = STORE_PATH + '/user/log/error.log';
-const logFilePath = STORE_PATH + '/user/log/info.log';
+import { APP_PATH } from '#/static/appPath'
+
+const errorFilePath = APP_PATH.logger.ERROR_PATH;
+const infoFilePath = APP_PATH.logger.INFO_PATH;
+
 
 let date = new Date();
 
@@ -27,7 +29,7 @@ class Logger {
       .catch(err => {
         console.error(err)
       })
-    fs.ensureFile(logFilePath)
+    fs.ensureFile(infoFilePath)
       .then(() => {
         console.log('info log created success!')
       })
@@ -39,7 +41,7 @@ class Logger {
   info(info = "") {
     info = date.toLocaleString() + " : ERROR: " + info + "\n";
     console.info(info);
-    fs.appendFile(logFilePath, info)
+    fs.appendFile(infoFilePath, info)
       .catch(err => {
         console.error(err)
       })

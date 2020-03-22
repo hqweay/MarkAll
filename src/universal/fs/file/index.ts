@@ -2,13 +2,17 @@ import fs from 'fs-extra';
 import { app, remote } from 'electron';
 
 const APP = process.type === 'renderer' ? remote.app : app;
+
+
+import { APP_PATH } from '#/static/appPath'
+// APP_PATH.IMAGE_PATH = userData/user/images
 const STORE_PATH = APP.getPath('userData') + '/user/';
 
 // 若无，创建目录
 async function hasImageBySaveFolder(saveFolder: string) {
   try {
-    await fs.ensureDir(STORE_PATH + 'images/' + saveFolder);
-    console.log(STORE_PATH + 'images/' + saveFolder + ' exists!');
+    await fs.ensureDir(APP_PATH.IMAGE_PATH + saveFolder);
+    console.log(APP_PATH.IMAGE_PATH + saveFolder + ' exists!');
   } catch (err) {
     console.error(err);
   }
@@ -20,7 +24,7 @@ function getImageName(fileName: string, saveFolder: string): any {
 }
 
 function getImageNameHelper(fileName: string, saveFolder: string, fileNameArr: string[], count = 0): any {
-  return fs.pathExists(STORE_PATH + 'images/' + saveFolder + '/' + fileName)
+  return fs.pathExists(APP_PATH.IMAGE_PATH + saveFolder + '/' + fileName)
     .then(exists => {
       if (exists) {
         count++;
@@ -38,9 +42,9 @@ async function copyImageToUserByFile(file: any, saveFolder: string) {
   //@ts-ignore
   let newImage = await getImageName(file.name, saveFolder).then(function (newFileName) {
     try {
-      fs.copySync(file.path, STORE_PATH + 'images/' + saveFolder + '/' + newFileName);
+      fs.copySync(file.path, APP_PATH.IMAGE_PATH + saveFolder + '/' + newFileName);
       console.log('image copied success!');
-      let newFilePath = STORE_PATH + 'images/' + saveFolder + '/' + newFileName;
+      let newFilePath = APP_PATH.IMAGE_PATH + saveFolder + '/' + newFileName;
       let newImage = {
         "name": newFileName,
         "url": newFilePath,

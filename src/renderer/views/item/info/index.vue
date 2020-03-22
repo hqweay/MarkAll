@@ -204,8 +204,8 @@ export default class extends Vue {
     return (
       this.item.template_name +
       "-" +
-      this.item.style_content[0].value +
-      "-" +
+      // this.item.style_content[0].value +
+      // "-" +
       folderId
     );
   }
