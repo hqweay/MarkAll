@@ -13,7 +13,7 @@
     </div>-->
     <el-backtop :visibility-height="50"></el-backtop>
     <!-- 编辑 -->
-    <div class="edit" v-show="!isAdd" @click="edit">
+    <div class="edit" @click="edit">
       <i class="el-icon-edit-outline" v-show="!isEdit"></i>
       <i class="el-icon-check" v-show="isEdit"></i>
       <!-- <el-dropdown @command="menuClick">
@@ -157,18 +157,23 @@ import _ from "lodash";
 export default class extends Vue {
   item: ItemType = {
     id: "",
+    created_time: "",
+    updated_time: "",
     template_name: "",
     style_content: [],
     tags: []
   };
   oldItem: ItemType = {
     id: "",
+    created_time: "",
+    updated_time: "",
     template_name: "",
     style_content: [],
     tags: []
   };
   isEdit: boolean = false;
-  isAdd: boolean = false;
+  // 弃用
+  // isAdd: boolean = false;
 
   created() {
     if (this.$route.params.id) {
@@ -184,11 +189,14 @@ export default class extends Vue {
 
       this.item = {
         id: "",
+        created_time: "",
+        updated_time: "",
         template_name: templateName,
         style_content: [],
         tags: []
       };
 
+      // 初始化 style_content / template 的 fields
       template.style.forEach(field => {
         resolveTemplateField(this.item, field);
       });
@@ -200,7 +208,6 @@ export default class extends Vue {
     if (folderId.length > 5) {
       folderId = folderId.substr(0, 5);
     }
-    // return this.item.id + "-" + this.item.template_name + "-" + listImage.name;
     return (
       this.item.template_name +
       "-" +
@@ -231,18 +238,23 @@ export default class extends Vue {
   }
   async updateItemTags(newTags: Array<string>) {
     this.item.tags = newTags;
-    this.updateItem();
+    // 在这 更新 tags
+    // console.log("update tags");
+    // this.updateItem();
   }
+
   @Watch("isEdit")
-  updateItemWhenEdited() {
+  updateItemWhenFinished() {
     if (this.isEdit === false) {
       this.updateItem();
     }
   }
+
   updateItem() {
     // 编辑
-    if (this.item.id != "") {
+    if (this.item.id.toString() !== "") {
       // update
+      this.item.updated_time = new Date().toString();
       if (editItemByID(this.item)) {
         this.$message({
           type: "info",
@@ -256,12 +268,15 @@ export default class extends Vue {
       }
     } else {
       // add
+      this.item.created_time = new Date().toString();
       if (addItem(this.item)) {
         this.$message({
           type: "info",
           message: "添加成功！"
         });
-        this.isAdd = true;
+        // this.isAdd = true;
+        // 改变 meta 好了
+        this.$router.push("/item/info/" + this.item.id);
       } else {
         this.$message({
           type: "info",
@@ -269,6 +284,9 @@ export default class extends Vue {
         });
       }
     }
+
+    console.log("id " + this.item.id);
+
     // 通知 itemList.vue 更新页面
     ipcRenderer.sendTo(
       remote.getGlobal("mainWindow").webContents.id,

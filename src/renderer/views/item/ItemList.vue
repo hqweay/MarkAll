@@ -28,6 +28,8 @@ export default class extends Vue {
   items: Array<ItemType> = [];
   item: ItemType = {
     id: "",
+    created_time: "",
+    updated_time: "",
     template_name: "",
     style_content: [],
     tags: []

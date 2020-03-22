@@ -2,8 +2,10 @@ import db from '#/db/datastore';
 
 // 获取 条目
 export function getItems(): Array<ItemType> {
-  // console.log(db.get('items').value())
-  return db.read().get('items').value();
+  // 按创建时间逆序 .sortBy('created_time')
+  let items = db.read().get('items').reverse().value();
+  // console.log(items);
+  return items;
   // return db.read().get('items').take(1).takeRight(5).value();
 }
 
@@ -40,7 +42,7 @@ export function getItemByID(id: string): ItemType {
 // 通过 模板名 获取 条目
 export function getItemsByTemplateName(temName: string): ItemType[] {
   // @ts-ignore
-  return db.read().get('items').filter({ template_name: temName }).value();
+  return db.read().get('items').filter({ template_name: temName }).reverse().value();
 }
 
 // 通过 标签名 获取 条目
@@ -57,7 +59,7 @@ export function getItemsByTagName(tagName: string): ItemType[] {
       // console.log("false");
       return false;
     }
-  }).value();
+  }).reverse().value();
 }
 
 // 添加 条目
@@ -120,6 +122,7 @@ export function editItemByID(item: ItemType): boolean {
   //@ts-ignore
   db.read().get('items').updateById(item.id, {
     template_name: item.template_name,
+    updated_time: item.updated_time,
     style_content: item.style_content,
     tags: item.tags
   }).write();

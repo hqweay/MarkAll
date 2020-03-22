@@ -48,9 +48,9 @@
       </el-col>
       <el-col :span="18">
         <!-- <index/> -->
-        <keep-alive :include="['item-list', 'tag-list', 'template-list']">
-          <router-view class="content"></router-view>
-        </keep-alive>
+        <!-- <keep-alive :include="['item-list', 'tag-list', 'template-list']"> -->
+        <router-view class="content"></router-view>
+        <!-- </keep-alive> -->
       </el-col>
     </el-row>
   </div>

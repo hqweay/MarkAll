@@ -7,9 +7,11 @@
       date.getMonth() +
       " 月 " +
       date.getDay() +
-      " 日"
+      " 日" +
+      date.getHours()
       }}-->
-      {{dateItem.value[0]}}
+      {{date.toUTCString()}}
+      <!-- {{new Date(dateItem.value[0]).toString()}} -->
     </div>
     <div class="edit-text" v-show="isEdit">
       <el-date-picker v-model="dateItem.value[0]" type="datetime" placeholder="选择日期时间"></el-date-picker>
@@ -31,6 +33,11 @@ export default class extends Vue {
   // date: Date = new Date();
   created() {
     // this.date = new Date(this.dateItem.value);
+  }
+
+  get date() {
+    let dateObj = new Date(this.dateItem.value[0]);
+    return dateObj;
   }
 
   @Watch("isEdit")

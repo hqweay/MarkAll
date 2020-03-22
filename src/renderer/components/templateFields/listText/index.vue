@@ -94,7 +94,6 @@ export default class extends Vue {
     });
   }
   addText() {
-    console.log(this.newText);
     // 不可空
     if (this.newText.trim() === "") {
       this.newText = "";
