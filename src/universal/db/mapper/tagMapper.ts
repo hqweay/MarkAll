@@ -2,7 +2,14 @@ import db from '#/db/datastore';
 
 // 获取 标签
 export function getTags(): Array<string> {
-  return db.read().get('tags').value()
+  return db.read().get('tags').reverse().value()
+}
+
+// 通过数组添加 tags
+export function addTags(tags: string[]) {
+  // 自动去重
+  //@ts-ignore
+  db.read().set('tags', db.read().get('tags').union(tags).value()).write();
 }
 
 // 添加 标签
@@ -13,10 +20,10 @@ export function addTag(tagName: string): boolean {
     return n === tagName;
   }).value() != null) {
     // if (db.read().get('tags').value().indexOf(newTag) !== -1) {
-    console.log("55555555555");
+    // console.log("55555555555");
     return false;
   } else {
-    console.log("55555555555666");
+    // console.log("55555555555666");
     // tag 的添加不用 insert
     // 无需 id, name 就可以保证唯一性
     // @ts-ignore

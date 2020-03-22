@@ -11,6 +11,7 @@ declare global {
   interface Array<T> {
     remove(obj: any): void
   }
-}
-declare namespace _ {
+  namespace LoDashExplicitWrapper {
+
+  }
 }

@@ -126,6 +126,7 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { getItemByID, editItemByID, addItem } from "#/db/mapper/itemMapper";
 import { getTemplateByName } from "#/db/mapper/templateMapper";
+import { addTags } from "#/db/mapper/tagMapper";
 // import { stylePraser } from "@/utils/stylePraser";
 
 import tagTemplate from "@/components/templateFields/tag/index.vue";
@@ -238,6 +239,7 @@ export default class extends Vue {
   }
   async updateItemTags(newTags: Array<string>) {
     this.item.tags = newTags;
+    addTags(newTags);
     // 在这 更新 tags
     // console.log("update tags");
     // this.updateItem();
@@ -284,8 +286,6 @@ export default class extends Vue {
         });
       }
     }
-
-    console.log("id " + this.item.id);
 
     // 通知 itemList.vue 更新页面
     ipcRenderer.sendTo(
