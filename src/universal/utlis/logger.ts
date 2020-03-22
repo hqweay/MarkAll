@@ -51,14 +51,20 @@ class Logger {
   //     })
   // }
   error(info: string = "") {
-
     info = date.toLocaleString() + " : ERROR: " + info + "\n";
-
     console.error(info);
     fs.appendFile(errorFilePath, info)
       .catch(err => {
         console.error(err)
       })
+  }
+  errorRender(info: string = "") {
+    info = date.toLocaleString() + " : render ERROR: " + info + "\n";
+    this.error(info);
+  }
+  errorMain(info: string = "") {
+    info = date.toLocaleString() + " : main ERROR: " + info + "\n";
+    this.error(info);
   }
 }
 export default new Logger();

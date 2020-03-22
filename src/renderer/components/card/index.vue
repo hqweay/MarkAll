@@ -106,6 +106,8 @@ export default class extends Vue {
       });
   }
   toItems(data: any) {
+    // this.$logger.error("555");
+    // this.logger.error(loggerEnum.render, "996");
     if (data.name != undefined) {
       // to items by templateName
       this.$store.state.view.list = "template";
