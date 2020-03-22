@@ -43,9 +43,9 @@
     "tests/**/*.ts",
     "tests/**/*.tsx",
     "src/renderer/router/index.ts",
-    "src/main.js",
+    "src/main.ts",
     "tests/unit/renderer/components/MainPageTest.spec.js",
-    "src/renderer/views/item/info/resolve.js",
+    "src/renderer/views/item/info/utils.ts",
   ],
   "exclude": [
     "node_modules",
