@@ -2,7 +2,7 @@
   <div class="template-list-url">
     <el-row v-if="!isEdit" class="list-container" :gutter="20">
       <el-col class="template-url" :span="12" v-for="urlItem in listUrl.value" :key="urlItem.name">
-        <el-link @click="openUrl">
+        <el-link @click="openUrl(urlItem.url)">
           {{urlItem.name}}
           <i class="el-icon--right"></i>
         </el-link>
@@ -81,23 +81,6 @@ export default class extends Vue {
       this.$logger.warn("the name of item's url can't be blank string");
       return;
     }
-    // 不可重复
-    // if (this.listUrl.value.name.indexOf(this.newUrl.name) != -1) {
-    // if (this.listUrl.value.find(name, this.newUrl.name) != null) {
-    //   global.logger.warn("the name of item's url can't be same");
-    //   this.newUrl = "";
-    //   return;
-    // }
-
-    // let flag = this.listUrl.value.forEach(element => {
-    //   if (element.name == this.newUrl.name) return true;
-    // });
-
-    // if (flag) {
-    //   global.logger.warn("the name of item's url can't be same");
-    //   this.newUrl = "";
-    //   return;
-    // }
 
     if (
       _(this.listUrl.value).findIndex(o => {
@@ -130,6 +113,13 @@ export default class extends Vue {
     margin-top: 0;
   }
   margin-top: 10px;
+  .el-link {
+    // color: brown;
+    color: darkcyan;
+  }
+  .el-link:hover {
+    color: cadetblue;
+  }
 }
 .el-input {
   &:nth-child(-n + 1) {

@@ -32,8 +32,8 @@
         "value": [
           {
             "name": "01",
-            "url": "https://leay.net/images/avatar.png",
-            "description": "https://leay.net/images/avatar.png"
+            "url": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png",
+            "description": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png"
           }
         ]
       },
@@ -43,38 +43,38 @@
         "value": [
           {
             "name": "01",
-            "url": "https://leay.net/images/avatar.png",
-            "description": "https://leay.net/images/avatar.png"
+            "url": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png",
+            "description": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png"
           },
           {
             "name": "02",
-            "url": "https://leay.net/images/avatar.png",
-            "description": "https://leay.net/images/avatar.png"
+            "url": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png",
+            "description": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png"
           },
           {
             "name": "03",
-            "url": "https://leay.net/images/avatar.png",
-            "description": "https://leay.net/images/avatar.png"
+            "url": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png",
+            "description": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png"
           },
           {
             "name": "04",
-            "url": "https://leay.net/images/avatar.png",
-            "description": "https://leay.net/images/avatar.png"
+            "url": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png",
+            "description": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png"
           },
           {
             "name": "05",
-            "url": "https://leay.net/images/avatar.png",
-            "description": "https://leay.net/images/avatar.png"
+            "url": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png",
+            "description": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png"
           },
           {
             "name": "06",
-            "url": "https://leay.net/images/avatar.png",
-            "description": "https://leay.net/images/avatar.png"
+            "url": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png",
+            "description": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png"
           },
           {
             "name": "07",
-            "url": "https://leay.net/images/avatar.png",
-            "description": "https://leay.net/images/avatar.png"
+            "url": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png",
+            "description": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png"
           }
         ]
       },
@@ -175,7 +175,7 @@
           {
             "name": "封面",
             "url": "https://img3.doubanio.com/view/subject/m/public/s2745500.jpg",
-            "description": "https://leay.net/images/avatar.png"
+            "description": "https://cdn.jsdelivr.net/gh/hqweay/picbed/img/avatar/avatar.png"
           }
         ]
       },
