@@ -14,13 +14,14 @@ let date = new Date();
 
 enum loggerEnum {
   main,
-  render
+  render,
+  universal
 }
 
 class Logger {
   private type: loggerEnum;
 
-  constructor(loggerType: loggerEnum) {
+  constructor(loggerType: loggerEnum = loggerEnum.universal) {
     this.type = loggerType;
     fs.ensureFile(errorFilePath)
       .then(() => {

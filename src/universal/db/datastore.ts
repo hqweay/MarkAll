@@ -6,19 +6,10 @@ import path from 'path';
 import fs from 'fs-extra';
 import { app, remote } from 'electron'; // 引入remote模块
 import { APP_PATH } from '#/static/appPath'
+import { Logger, loggerEnum } from '../utlis/logger';
 
-// 创建数据库,表放这里比较合适
-// 模板
-// import templates from './initData/template'
-
-// 标签
-// import tags from './initData/tag'
-
-// 具体条目
-const items = require('./initData/items.json');
-//import items from './initData/item' // 引入 lodash 便利 lowdb 操作
-const templates = require('./initData/templates.json');
-const tags = require('./initData/tags.json');
+// 引入初始化数据
+import { items, templates, tags } from "#/db/initData/init"
 
 const APP = process.type === 'renderer' ? remote.app : app; // 根据process.type来分辨在哪种模式使用哪种模块
 
@@ -36,17 +27,17 @@ if (process.type !== 'renderer') {
 
 class DB {
   private db: Datastore.LowdbSync<Datastore.AdapterSync>;
+  private logger = new Logger();
   constructor() {
     // 确保保存用户数据的文件夹存在
     fs.ensureDir(APP_PATH.db.FOLDER_PATH)
       .then(() => {
-        global.logger.info("用户文件夹存在！");
+        this.logger.info("datastore.ts execute 用户文件夹存在！");
       })
       .catch(err => {
-        global.logger.error("用户文件夹不存在！");
+        this.logger.error("datastore.ts execute :" + err);
       })
 
-    // const adapter = new FileSync(path.join(APP_PATH.DB_PATH, '/data.json')); // 初始化lowdb读写的json文件名以及存储路径
     const adapter = new FileSync(APP_PATH.db.DATA_PATH);
 
     this.db = Datastore(adapter); //lowdb接管该文件

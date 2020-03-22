@@ -8,11 +8,8 @@ import {
   installVueDevtools,
 } from 'vue-cli-plugin-electron-builder/lib'
 
-import { loggerEnum, Logger } from '#/utlis/logger';
-
-global.logger = new Logger(loggerEnum.main);;
-
-
+// 引入 electron 的全局变量
+require('#/types/electron');
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 

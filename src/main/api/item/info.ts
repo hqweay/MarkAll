@@ -15,7 +15,7 @@ export const createItemWindow = (type: string, data: any) => {
       minWidth: 800,
       height: 800, // 高
       width: 800, // 宽
-      alwaysOnTop: true,//置顶
+      alwaysOnTop: false,//置顶
       show: true, // 创建后是否显示
       frame: true, // 是否创建frameless窗口
       fullscreenable: true, // 是否允许全屏
@@ -39,8 +39,6 @@ export const createItemWindow = (type: string, data: any) => {
     } else {
       itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
     }
-
-
 
 
     itemWin.on('closed', () => {
