@@ -6,10 +6,10 @@ import store from './renderer/store';
 // elementUi
 import ElementUI from 'element-ui'; //引入js
 import './renderer/assets/styles/element-variables.scss'; //引入自定义样式
-import logger from '#/utlis/logger';
+import { loggerEnum, Logger } from '#/utlis/logger';
 
 // 挂载 logger 至 Vue
-Vue.prototype.$logger = logger;
+Vue.prototype.$logger = new Logger(loggerEnum.render);
 
 Vue.use(ElementUI);
 

@@ -10,8 +10,16 @@ const logFilePath = STORE_PATH + '/user/log/info.log';
 
 let date = new Date();
 
+enum loggerEnum {
+  main,
+  render
+}
+
 class Logger {
-  constructor() {
+  private type: loggerEnum;
+
+  constructor(loggerType: loggerEnum) {
+    this.type = loggerType;
     fs.ensureFile(errorFilePath)
       .then(() => {
         console.log('error log created success!')
@@ -36,35 +44,20 @@ class Logger {
         console.error(err)
       })
   }
-  // error(type?: loggerEnum, info: string = "") {
-  //   if (type == loggerEnum.render) {
-  //     info = date.toLocaleString() + " : render ERROR: " + info + "\n";
-  //   } else if (type == loggerEnum.main) {
-  //     info = date.toLocaleString() + " : main ERROR: " + info + "\n";
-  //   } else {
-  //     info = date.toLocaleString() + " : ERROR: " + info + "\n";
-  //   }
-  //   console.error(info);
-  //   fs.appendFile(errorFilePath, info)
-  //     .catch(err => {
-  //       console.error(err)
-  //     })
-  // }
+
   error(info: string = "") {
-    info = date.toLocaleString() + " : ERROR: " + info + "\n";
+    if (this.type == loggerEnum.render) {
+      info = date.toLocaleString() + " : render ERROR: " + info + "\n";
+    } else if (this.type == loggerEnum.main) {
+      info = date.toLocaleString() + " : main ERROR: " + info + "\n";
+    } else {
+      info = date.toLocaleString() + " : ERROR: " + info + "\n";
+    }
     console.error(info);
     fs.appendFile(errorFilePath, info)
       .catch(err => {
         console.error(err)
       })
   }
-  errorRender(info: string = "") {
-    info = date.toLocaleString() + " : render ERROR: " + info + "\n";
-    this.error(info);
-  }
-  errorMain(info: string = "") {
-    info = date.toLocaleString() + " : main ERROR: " + info + "\n";
-    this.error(info);
-  }
 }
-export default new Logger();
+export { loggerEnum, Logger };

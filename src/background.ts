@@ -8,10 +8,9 @@ import {
   installVueDevtools,
 } from 'vue-cli-plugin-electron-builder/lib'
 
-import log from '#/utlis/logger';
+import { loggerEnum, Logger } from '#/utlis/logger';
 
-
-global.logger = log;
+global.logger = new Logger(loggerEnum.main);;
 
 
 
