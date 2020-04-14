@@ -54,7 +54,8 @@ export default class extends Vue {
         // this.$electron.ipcRenderer.send("showCardInfo", this.type, data);
         break;
       case "template":
-        this.$router.push("/template/info/" + data.id);
+        // this.$router.push("/template/info/" + data.id);
+        ipcRenderer.send("showTemplateInfo", this.type, data);
         break;
       case "tag":
         // 不必

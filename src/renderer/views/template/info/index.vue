@@ -1,42 +1,24 @@
 <template>
-  <div class="template-info">
-    <div id="editor_holder"></div>
-  </div>
+  <div class="template-info">template-info</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-// import JSONEditor from "@json-editor/json-editor";
-
+import { getTemplateByName } from "#/db/mapper/templateMapper";
 @Component({
   components: {}
 })
 export default class extends Vue {
-  schema: any = {
-    title: "Person",
-    type: "object",
-    properties: {
-      name: {
-        type: "string",
-        description: "First and Last name",
-        minLength: 4,
-        default: "Jeremy Dorn"
-      },
-      age: {
-        type: "integer",
-        default: 25,
-        minimum: 18,
-        maximum: 99
-      },
-      favorite_color: {
-        type: "string",
-        format: "color",
-        title: "favorite color",
-        default: "#ffa500"
-      }
-    }
+  template: TemplateType = {
+    name: "",
+    style: []
   };
-  created() {}
+  created() {
+    let templateName = this.$route.params.name;
+    console.log(templateName);
+    this.template = getTemplateByName(templateName);
+    console.log(this.template);
+  }
 }
 </script> 
 
