@@ -34,9 +34,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
-import { deleteItemByID } from "#/db/mapper/itemMapper";
-import { deleteTagByName, getTags, editTagByName } from "#/db/mapper/tagMapper";
-import { deleteTemplateByName } from "#/db/mapper/templateMapper";
+// import { deleteItemByID } from "#/db/mapper/itemMapper";
+import itemMapper from "#/db/mapper/itemMapper";
+import tagMapper from "#/db/mapper/tagMapper";
+import templateMapper from "#/db/mapper/templateMapper";
 import { ipcRenderer } from "electron";
 // import logger from "../../../universal/utlis/logger";
 @Component({
@@ -86,7 +87,7 @@ export default class extends Vue {
           });
           return;
         }
-        if (editTagByName(oldTag, newTag) === false) {
+        if (tagMapper.editTagByName(oldTag, newTag) === false) {
           this.$message({
             type: "error",
             message: "标签 " + newTag + " 已存在"
@@ -131,7 +132,7 @@ export default class extends Vue {
   // 统一删除模板、条目、标签
   del(data: any) {
     if (this.type === "item") {
-      if (deleteItemByID(this.data.id)) {
+      if (itemMapper.deleteItemByID(this.data.id)) {
         this.$emit("updateMainPage", this.type, this.data);
         this.$notify.info({
           title: "成功",
@@ -144,7 +145,7 @@ export default class extends Vue {
         });
       }
     } else if (this.type === "template") {
-      if (deleteTemplateByName(this.data.name)) {
+      if (templateMapper.deleteTemplateByName(this.data.name)) {
         this.$emit("updateMainPage", this.type, this.data);
         this.$notify.info({
           title: "成功",
@@ -157,7 +158,7 @@ export default class extends Vue {
         });
       }
     } else if (this.type === "tag") {
-      if (deleteTagByName(this.data)) {
+      if (tagMapper.deleteTagByName(this.data)) {
         this.$emit("updateMainPage", this.type, this.data);
         this.$notify.info({
           title: "成功",

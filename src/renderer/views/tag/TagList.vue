@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { getTags } from "#/db/mapper/tagMapper";
+import tagMapper from "#/db/mapper/tagMapper";
 import MainPage from "@/components/MainPage.vue";
 @Component({
   name: "tag-list",
@@ -15,7 +15,7 @@ import MainPage from "@/components/MainPage.vue";
 export default class extends Vue {
   tags: Array<string> = [];
   created() {
-    this.tags = getTags();
+    this.tags = tagMapper.getTags();
   }
 }
 </script>

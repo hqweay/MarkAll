@@ -124,9 +124,10 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import { getItemByID, editItemByID, addItem } from "#/db/mapper/itemMapper";
-import { getTemplateByName } from "#/db/mapper/templateMapper";
-import { addTags } from "#/db/mapper/tagMapper";
+// import { getItemByID, editItemByID, addItem } from "#/db/mapper/itemMapper";
+import itemMapper from "#/db/mapper/itemMapper";
+import templateMapper from "#/db/mapper/templateMapper";
+import tagMapper from "#/db/mapper/tagMapper";
 // import { stylePraser } from "@/utils/stylePraser";
 
 import tagTemplate from "@/components/templateFields/tag/index.vue";
@@ -179,14 +180,14 @@ export default class extends Vue {
   created() {
     if (this.$route.params.id) {
       let id = this.$route.params.id;
-      this.item = getItemByID(id);
+      this.item = itemMapper.getItemByID(id);
       // 深拷贝做个备份
       this.oldItem = JSON.parse(JSON.stringify(this.item));
     } else if (this.$route.params.templateName) {
       this.isEdit = true;
       let templateName = this.$route.params.templateName;
       // 先获得 template，再构造空 item
-      let template = getTemplateByName(templateName);
+      let template = templateMapper.getTemplateByName(templateName);
 
       this.item = {
         id: "",
@@ -239,7 +240,7 @@ export default class extends Vue {
   }
   async updateItemTags(newTags: Array<string>) {
     this.item.tags = newTags;
-    addTags(newTags);
+    tagMapper.addTags(newTags);
     // 在这 更新 tags
     // console.log("update tags");
     // this.updateItem();
@@ -257,7 +258,7 @@ export default class extends Vue {
     if (this.item.id.toString() !== "") {
       // update
       this.item.updated_time = new Date().toString();
-      if (editItemByID(this.item)) {
+      if (itemMapper.editItemByID(this.item)) {
         this.$message({
           type: "info",
           message: "修改成功！"
@@ -271,7 +272,7 @@ export default class extends Vue {
     } else {
       // add
       this.item.created_time = new Date().toString();
-      if (addItem(this.item)) {
+      if (itemMapper.addItem(this.item)) {
         this.$message({
           type: "info",
           message: "添加成功！"

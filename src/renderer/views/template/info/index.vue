@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import { getTemplateByName } from "#/db/mapper/templateMapper";
+import templateMapper from "#/db/mapper/templateMapper";
 @Component({
   components: {}
 })
@@ -16,7 +16,7 @@ export default class extends Vue {
   created() {
     let templateName = this.$route.params.name;
     console.log(templateName);
-    this.template = getTemplateByName(templateName);
+    this.template = templateMapper.getTemplateByName(templateName);
     console.log(this.template);
   }
 }

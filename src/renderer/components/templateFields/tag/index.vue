@@ -27,9 +27,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
-import { deleteItemByID } from "#/db/mapper/itemMapper";
-import { deleteTagByName } from "#/db/mapper/tagMapper";
-import { deleteTemplateByName } from "#/db/mapper/templateMapper";
+// import { deleteItemByID } from "#/db/mapper/itemMapper";
+// import itemMapper from "#/db/mapper/itemMapper";
+// import tagMapper from "#/db/mapper/tagMapper";
+// import templateMapper from "#/db/mapper/templateMapper";
 import { ipcRenderer, Item } from "electron";
 @Component({
   name: "template-tag"

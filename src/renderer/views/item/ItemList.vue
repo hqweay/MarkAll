@@ -4,14 +4,15 @@
  
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import {
-  getItems,
-  getItemsByPage,
-  deleteItemByID,
-  getItemsByName,
-  getItemsByTemplateName,
-  getItemsByTagName
-} from "#/db/mapper/itemMapper";
+// import {
+//   getItems,
+//   getItemsByPage,
+//   deleteItemByID,
+//   getItemsByName,
+//   getItemsByTemplateName,
+//   getItemsByTagName
+// } from "#/db/mapper/itemMapper";
+import itemMapper from "#/db/mapper/itemMapper";
 
 import MainPage from "@/components/MainPage.vue";
 
@@ -38,12 +39,16 @@ export default class extends Vue {
   created() {
     if (this.$route.query.temName) {
       // 通过 模板名 获取 条目
-      this.items = getItemsByTemplateName(this.$route.query.temName.toString());
+      this.items = itemMapper.getItemsByTemplateName(
+        this.$route.query.temName.toString()
+      );
     } else if (this.$route.query.tagName) {
       // 通过 标签名 获取 条目
-      this.items = getItemsByTagName(this.$route.query.tagName.toString());
+      this.items = itemMapper.getItemsByTagName(
+        this.$route.query.tagName.toString()
+      );
     } else {
-      this.items = getItems();
+      this.items = itemMapper.getItems();
     }
     // if (this.$store.state.view.list == "template") {
     //   // 通过 模板名 获取 条目
@@ -59,14 +64,16 @@ export default class extends Vue {
     ipcRenderer.on("updateItemList", (event, message) => {
       if (this.$store.state.view.list == "template") {
         // 通过 模板名 获取 条目
-        this.items = getItemsByTemplateName(
+        this.items = itemMapper.getItemsByTemplateName(
           this.$route.query.temName.toString()
         );
       } else if (this.$store.state.view.list == "tag") {
         // 通过 标签名 获取 条目
-        this.items = getItemsByTagName(this.$route.query.tagName.toString());
+        this.items = itemMapper.getItemsByTagName(
+          this.$route.query.tagName.toString()
+        );
       } else {
-        this.items = getItems();
+        this.items = itemMapper.getItems();
       }
     });
   }
@@ -75,7 +82,7 @@ export default class extends Vue {
   @Watch("$route")
   private onChildChanged(val: any, oldVal: any) {
     this.$store.state.view.list = "item";
-    this.items = getItems(); //getItemsByPage(10, 10);
+    this.items = itemMapper.getItems(); //getItemsByPage(10, 10);
   }
   notify(message: string) {
     const h = this.$createElement;
@@ -108,8 +115,8 @@ export default class extends Vue {
     this.$router.push("/item/info/" + id);
   }
   deleteItem(id: string) {
-    deleteItemByID(id);
-    this.items = getItems();
+    itemMapper.deleteItemByID(id);
+    this.items = itemMapper.getItems();
     this.notify("删除成功");
   }
 }

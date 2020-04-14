@@ -71,8 +71,8 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import Card from "@/components/card/index.vue";
-import { addTag } from "#/db/mapper/tagMapper";
-import { getTemplates } from "#/db/mapper/templateMapper";
+import tagMapper from "#/db/mapper/tagMapper";
+import templateMapper from "#/db/mapper/templateMapper";
 import { ipcRenderer } from "electron";
 
 @Component({
@@ -107,7 +107,7 @@ export default class extends Vue {
   showAddItemDialog() {
     // get templates
     // ipcRenderer.send("additem");
-    this.templates = getTemplates();
+    this.templates = templateMapper.getTemplates();
     this.addItemVisible = true;
   }
   addItemByTemplate(template: TemplateType) {
@@ -129,7 +129,7 @@ export default class extends Vue {
           });
           return;
         }
-        if (addTag(newTag) === false) {
+        if (tagMapper.addTag(newTag) === false) {
           this.$message({
             type: "error",
             message: "标签 " + newTag + " 已存在"
