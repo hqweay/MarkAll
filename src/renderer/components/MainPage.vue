@@ -158,6 +158,7 @@ export default class extends Vue {
 * {
   display: flex;
   .main-page {
+    // margin-bottom: 5%;
     a {
       text-decoration: none;
     }

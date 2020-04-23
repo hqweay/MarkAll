@@ -26,11 +26,11 @@ protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: tru
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    height: 800, // 高
-    maxHeight: 800,
+    height: 850, // 高
+    maxHeight: 850,
     minHeight: 600,
-    width: 1100, // 宽
-    maxWidth: 1450,
+    width: 1200, // 宽
+    maxWidth: 1500,
     minWidth: 1100,
     show: true, // 创建后是否显示
     frame: true, // 是否创建frameless窗口

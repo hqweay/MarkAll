@@ -1,14 +1,17 @@
 <template>
   <div id="main">
     <el-row type="flex">
-      <el-col :span="6">
-        <div class="grid-content bg-purple">
-          <div class="siderbar">
-            <div class="siderbar-header">
-              <div class="search">
-                <input type="text" placeholder="搜索" />
-              </div>
-            </div>
+      <el-col :span="7" :lg="6">
+        <div class="siderbar">
+          <el-card class="siderbar-header">
+            <!-- <div class="search">
+                  <input type="text" placeholder="搜索" />
+            </div>-->
+
+            <el-input size="small" placeholder="搜索" class="input-with-select">
+              <!-- <el-button slot="append" icon="el-icon-search"></el-button> -->
+            </el-input>
+
             <div class="siderbar-body">
               <ul>
                 <li>
@@ -43,13 +46,15 @@
                 </li>-->
               </ul>
             </div>
-          </div>
+          </el-card>
         </div>
       </el-col>
-      <el-col :span="18">
+      <el-col :span="17" :lg="18">
         <!-- <index/> -->
         <!-- <keep-alive :include="['item-list', 'tag-list', 'template-list']"> -->
-        <router-view class="content"></router-view>
+        <div class="center">
+          <router-view class="content"></router-view>
+        </div>
         <!-- </keep-alive> -->
       </el-col>
     </el-row>
@@ -74,22 +79,27 @@ export default class extends Vue {
 
 <style scoped lang="scss">
 #main {
-  width: 100%;
+  // width: 100%;
+  display: flex;
+  flex-direction: column;
   color: black;
-  .siderbar,
-  .content {
+
+  // .content ,
+  .siderbar {
     position: fixed;
   }
   .siderbar {
-    top: 20%;
-    left: 5%;
+    top: 28%;
+    // left: 5%;
+    left: 60px;
     bottom: 0;
+    // bottom: -10px;
     border-color: aquamarine;
     a {
       text-decoration: none;
     }
     .siderbar-body {
-      margin-top: 20%;
+      margin-top: 16%;
       ul {
         list-style: none;
         margin: 0;
@@ -114,13 +124,22 @@ export default class extends Vue {
       }
     }
   }
-  .content {
-    width: 76%;
-    top: 0;
-    bottom: 0;
-    overflow: auto;
-    // overflow-y: scroll;
-    // overflow-x: hidden;
-  }
+  // .content {
+  // width: 100%;
+  // width: 800px;
+  // top: 0;
+  // bottom: 0;
+  // overflow: auto;
+  // overflow-y: scroll;
+  // overflow-x: hidden;
+  // }
+  // @media screen and (min-width: 1500px) {
+  // .content {
+  //   width: 1200px;
+  //   top: 0;
+  //   bottom: 0;
+  //   overflow: auto;
+  // }
+  // }
 }
 </style>
