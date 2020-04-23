@@ -43,9 +43,14 @@ class itemMapper {
   }
 
   // 通过 模板名 获取 条目
-  getItemsByTemplateName(temName: string): ItemType[] {
+  // getItemsByTemplateName(temName: string): ItemType[] {
+  //   // @ts-ignore
+  //   return this.db.read().get('items').filter({ template_name: temName }).reverse().value();
+  // }
+  // 通过 模板 ID 获取 条目
+  getItemsByTemplateID(temID: string): ItemType[] {
     // @ts-ignore
-    return this.db.read().get('items').filter({ template_name: temName }).reverse().value();
+    return this.db.read().get('items').filter({ template_id: temID }).reverse().value();
   }
 
   // 通过 标签名 获取 条目
@@ -74,7 +79,7 @@ class itemMapper {
 
     // 判断是否存在
     // @ts-ignore
-    if (this.db.read().get('items').find({ template_name: newItem.template_name }).value() != null) {
+    if (this.db.read().get('items').find({ template_id: newItem.template_id }).value() != null) {
       // @ts-ignore
       if (this.db.read().get('items').find(['style_content', newItem.style_content]).value() != null) {
         return false;
@@ -124,7 +129,7 @@ class itemMapper {
     // }).write();
     //@ts-ignore
     this.db.read().get('items').updateById(item.id, {
-      template_name: item.template_name,
+      template_id: item.template_id,
       updated_time: item.updated_time,
       style_content: item.style_content,
       tags: item.tags

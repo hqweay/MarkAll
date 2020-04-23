@@ -67,7 +67,7 @@ const routes = [
           title: '条目信息'
         },
       }, {
-        path: 'add/:templateName',
+        path: 'add/:templateID',
         name: 'item-add',
         component: () => import('@/views/item/info/index.vue'),
         meta: {

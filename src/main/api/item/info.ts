@@ -51,7 +51,7 @@ export const createItemWindow = (type: string, data: any) => {
   if (type === "add") {
     // 添加元素
     let template = data;
-    itemWin.loadURL('http://localhost:8080/#/item/add/' + template.name);
+    itemWin.loadURL('http://localhost:8080/#/item/add/' + template.id);
   } else {
     itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
   }

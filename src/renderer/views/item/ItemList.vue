@@ -31,16 +31,16 @@ export default class extends Vue {
     id: "",
     created_time: "",
     updated_time: "",
-    template_name: "",
+    template_id: "",
     style_content: [],
     tags: []
   };
   page: number = 10;
   created() {
-    if (this.$route.query.temName) {
+    if (this.$route.query.templateID) {
       // 通过 模板名 获取 条目
-      this.items = itemMapper.getItemsByTemplateName(
-        this.$route.query.temName.toString()
+      this.items = itemMapper.getItemsByTemplateID(
+        this.$route.query.templateID.toString()
       );
     } else if (this.$route.query.tagName) {
       // 通过 标签名 获取 条目
@@ -63,9 +63,9 @@ export default class extends Vue {
     // 接受 info/index.vue 添加或编辑 item 后，更新 list。
     ipcRenderer.on("updateItemList", (event, message) => {
       if (this.$store.state.view.list == "template") {
-        // 通过 模板名 获取 条目
-        this.items = itemMapper.getItemsByTemplateName(
-          this.$route.query.temName.toString()
+        // 通过 模板 ID 获取 条目
+        this.items = itemMapper.getItemsByTemplateID(
+          this.$route.query.templateID.toString()
         );
       } else if (this.$store.state.view.list == "tag") {
         // 通过 标签名 获取 条目

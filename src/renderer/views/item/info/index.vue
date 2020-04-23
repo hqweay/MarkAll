@@ -27,7 +27,7 @@
     <div id="title">
       <h1 class="title">{{this.item.style_content[0].value[0]}}</h1>
       <div class="sub-title">
-        <el-tag class="template" type="success">{{this.item.template_name}}</el-tag>
+        <el-tag class="template" type="success">{{templateName}}</el-tag>
         <tagTemplate :isEdit="isEdit" @updateItem="updateItemTags" v-bind:tags="this.item.tags"></tagTemplate>
       </div>
     </div>
@@ -161,7 +161,7 @@ export default class extends Vue {
     id: "",
     created_time: "",
     updated_time: "",
-    template_name: "",
+    template_id: "",
     style_content: [],
     tags: []
   };
@@ -169,11 +169,12 @@ export default class extends Vue {
     id: "",
     created_time: "",
     updated_time: "",
-    template_name: "",
+    template_id: "",
     style_content: [],
     tags: []
   };
   isEdit: boolean = false;
+  templateName: string = "";
   // 弃用
   // isAdd: boolean = false;
 
@@ -181,28 +182,32 @@ export default class extends Vue {
     if (this.$route.params.id) {
       let id = this.$route.params.id;
       this.item = itemMapper.getItemByID(id);
+      this.templateName = this.getTemplateNameByID(this.item.template_id);
       // 深拷贝做个备份
-      this.oldItem = JSON.parse(JSON.stringify(this.item));
-    } else if (this.$route.params.templateName) {
+      // this.oldItem = JSON.parse(JSON.stringify(this.item));
+    } else if (this.$route.params.templateID) {
       this.isEdit = true;
-      let templateName = this.$route.params.templateName;
+      let templateID = this.$route.params.templateID;
       // 先获得 template，再构造空 item
-      let template = templateMapper.getTemplateByName(templateName);
-
+      let template = templateMapper.getTemplateByID(templateID);
+      this.templateName = this.getTemplateNameByID(templateID);
       this.item = {
         id: "",
         created_time: "",
         updated_time: "",
-        template_name: templateName,
+        template_id: templateID,
         style_content: [],
         tags: []
       };
-
       // 初始化 style_content / template 的 fields
       template.style.forEach(field => {
         resolveTemplateField(this.item, field);
       });
     }
+  }
+
+  getTemplateNameByID(id: string): string {
+    return templateMapper.getTemplateByID(id).name;
   }
 
   getSaveFloderName(listImage: any): string {
@@ -211,7 +216,7 @@ export default class extends Vue {
       folderId = folderId.substr(0, 5);
     }
     return (
-      this.item.template_name +
+      this.item.template_id +
       "-" +
       // this.item.style_content[0].value +
       // "-" +

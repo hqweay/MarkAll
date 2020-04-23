@@ -113,7 +113,7 @@ export default class extends Vue {
       this.$store.state.view.list = "template";
       this.$router.push({
         path: "/main/item",
-        query: { temName: data.name }
+        query: { templateID: data.id }
       });
     } else {
       // to items by tagName
