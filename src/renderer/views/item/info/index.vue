@@ -130,16 +130,16 @@ import templateMapper from "#/db/mapper/templateMapper";
 import tagMapper from "#/db/mapper/tagMapper";
 // import { stylePraser } from "@/utils/stylePraser";
 
-import tagTemplate from "@/components/templateFields/tag/index.vue";
-// import textTemplate from "@/components/templateFields/text/index.vue";
-import listTextTemplate from "@/components/templateFields/listText/index.vue";
-// import imageTemplate from "@/components/templateFields/image/index.vue";
-import listImage from "@/components/templateFields/listImage/index.vue";
-// import urlTemplate from "@/components/templateFields/url/index.vue";
-import listUrlTemplate from "@/components/templateFields/listUrl/index.vue";
-import dateTemplate from "@/components/templateFields/date/index.vue";
-import enumTemplate from "@/components/templateFields/enum/index.vue";
-import rateTemplate from "@/components/templateFields/rate/index.vue";
+import tagTemplate from "@/components/itemFields/tag/index.vue";
+// import textTemplate from "@/components/itemFields/text/index.vue";
+import listTextTemplate from "@/components/itemFields/listText/index.vue";
+// import imageTemplate from "@/components/itemFields/image/index.vue";
+import listImage from "@/components/itemFields/listImage/index.vue";
+// import urlTemplate from "@/components/itemFields/url/index.vue";
+import listUrlTemplate from "@/components/itemFields/listUrl/index.vue";
+import dateTemplate from "@/components/itemFields/date/index.vue";
+import enumTemplate from "@/components/itemFields/enum/index.vue";
+import rateTemplate from "@/components/itemFields/rate/index.vue";
 
 import { resolveTemplateField } from "./utils";
 
