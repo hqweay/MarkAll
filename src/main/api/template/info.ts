@@ -42,9 +42,10 @@ export const createTemplateWindow = (type: string, template: any) => {
   if (type === "add") {
     // 添加元素
 
-    // templateWin.loadURL('http://localhost:8080/#/template/add/' + template.name);
+    templateWin.loadURL('http://localhost:8080/#/template/add/');
   } else {
-    templateWin.loadURL('http://localhost:8080/#/template/info/' + template.name);
+    // templateWin.loadURL('http://localhost:8080/#/template/info/' + template.name);
+    templateWin.loadURL('http://localhost:8080/#/template/info/' + template.id);
   }
   return templateWin;
 }

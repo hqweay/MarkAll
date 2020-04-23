@@ -20,7 +20,7 @@
       @blur="addAndEditConfirm"
       @keyup.enter.native="addAndEditConfirm"
     ></el-input>
-    <el-button v-show="isEdit" size="mini" v-else class="button-new-tag" @click="showInput">+ Tag</el-button>
+    <el-button v-show="isEdit" size="mini" v-else class="button-new-tag" @click="showInput">+ Add</el-button>
   </div>
 </template>
 

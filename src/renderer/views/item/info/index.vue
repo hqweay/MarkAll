@@ -289,6 +289,7 @@ export default class extends Vue {
     }
 
     // 通知 itemList.vue 更新页面
+    // 在 itemList.vue on
     ipcRenderer.sendTo(
       remote.getGlobal("mainWindow").webContents.id,
       "updateItemList"

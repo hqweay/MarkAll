@@ -33,7 +33,7 @@
 
     <!-- template -->
     <ul class="template-list list" v-if="type === 'template'">
-      <li class="template" @click="add()">
+      <li class="template" @click="addTemplate()">
         <div class="container">
           <div class="card card-add">
             <ul class="template-attr">
@@ -109,6 +109,9 @@ export default class extends Vue {
     // ipcRenderer.send("additem");
     this.templates = templateMapper.getTemplates();
     this.addItemVisible = true;
+  }
+  addTemplate() {
+    ipcRenderer.send("showTemplateInfo", "add");
   }
   addItemByTemplate(template: TemplateType) {
     ipcRenderer.send("showCardInfo", "add", template);

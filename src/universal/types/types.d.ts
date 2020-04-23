@@ -47,6 +47,7 @@ interface TemplateFiledType {
 }
 // template
 interface TemplateType {
+  id: string
   name: string,
   style: Array<TemplateFiledType>,
 }

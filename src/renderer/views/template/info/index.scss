@@ -1,0 +1,102 @@
+
+.template-info {
+  cursor: pointer;
+  // margin-left: 8%;
+  margin: 0 auto;
+  width: 90%;
+  .edit {
+    position: fixed;
+    right: 40px;
+    top: 40px;
+    background-color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: teal;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 20px;
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    z-index: 5;
+  }
+  .edit:hover {
+    height: 50px;
+    width: 50px;
+    transition: ease-in;
+  }
+  .edit-title{
+    margin-top: 5%;
+  }
+  .el-row{
+    margin-top: 2%;
+  }
+  .el-col {
+    margin-bottom: 2%;
+
+    .LIST_TEXT {
+      background-color: $LIST_TEXT;
+    }
+    .LIST_IMAGE {
+      background-color: $LIST_IMAGE;
+    }
+    .LIST_URL {
+      background-color: $LIST_URL;
+    }
+    .DATE {
+      background-color: $DATE;
+    }
+    .RATE {
+      background-color: $RATE;
+    }
+    .ENUM {
+      background-color: $ENUM;
+    }
+    .MARKDOWN {
+      background-color: $MARKDOWN;
+    }
+    .el-card {
+      .type {
+        font-size: 80%;
+      }
+    }
+
+    .delete {
+      position: relative;
+
+      font-size: 18px;
+      color: red;
+      left: 99%;
+      top: -8px;
+      cursor: pointer;
+    }
+    .delete:hover {
+      // opacity: 0.3;
+      color: black;
+      transition: 1s;
+    }
+  }
+
+  .el-select,
+  .el-input{
+    margin-bottom: 1%;
+  }
+  .el-select{
+    width: 100%;
+  }
+  .template-tag {
+    margin-top: 5%;
+  }
+
+  .addField{
+    background-color: $ADDFIELD;
+  }
+}

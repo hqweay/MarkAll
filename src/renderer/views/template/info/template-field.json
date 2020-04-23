@@ -1,0 +1,26 @@
+[
+  {
+    "value": "LIST_TEXT",
+    "label": "LIST_TEXT"
+  },
+  {
+    "value": "LIST_IMAGE",
+    "label": "LIST_IMAGE"
+  },
+  {
+    "value": "LIST_URL",
+    "label": "LIST_URL"
+  },
+  {
+    "value": "DATE",
+    "label": "DATE"
+  },
+  {
+    "value": "RATE",
+    "label": "RATE"
+  },
+  {
+    "value": "ENUM",
+    "label": "ENUM"
+  }
+]

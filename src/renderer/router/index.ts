@@ -81,7 +81,7 @@ const routes = [
     component: () => import('@/views/template/info/index.vue'),
     children: [
       {
-        path: 'info/:name',
+        path: 'info/:id',
         name: 'template-info',
         meta: {
           title: '模板信息'
