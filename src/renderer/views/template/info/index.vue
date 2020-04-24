@@ -168,8 +168,10 @@ export default class extends Vue {
     if (templateID != undefined) {
       this.template = templateMapper.getTemplateByID(templateID);
       this.oldTemplate = JSON.parse(JSON.stringify(this.template));
+    }else{
+       this.isEdit = true;
     }
-    console.log(templateID);
+    // console.log(templateID);
   }
 
   @Watch("isEdit")
