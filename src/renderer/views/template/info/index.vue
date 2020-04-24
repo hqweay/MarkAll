@@ -156,7 +156,7 @@ export default class extends Vue {
     style: []
   };
   templateFields: any = require("./template-field");
-  isEdit: boolean = true;
+  isEdit: boolean = false;
   newField: TemplateFiledType = {
     name: "",
     type: "",
