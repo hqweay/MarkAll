@@ -36,6 +36,14 @@
     height: 120px;
     overflow: hidden;
     white-space: normal;
+    // 超过长度显示省略号
+    h2 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
   }
   .tag-name {
     height: 100px;
