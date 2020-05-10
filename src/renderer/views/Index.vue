@@ -30,6 +30,11 @@
                   </router-link>
                 </li>
                 <li>
+                  <router-link class="tab-plugin" to="/main/plugin">
+                    <span class="tab-link">插件</span>
+                  </router-link>
+                </li>
+                <li>
                   <router-link class="tab-item" to="/main/test">
                     <span class="tab-link">其它</span>
                   </router-link>

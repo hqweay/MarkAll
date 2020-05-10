@@ -2,17 +2,17 @@
   <div class="container" @click="showInfo(data)">
     <div v-bind:class="['card', 'card-'+type]">
       <span class="show item-name">
-        <h1>
+        <h2>
           <a target="_blank" v-if="type === 'item'">{{data.style_content[0].value[0]}}</a>
           <a target="_blank" v-else-if="type === 'template'">{{data.name}}</a>
           <a target="_blank" v-else-if="type === 'tag'">{{data}}</a>
-        </h1>
+        </h2>
       </span>
       <span class="show template-name">
-        <h2 v-if="type === 'item'">{{data.template_name}}</h2>
+        <h3 v-if="type === 'item'">{{data.template_name}}</h3>
       </span>
       <span class="show tag-name">
-        <h3 v-if="type === 'item' && data.tags.length > 0">{{data.tags}}</h3>
+        <h4 v-if="type === 'item' && data.tags.length > 0">{{data.tags}}</h4>
       </span>
       <!-- <div class="edit" @click.stop="edit(data)">
         <img src="@/assets/icon/edit.png" alt />

@@ -7,7 +7,7 @@
           <div class="card card-add">
             <ul class="item-attr">
               <li class="add">
-                <h1>添加条目</h1>
+                <h2>添加条目</h2>
               </li>
             </ul>
           </div>
@@ -38,7 +38,7 @@
           <div class="card card-add">
             <ul class="template-attr">
               <li class="add">
-                <h1>添加模板</h1>
+                <h2>添加模板</h2>
               </li>
             </ul>
           </div>
@@ -55,7 +55,7 @@
           <div class="card card-add">
             <ul class="tag-attr">
               <li class="add">
-                <h1>添加标签</h1>
+                <h2>添加标签</h2>
               </li>
             </ul>
           </div>

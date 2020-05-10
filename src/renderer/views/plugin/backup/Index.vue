@@ -1,18 +1,19 @@
 <template>
-  <div class="plugin">
-    <el-row class="plugin-list" :gutter="20">
-      <el-col
-        :span="12"
-        v-for="item in settings"
-        :class="['plugin-item']"
-        :key="item.id"
-        @click="toSetting(item)"
-      >
-        <el-card :title="item.name" shadow="hover" :class="['plugin', 'plugin-']">
-          <h2>{{item.name}}</h2>
-        </el-card>
-      </el-col>
-    </el-row>
+  <div class="template">
+    <ul class="item-list">
+      <!-- v-loading.fullscreen.lock="loading" -->
+      <li class="item" v-for="item in settings" :key="item.id" @click="toSetting(item)">
+        <div class="container">
+          <div :class="['card', item.type]">
+            <span class="name">
+              <h1>
+                <a target="_blank">{{item.name}}</a>
+              </h1>
+            </span>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -28,7 +29,7 @@ export default {
     };
   },
   created: function() {
-    this.settings = require("./static/menu.json");
+    this.settings = require("#/static/other-config.json");
   },
   methods: {
     notify(message) {
@@ -43,8 +44,7 @@ export default {
         // setting
       } else if (item.type === "plugin") {
         // plugin
-        if (item.id === "doubanData") {
-          console.log("tsts");
+        if (item.id === "imdouwatched") {
           this.imDouWatched();
         }
       }
@@ -87,17 +87,55 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.plugin {
-  cursor: pointer;
-  margin: 0 auto;
-  width: 90%;
-  .el-row {
-    margin-top: 2%;
-    .el-col {
-      margin-bottom: 2%;
-      .plugin {
-        background-color: $plugin;
+* {
+  display: flex;
+}
+.template {
+  a {
+    text-decoration: none;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .item-list {
+    margin-bottom: 40px;
+    .item {
+      margin-top: 20px;
+    }
+    .setting {
+      background-color: #5298d1;
+    }
+    .plugin {
+      background-color: #98bbd8;
+    }
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+      width: 300px;
+      height: 300px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      span {
+        width: 70%;
+        height: 100px;
+        margin-left: 40px;
       }
+      .name {
+        overflow: hidden;
+        white-space: normal;
+      }
+      position: relative;
+    }
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+    .container {
+      padding: 2px 16px;
     }
   }
 }
