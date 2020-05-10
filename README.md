@@ -6,7 +6,7 @@
 
 ### 插件 —— 导入豆瓣标记数据
 
-![](https://github.com/hqweay/MarkAll/blob/dev/examples/import-douban-datapng?raw=true)
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/import-douban-data.png?raw=true)
 
 
 ### 首页
