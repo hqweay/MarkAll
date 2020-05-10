@@ -4,6 +4,11 @@
 
 ## 效果
 
+### 插件 —— 导入豆瓣标记数据
+
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/import-douban-datapng?raw=true)
+
+
 ### 首页
 
 ![](https://github.com/hqweay/MarkAll/blob/dev/examples/index.png?raw=true)
