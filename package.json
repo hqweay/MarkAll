@@ -18,6 +18,7 @@
     "chai-as-promised": "^7.1.1",
     "cheerio": "^1.0.0-rc.3",
     "core-js": "^3.4.3",
+    "douban-getter": "https://github.com/hqweay/douban-getter.git",
     "element-ui": "^2.13.0",
     "fs-extra": "^8.1.0",
     "lodash-id": "^0.14.0",

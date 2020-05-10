@@ -99,6 +99,25 @@ class itemMapper {
     return true;
   }
 
+  // todo
+  // 通过 template 删除 所有条目
+  deleteItemByTemplateID(templateID: string): boolean {
+    this.db.read().get('items')
+      // @ts-ignore
+      .remove({ template_id: templateID })
+      .write();
+    return true;
+  }
+
+  // 通过 template 和状态删除 所有条目
+  deleteItemByTemplateIDAndState(templateID: string, state: string): boolean {
+    this.db.read().get('items')
+      // @ts-ignore
+      .remove({ template_id: templateID, extra_state: state })
+      .write();
+    return true;
+  }
+
   // 通过 id 修改 条目
   editItemByID(item: ItemType): boolean {
     // 不能这样判断

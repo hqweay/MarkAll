@@ -1,0 +1,68 @@
+{
+  "id": "douban-book-hqweay",
+  "name": "豆瓣书籍",
+  "style": [
+    {
+      "name": "名称",
+      "type": "LIST_TEXT",
+      "extra": {
+        "description": "title"
+      }
+    },
+    {
+      "name": "链接",
+      "type": "LIST_URL",
+      "extra": {
+        "description": "url"
+      }
+    },
+    {
+      "name": "封面",
+      "type": "LIST_IMAGE",
+      "extra": {
+        "description": "pic"
+      }
+    },
+    {
+      "name": "出版商",
+      "type": "LIST_TEXT",
+      "extra": {
+        "description": "pub"
+      }
+    },
+    {
+      "name": "时间",
+      "type": "DATE",
+      "extra": {
+        "description": "date"
+      }
+    },
+    {
+      "name": "评论",
+      "type": "LIST_TEXT",
+      "extra": {
+        "description": "comment"
+      }
+    },
+    {
+      "name": "评分",
+      "extra": {
+        "description": "无",
+        "max": 5
+      },
+      "type": "RATE"
+    },
+    {
+      "name": "状态",
+      "extra": {
+        "description": "读过;在读;想读",
+        "enums": [
+          "读过",
+          "在读",
+          "想读"
+        ]
+      },
+      "type": "ENUM"
+    }
+  ]
+}

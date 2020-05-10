@@ -51,7 +51,7 @@ const routes = [
       {
         path: 'plugin',
         name: 'plugin-list',
-        component: () => import('@/views/plugin/Index.vue'),
+        component: () => import('@/views/plugin/pluginList.vue'),
       },
     ]
   }, {
@@ -93,6 +93,20 @@ const routes = [
           title: '添加模板'
         },
       }
+    ]
+  }, {
+    path: '/plugin',
+    name: 'plugin',
+    component: () => import('@/views/plugin/index.vue'),
+    children: [
+      {
+        path: 'douban',
+        name: 'plugin-douban',
+        component: () => import('@/views/plugin/lib/douban/index.vue'),
+        meta: {
+          title: '豆瓣数据导入'
+        },
+      },
     ]
   }
 ];

@@ -13,6 +13,9 @@ const infoFilePath = logFolderPath + 'info.log';
 
 const imageFolderPath = userFolderPath + 'images/';
 
+// plugin floder path
+const pluginFolderPath = userFolderPath + 'plugin/';
+
 const dbPath = userFolderPath;
 
 const LOG = {
@@ -31,6 +34,7 @@ const APP_PATH = {
   STORE_PATH: appPath,
   USER_PATH: userFolderPath,
   IMAGE_PATH: imageFolderPath,
+  PLUGIN_PATH: pluginFolderPath,
   db: DB,
   logger: LOG
 }

@@ -43,6 +43,7 @@
           v-if="!isLocal(imageItem.url)"
           :src="imageItem.url"
           :lazy="true"
+          referrerpolicy="no-referrer"
         >
           <div slot="error" class="image-slot">
             <el-image :src="require('@/assets/images/error.png')"></el-image>

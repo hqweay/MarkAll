@@ -1,0 +1,61 @@
+{
+  "id": "douban-movie-hqweay",
+  "name": "豆瓣电影",
+  "style": [
+    {
+      "name": "名称",
+      "type": "LIST_TEXT",
+      "extra": {
+        "description": "title"
+      }
+    },
+    {
+      "name": "链接",
+      "type": "LIST_URL",
+      "extra": {
+        "description": "url"
+      }
+    },
+    {
+      "name": "封面",
+      "type": "LIST_IMAGE",
+      "extra": {
+        "description": "pic"
+      }
+    },
+    {
+      "name": "时间",
+      "type": "DATE",
+      "extra": {
+        "description": "date"
+      }
+    },
+    {
+      "name": "评论",
+      "type": "LIST_TEXT",
+      "extra": {
+        "description": "comment"
+      }
+    },
+    {
+      "name": "评分",
+      "extra": {
+        "description": "无",
+        "max": 5
+      },
+      "type": "RATE"
+    },
+    {
+      "name": "状态",
+      "extra": {
+        "description": "看过;未看;在看",
+        "enums": [
+          "看过",
+          "未看",
+          "在看"
+        ]
+      },
+      "type": "ENUM"
+    }
+  ]
+}

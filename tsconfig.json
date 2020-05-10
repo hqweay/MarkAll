@@ -46,6 +46,8 @@
     "src/main.ts",
     "tests/unit/renderer/components/MainPageTest.spec.js",
     "src/renderer/views/item/info/utils.ts",
+    "src/renderer/views/plugin/lib/douban/importDoubanData.js",
+    "src/renderer/views/plugin/lib/douban/importDoubanData.js",
   ],
   "exclude": [
     "node_modules",
