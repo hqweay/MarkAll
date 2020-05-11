@@ -11,6 +11,23 @@ class itemMapper {
     return items;
     // return this.db.read().get('items').take(1).takeRight(5).value();
   }
+  // 搜索
+  getItemsBySearchText(searchText: string): Array<ItemType> {
+
+    // @ts-ignore
+    let items = this.db.read().get('items').filter(function (ele: any) {
+
+      // console.log(ele.style_content[0].name);
+      if (ele.style_content[0].value[0].toString().indexOf(searchText) !== -1) {
+        return true;
+      } else {
+        return false;
+      }
+    }).reverse().value();
+    // console.log(items);
+    return items;
+    // return this.db.read().get('items').take(1).takeRight(5).value();
+  }
 
   getItemsByPage(page: number, pageSize: number): Array<ItemType> {
     // console.log(this.db.get('items').value())
@@ -109,14 +126,6 @@ class itemMapper {
     return true;
   }
 
-  // 通过 template 和状态删除 所有条目
-  deleteItemByTemplateIDAndState(templateID: string, state: string): boolean {
-    this.db.read().get('items')
-      // @ts-ignore
-      .remove({ template_id: templateID, extra_state: state })
-      .write();
-    return true;
-  }
 
   // 通过 id 修改 条目
   editItemByID(item: ItemType): boolean {
@@ -153,6 +162,17 @@ class itemMapper {
       style_content: item.style_content,
       tags: item.tags
     }).write();
+    return true;
+  }
+
+
+  // plugin-douban 需要的方法
+  // 通过 template 和状态删除 所有条目
+  deleteItemByTemplateIDAndState(templateID: string, state: string): boolean {
+    this.db.read().get('items')
+      // @ts-ignore
+      .remove({ template_id: templateID, extra_state: state })
+      .write();
     return true;
   }
 }

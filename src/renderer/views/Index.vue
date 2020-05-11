@@ -4,14 +4,12 @@
       <el-col :span="7" :lg="6">
         <div class="siderbar">
           <el-card class="siderbar-header">
-            <!-- <div class="search">
-                  <input type="text" placeholder="搜索" />
-            </div>-->
-
-            <el-input size="small" placeholder="搜索" class="input-with-select">
-              <!-- <el-button slot="append" icon="el-icon-search"></el-button> -->
-            </el-input>
-
+            <el-input
+              placeholder="请输入内容"
+              @keyup.enter.native="search"
+              prefix-icon="el-icon-search"
+              v-model="searchText"
+            ></el-input>
             <div class="siderbar-body">
               <ul>
                 <li>
@@ -39,23 +37,12 @@
                     <span class="tab-link">其它</span>
                   </router-link>
                 </li>
-                <!-- <li>
-                  <router-link class="tab-item" to="/other">
-                    <span class="tab-link" @click="test()">测试</span>
-                  </router-link>
-                </li>-->
-                <!-- <li>
-                  <router-link class="tab-item" to="/item-info">
-                    <span class="tab-link">ceui1</span>
-                  </router-link>
-                </li>-->
               </ul>
             </div>
           </el-card>
         </div>
       </el-col>
       <el-col :span="17" :lg="18">
-        <!-- <index/> -->
         <!-- <keep-alive :include="['item-list', 'tag-list', 'template-list']"> -->
         <div class="center">
           <router-view class="content"></router-view>
@@ -71,13 +58,22 @@ import { Component, Vue } from "vue-property-decorator";
 // import {createDoubanDataGetter} from "markall-douban-backup";
 @Component({})
 export default class extends Vue {
-  test() {
-    // 存储路径
-    const STORE_PATH = "douban-data-backup/";
+  searchText: string = "";
+  search() {
+    // if (this.$route.path == "/main/template") {
 
-    // let getDoubanWatchedMovies = createDoubanDataGetter("watchedMovies");
+    this.$router
+      .push({
+        path: "/main/item",
+        query: { searchText: this.searchText }
+      })
+      .catch(error => {
+        if (error.name != "NavigationDuplicated") {
+          throw error;
+        }
+      });
 
-    // getDoubanWatchedMovies("hqweay", STORE_PATH);
+    // }
   }
 }
 </script>

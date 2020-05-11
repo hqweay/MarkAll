@@ -36,6 +36,7 @@ export default class extends Vue {
     tags: []
   };
   page: number = 10;
+
   created() {
     if (this.$route.query.templateID) {
       // 通过 模板名 获取 条目
@@ -46,6 +47,12 @@ export default class extends Vue {
       // 通过 标签名 获取 条目
       this.items = itemMapper.getItemsByTagName(
         this.$route.query.tagName.toString()
+      );
+    } else if (this.$route.query.searchText) {
+      // console.log(this.$route.query.searchText);
+      // search
+      this.items = itemMapper.getItemsBySearchText(
+        this.$route.query.searchText.toString().trim()
       );
     } else {
       this.items = itemMapper.getItems();
@@ -82,7 +89,14 @@ export default class extends Vue {
   @Watch("$route")
   private onChildChanged(val: any, oldVal: any) {
     this.$store.state.view.list = "item";
-    this.items = itemMapper.getItems(); //getItemsByPage(10, 10);
+
+    if (this.$route.query.searchText) {
+      this.items = itemMapper.getItemsBySearchText(
+        this.$route.query.searchText.toString().trim()
+      );
+    } else {
+      this.items = itemMapper.getItems(); //getItemsByPage(10, 10);
+    }
   }
   notify(message: string) {
     const h = this.$createElement;

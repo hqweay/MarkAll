@@ -3,6 +3,7 @@ export function getMovieItem(movie, state) {
     "created_time": new Date().toString(),
     "updated_time": new Date().toString(),
     "template_id": "douban-movie-hqweay",
+    // 只有导入的数据才会有这个 extra_state 字段
     "extra_state": state,
     "style_content": [
       {
