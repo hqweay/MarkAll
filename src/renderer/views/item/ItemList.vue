@@ -51,9 +51,15 @@ export default class extends Vue {
     } else if (this.$route.query.searchText) {
       // console.log(this.$route.query.searchText);
       // search
-      this.items = itemMapper.getItemsBySearchText(
-        this.$route.query.searchText.toString().trim()
-      );
+
+      // 搜索 匹配全文搜索或者搜索标题
+      let searchText = this.$route.query.searchText.toString().trim();
+      if (searchText.substr(0, 5) == "mark:") {
+        searchText = searchText.substr(5, searchText.length);
+        this.items = itemMapper.getItemsBySearchFullText(searchText);
+      } else {
+        this.items = itemMapper.getItemsBySearchText(searchText);
+      }
     } else {
       this.items = itemMapper.getItems();
     }
@@ -91,9 +97,14 @@ export default class extends Vue {
     this.$store.state.view.list = "item";
 
     if (this.$route.query.searchText) {
-      this.items = itemMapper.getItemsBySearchText(
-        this.$route.query.searchText.toString().trim()
-      );
+      // 搜索 匹配全文搜索或者搜索标题
+      let searchText = this.$route.query.searchText.toString().trim();
+      if (searchText.substr(0, 5) == "mark:") {
+        searchText = searchText.substr(5, searchText.length);
+        this.items = itemMapper.getItemsBySearchFullText(searchText);
+      } else {
+        this.items = itemMapper.getItemsBySearchText(searchText);
+      }
     } else {
       this.items = itemMapper.getItems(); //getItemsByPage(10, 10);
     }

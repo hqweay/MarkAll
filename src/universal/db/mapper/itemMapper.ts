@@ -13,10 +13,8 @@ class itemMapper {
   }
   // 搜索
   getItemsBySearchText(searchText: string): Array<ItemType> {
-
     // @ts-ignore
     let items = this.db.read().get('items').filter(function (ele: any) {
-
       // console.log(ele.style_content[0].name);
       if (ele.style_content[0].value[0].toString().indexOf(searchText) !== -1) {
         return true;
@@ -24,9 +22,31 @@ class itemMapper {
         return false;
       }
     }).reverse().value();
-    // console.log(items);
     return items;
-    // return this.db.read().get('items').take(1).takeRight(5).value();
+  }
+  // 全文搜索
+  getItemsBySearchFullText(searchFullText: string): Array<ItemType> {
+    // @ts-ignore
+    let items = this.db.read().get('items').filter(function (ele: any) {
+      let flag = false;
+
+      ele.style_content.forEach((itemField: any) => {
+        if (itemField.type == "ENUM" || itemField.type == "RATE") {
+          if (itemField.value.state.toString().indexOf(searchFullText) !== -1) {
+            flag = true;
+          }
+        } else {
+          if (itemField.value.toString().indexOf(searchFullText) !== -1) {
+            flag = true;
+          }
+        }
+      });
+      if (flag) {
+        flag = false;
+        return true;
+      }
+    }).reverse().value();
+    return items;
   }
 
   getItemsByPage(page: number, pageSize: number): Array<ItemType> {
