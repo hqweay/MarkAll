@@ -106,6 +106,13 @@ const routes = [
         meta: {
           title: '豆瓣数据导入'
         },
+      }, {
+        path: 'user',
+        name: 'plugin-user',
+        component: () => import('@/views/plugin/lib/user/index.vue'),
+        meta: {
+          title: '用户'
+        },
       },
     ]
   }

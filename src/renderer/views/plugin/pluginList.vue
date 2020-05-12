@@ -1,7 +1,7 @@
 <template>
   <div class="plugin">
     <el-row class="plugin-list" :gutter="20">
-      <el-col :span="12" v-for="item in settings" :class="['plugin-item']" :key="item.id">
+      <el-col :span="8" v-for="item in settings" :class="['plugin-item']" :key="item.id">
         <el-card
           @click.native="toSetting(item)"
           :title="item.name"

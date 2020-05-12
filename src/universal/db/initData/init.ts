@@ -2,5 +2,5 @@
 const items = require('./items.json');
 const templates = require('./templates.json');
 const tags = require('./tags.json');
-
-export { items, templates, tags }
+const setting = require('./setting.json');
+export { items, templates, tags, setting }

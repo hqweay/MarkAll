@@ -44,6 +44,7 @@ function createWindow() {
     webPreferences: {
       backgroundThrottling: false, // 当页面被置于非激活窗口的时候是否停止动画和计时器
       nodeIntegration: true, // electron5.0 以上 render require is not defined
+      webSecurity: false,
     }
     // ... 以及其他可选配置
   })

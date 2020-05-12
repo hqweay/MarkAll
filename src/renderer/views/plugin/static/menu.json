@@ -1,5 +1,10 @@
 [
   {
+    "type": "user",
+    "name": "用户",
+    "id": "user"
+  },
+  {
     "type": "setting",
     "name": "设置",
     "id": "setting"

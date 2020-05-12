@@ -9,7 +9,7 @@ import { APP_PATH } from '#/static/appPath'
 import { Logger, loggerEnum } from '../utlis/logger';
 
 // 引入初始化数据
-import { items, templates, tags } from "#/db/initData/init"
+import { items, templates, tags, setting } from "#/db/initData/init"
 
 const APP = process.type === 'renderer' ? remote.app : app; // 根据process.type来分辨在哪种模式使用哪种模块
 
@@ -51,6 +51,9 @@ class DB {
     }
     if (!this.db.has('items').value()) {
       this.db.set('items', items).write();
+    }
+    if (!this.db.has('setting').value()) {
+      this.db.set('setting', setting).write();
     }
   }
   // 暂且不管，后面用上。

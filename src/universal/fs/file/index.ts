@@ -37,7 +37,6 @@ function getImageNameHelper(fileName: string, saveFolder: string, fileNameArr: s
 
 // file : [name, path]
 async function copyImageToUserByFile(file: any, saveFolder: string) {
-
   hasImageBySaveFolder(saveFolder);
   //@ts-ignore
   let newImage = await getImageName(file.name, saveFolder).then(function (newFileName) {
@@ -55,8 +54,23 @@ async function copyImageToUserByFile(file: any, saveFolder: string) {
       global.logger.error(err)
     }
   });
-
   return newImage;
 }
 
-export { copyImageToUserByFile }
+async function copyAvatarToUser(file: any) {
+
+  let avatarPath = APP_PATH.PLUGIN_PATH + "user/avatar." + file.name.split(".")[1];
+
+  try {
+    fs.emptyDir(APP_PATH.PLUGIN_PATH + "user").then(() => {
+      fs.copySync(file.path, avatarPath);
+    });
+
+
+  } catch (err) {
+    global.logger.error(err)
+  }
+  return avatarPath;
+}
+
+export { copyImageToUserByFile, copyAvatarToUser }

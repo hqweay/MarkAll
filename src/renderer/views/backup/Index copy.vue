@@ -4,8 +4,11 @@
       <el-col :span="7" :lg="6">
         <div class="siderbar">
           <div class="avatar">
-            <!-- <el-image style="width: 100px; height: 100px" :src="'file:/'+ user.avatar"></el-image> -->
-            <el-image style="width:100px" :src="'file://'+ user.avatar"></el-image>
+            <el-image
+              style="width: 100px; height: 100px"
+              :src="require('@/assets/images/logo.png')"
+              :fit="fit"
+            ></el-image>
           </div>
           <el-card class="siderbar-header">
             <el-input
@@ -60,19 +63,9 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 // import {createDoubanDataGetter} from "markall-douban-backup";
-import { ipcRenderer } from "electron";
-import settingMapper from "#/db/mapper/settingMapper";
 @Component({})
 export default class extends Vue {
   searchText: string = "";
-  user: any = {};
-  created() {
-    this.user = settingMapper.getUser();
-
-    ipcRenderer.on("eidtUserInfo", (event, message) => {
-      this.user = settingMapper.getUser();
-    });
-  }
   search() {
     // if (this.$route.path == "/main/template") {
 
@@ -94,29 +87,31 @@ export default class extends Vue {
 
 <style scoped lang="scss">
 #main {
+  // width: 100%;
+  display: flex;
   flex-direction: column;
   color: black;
 
+  // .content ,
   .siderbar {
-    position: fixed;
+    // position: fixed;
   }
   .siderbar {
     top: 15%;
-
+    // left: 5%;
     left: 60px;
     bottom: 0;
-
+    // bottom: -10px;
     border-color: aquamarine;
-
-    .avatar {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+    justify-content: center;
+    // .avatar {
+    //   margin: 0 auto;
+    // }
     a {
       text-decoration: none;
     }
     .siderbar-body {
-      margin-top: 14%;
+      margin-top: 16%;
       ul {
         list-style: none;
         margin: 0;
@@ -141,5 +136,22 @@ export default class extends Vue {
       }
     }
   }
+  // .content {
+  // width: 100%;
+  // width: 800px;
+  // top: 0;
+  // bottom: 0;
+  // overflow: auto;
+  // overflow-y: scroll;
+  // overflow-x: hidden;
+  // }
+  // @media screen and (min-width: 1500px) {
+  // .content {
+  //   width: 1200px;
+  //   top: 0;
+  //   bottom: 0;
+  //   overflow: auto;
+  // }
+  // }
 }
 </style>

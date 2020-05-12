@@ -43,6 +43,8 @@ export const createPluginWindow = (pluginItem: any) => {
 
   if (pluginItem.id === "doubanData") {
     pluginWin.loadURL('http://localhost:8080/#/plugin/douban');
+  } else if (pluginItem.id === "user") {
+    pluginWin.loadURL('http://localhost:8080/#/plugin/user');
   }
   return pluginWin;
 }
