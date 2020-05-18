@@ -40,7 +40,7 @@ interface RateType {
 
 // template field
 // extra 用于 enums、rate 等记录额外信息(desprition 也迁移进来)
-interface TemplateFiledType {
+interface TemplateFieldType {
   name: string,
   type: string,
   extra: any,
@@ -49,7 +49,7 @@ interface TemplateFiledType {
 interface TemplateType {
   id: string
   name: string,
-  style: Array<TemplateFiledType>,
+  style: Array<TemplateFieldType>,
 }
 
 

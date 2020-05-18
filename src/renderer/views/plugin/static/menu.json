@@ -13,5 +13,10 @@
     "type": "plugin",
     "name": "豆瓣数据导入",
     "id": "doubanData"
+  },
+  {
+    "type": "statistics",
+    "name": "统计",
+    "id": "statistics"
   }
 ]

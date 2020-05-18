@@ -157,7 +157,7 @@ export default class extends Vue {
   };
   templateFields: any = require("./template-field");
   isEdit: boolean = false;
-  newField: TemplateFiledType = {
+  newField: TemplateFieldType = {
     name: "",
     type: "",
     extra: {}
@@ -168,8 +168,8 @@ export default class extends Vue {
     if (templateID != undefined) {
       this.template = templateMapper.getTemplateByID(templateID);
       this.oldTemplate = JSON.parse(JSON.stringify(this.template));
-    }else{
-       this.isEdit = true;
+    } else {
+      this.isEdit = true;
     }
     // console.log(templateID);
   }
@@ -220,7 +220,7 @@ export default class extends Vue {
       "updateTemplateList"
     );
   }
-  deleteTemplateField(templateField: TemplateFiledType) {
+  deleteTemplateField(templateField: TemplateFieldType) {
     this.template.style.remove(templateField);
   }
   addTemplateField() {

@@ -1,4 +1,4 @@
-export function resolveTemplateField(item: any, field: TemplateFiledType): any {
+export function resolveTemplateField(item: any, field: TemplateFieldType): any {
   if (field.type === "ENUM") {
     let fieldEnums = field.extra.enums;
     item.style_content.push({
