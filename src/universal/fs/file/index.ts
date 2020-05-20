@@ -42,7 +42,7 @@ async function copyImageToUserByFile(file: any, saveFolder: string) {
   let newImage = await getImageName(file.name, saveFolder).then(function (newFileName) {
     try {
       fs.copySync(file.path, APP_PATH.IMAGE_PATH + saveFolder + '/' + newFileName);
-      console.log('image copied success!');
+      console.log("image copied success!");
       let newFilePath = APP_PATH.IMAGE_PATH + saveFolder + '/' + newFileName;
       let newImage = {
         "name": newFileName,

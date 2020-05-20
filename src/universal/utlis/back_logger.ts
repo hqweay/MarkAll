@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 import fs from 'fs-extra';
 import { app, remote } from 'electron';
 
@@ -25,21 +26,21 @@ class Logger {
     this.type = loggerType;
     fs.ensureFile(errorFilePath)
       .then(() => {
-        console.log("error log created success!")
+        console.log('error log created success!')
       })
       .catch(err => {
         console.error(err)
       })
     fs.ensureFile(infoFilePath)
       .then(() => {
-        console.log("info log created success!")
+        console.log('info log created success!')
       })
       .catch(err => {
         console.error(err)
       })
     fs.ensureFile(warnFilePath)
       .then(() => {
-        console.log("warn log created success!")
+        console.log('warn log created success!')
       })
       .catch(err => {
         console.error(err)

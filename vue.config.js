@@ -51,7 +51,7 @@ module.exports = {
           target: 'nsis'
         },
         nsis: {
-          shortcutName: 'PicGo',
+          shortcutName: 'MarkAll',
           oneClick: false,
           allowToChangeInstallationDirectory: true
         },
