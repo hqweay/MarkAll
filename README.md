@@ -2,7 +2,9 @@
 
 此项目用于记录（标记）书影音...一切！（你可以自己添加想要标记的模板）
 
-下载：[linux_amd64](https://github.com/hqweay/MarkAll/releases/tag/1.0.0)
+下载：[linux_x64](https://github.com/hqweay/MarkAll/releases/download/1.0.0/MarkAll-1.0.0.AppImage)
+
+[windows_x64](https://github.com/hqweay/MarkAll/releases/download/1.0.0/MarkAll.Setup.1.0.0.exe)
 
 ## 效果
 
