@@ -1,29 +1,62 @@
-# 说明
+## 说明
 
 此项目用于记录（标记）书影音...一切！（你可以自己添加想要标记的模板）
 
 ## 效果
 
-### 插件 —— 导入豆瓣标记数据
+### 核心功能
 
-![](https://github.com/hqweay/MarkAll/blob/dev/examples/import-douban-data.png?raw=true)
+#### 首页&条目列表
 
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/index&itemlist.png?raw=true)
 
-### 首页
+#### 搜索&全文搜索
 
-![](https://github.com/hqweay/MarkAll/blob/dev/examples/index.png?raw=true)
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/fulltext-search.png?raw=true)
 
-### 条目
+#### 条目信息&编辑
 
 ![](https://github.com/hqweay/MarkAll/blob/dev/examples/item-info.png?raw=true)
 
+---
+
 ![](https://github.com/hqweay/MarkAll/blob/dev/examples/item-edit.png?raw=true)
 
-### 模板
+#### 模板信息&编辑
 
 ![](https://github.com/hqweay/MarkAll/blob/dev/examples/template-info.png?raw=true)
 
+---
+
 ![](https://github.com/hqweay/MarkAll/blob/dev/examples/template-edit.png?raw=true)
+
+### 插件
+
+#### 插件列表
+
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/plugin-list.png?raw=true)
+
+#### 引导页
+
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/guide.png?raw=true)
+
+#### 用户
+
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/plugin-user.png?raw=true)
+
+#### 豆瓣数据导入
+
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/plugin-douban.png?raw=true)
+
+#### 豆瓣数据导出
+
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/data-export.png?raw=true)
+
+#### 统计
+
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/statistics-01.png?raw=true)
+
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/statistics-02.png?raw=true)
 
 ## 使用库
 
@@ -38,13 +71,3 @@
 yarn
 yarn electron:serve
 ```
-
-## 其它
-
-### 0.0.0
-
-仓库：[https://github.com/hqweay/MarkAll/tree/master](https://github.com/hqweay/MarkAll/tree/master)
-
-软件包：[二进制文件](https://github.com/hqweay/MarkAll/releases) 
-
-效果：[截图](https://github.com/hqweay/MarkAll/tree/master/examples)
