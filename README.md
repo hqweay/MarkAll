@@ -2,6 +2,8 @@
 
 此项目用于记录（标记）书影音...一切！（你可以自己添加想要标记的模板）
 
+下载：[linux_amd64](https://github.com/hqweay/MarkAll/releases/tag/1.0.0)
+
 ## 效果
 
 ### 核心功能
@@ -71,3 +73,7 @@
 yarn
 yarn electron:serve
 ```
+
+## 说明
+
+开发过程中参考：[Molunerfinn/PicGo](https://github.com/Molunerfinn/PicGo)
