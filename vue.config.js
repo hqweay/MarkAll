@@ -56,7 +56,7 @@ module.exports = {
           allowToChangeInstallationDirectory: true
         },
         linux: {
-          icon: 'build/icons/'
+          icon: 'build/icons/icon'
         }
       }
     }

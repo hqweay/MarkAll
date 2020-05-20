@@ -40,18 +40,22 @@ export const createPluginWindow = (pluginItem: any) => {
     pluginWin.show();
   }
 
+  const isDevelopment = process.env.NODE_ENV !== 'production'
+  const itemWinURL = isDevelopment
+    ? (process.env.WEBPACK_DEV_SERVER_URL as string)
+    : `markall://./`
 
   if (pluginItem.id === "doubanData") {
-    pluginWin.loadURL('http://localhost:8080/#/plugin/douban');
+    pluginWin.loadURL(itemWinURL + '#/plugin/douban');
   } else if (pluginItem.id === "user") {
-    pluginWin.loadURL('http://localhost:8080/#/plugin/user');
+    pluginWin.loadURL(itemWinURL + '#/plugin/user');
   } else if (pluginItem.id === "statistics") {
-    pluginWin.loadURL('http://localhost:8080/#/plugin/statistics');
+    pluginWin.loadURL(itemWinURL + '#/plugin/statistics');
   } else if (pluginItem.id === "export") {
-    pluginWin.loadURL('http://localhost:8080/#/plugin/export');
+    pluginWin.loadURL(itemWinURL + '#/plugin/export');
   } else if (pluginItem.id === "setting") {
     pluginWin.setSize(1000, 800);
-    pluginWin.loadURL('http://localhost:8080/#/guide');
+    pluginWin.loadURL(itemWinURL + '#/guide');
   }
   return pluginWin;
 }

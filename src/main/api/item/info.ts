@@ -48,12 +48,20 @@ export const createItemWindow = (type: string, data: any) => {
   } else {
     itemWin.show();
   }
+
+  const isDevelopment = process.env.NODE_ENV !== 'production'
+  const itemWinURL = isDevelopment
+    ? (process.env.WEBPACK_DEV_SERVER_URL as string)
+    : `markall://./`
+
+
+
   if (type === "add") {
     // 添加元素
     let template = data;
-    itemWin.loadURL('http://localhost:8080/#/item/add/' + template.id);
+    itemWin.loadURL(itemWinURL + '#/item/add/' + template.id);
   } else {
-    itemWin.loadURL('http://localhost:8080/#/item/info/' + data.id);
+    itemWin.loadURL(itemWinURL + '#/item/info/' + data.id);
   }
   return itemWin;
 }

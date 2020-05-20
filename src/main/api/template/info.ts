@@ -39,13 +39,18 @@ export const createTemplateWindow = (type: string, template: any) => {
   } else {
     templateWin.show();
   }
+  const isDevelopment = process.env.NODE_ENV !== 'production'
+  const itemWinURL = isDevelopment
+    ? (process.env.WEBPACK_DEV_SERVER_URL as string)
+    : `markall://./`
+
   if (type === "add") {
     // 添加元素
 
-    templateWin.loadURL('http://localhost:8080/#/template/add/');
+    templateWin.loadURL(itemWinURL + '#/template/add/');
   } else {
-    // templateWin.loadURL('http://localhost:8080/#/template/info/' + template.name);
-    templateWin.loadURL('http://localhost:8080/#/template/info/' + template.id);
+    // templateWin.loadURL(itemWinURL + '#/template/info/' + template.name);
+    templateWin.loadURL(itemWinURL + '#/template/info/' + template.id);
   }
   return templateWin;
 }
