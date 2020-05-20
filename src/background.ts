@@ -129,5 +129,3 @@ require('~/main/application/mainMenu')
 
 // 应用 ipc 交互
 require('~/main/ipc/ipcMain')
-require('~/main/ipc/notify')
-require('~/main/ipc/plugin')

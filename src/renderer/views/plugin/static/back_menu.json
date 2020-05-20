@@ -5,6 +5,11 @@
     "id": "user"
   },
   {
+    "type": "setting",
+    "name": "设置",
+    "id": "setting"
+  },
+  {
     "type": "plugin",
     "name": "豆瓣数据导入",
     "id": "doubanData"
@@ -13,10 +18,5 @@
     "type": "statistics",
     "name": "统计",
     "id": "statistics"
-  },
-  {
-    "type": "export",
-    "name": "数据导出",
-    "id": "export"
   }
 ]

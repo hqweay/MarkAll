@@ -120,6 +120,13 @@ const routes = [
         meta: {
           title: '统计'
         },
+      }, {
+        path: 'export',
+        name: 'plugin-export',
+        component: () => import('@/views/plugin/lib/export/index.vue'),
+        meta: {
+          title: '数据导出'
+        },
       },
     ]
   }

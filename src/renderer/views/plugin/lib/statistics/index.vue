@@ -49,7 +49,7 @@ import "echarts/lib/chart/line";
 import "echarts/lib/chart/pie";
 
 @Component({
-  name: "plugin-douban"
+  name: "plugin-statistics"
 })
 export default class extends Vue {
   statisticsInfo: any = {};

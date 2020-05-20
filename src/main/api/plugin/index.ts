@@ -47,6 +47,8 @@ export const createPluginWindow = (pluginItem: any) => {
     pluginWin.loadURL('http://localhost:8080/#/plugin/user');
   } else if (pluginItem.id === "statistics") {
     pluginWin.loadURL('http://localhost:8080/#/plugin/statistics');
+  } else if (pluginItem.id === "export") {
+    pluginWin.loadURL('http://localhost:8080/#/plugin/export');
   }
   return pluginWin;
 }
