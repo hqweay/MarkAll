@@ -8,12 +8,43 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/main', // 跳转
+    redirect: '/guide', // 跳转
     name: 'index',
+  },
+  {
+    path: '/guide',
+    name: 'guide-page',
+    component: () => import('@/views/guide/index.vue'),
+    redirect: '/guide/index',
+    children: [
+      {
+        path: 'index',
+        name: 'guide',
+        component: () => import('@/views/guide/guide.vue'),
+        meta: {
+          title: '引导页'
+        },
+      }, {
+        path: 'item',
+        name: 'item',
+        component: () => import('@/views/guide/item.vue'),
+        meta: {
+          title: '核心功能'
+        },
+      }, {
+        path: 'plugin',
+        name: 'plugin',
+        component: () => import('@/views/guide/plugin.vue'),
+        meta: {
+          title: '插件'
+        },
+      },
+    ]
   }, {
     path: '/main',
     name: 'main-page',
     component: () => import('@/views/Index.vue'),
+    redirect: '/main/item',
     children: [
       {
         // 测试用
@@ -126,6 +157,13 @@ const routes = [
         component: () => import('@/views/plugin/lib/export/index.vue'),
         meta: {
           title: '数据导出'
+        },
+      }, {
+        path: 'setting',
+        name: 'plugin-setting',
+        component: () => import('@/views/plugin/lib/setting/index.vue'),
+        meta: {
+          title: '设置'
         },
       },
     ]

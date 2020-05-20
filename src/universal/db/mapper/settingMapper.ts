@@ -11,6 +11,12 @@ class settingMapper {
   setUser(user: any) {
     this.db.read().set('setting.user', user).write();
   }
+  isGuide() {
+    return this.db.read().get('setting').value().user.guide;
+  }
+  setGuide(guide: boolean) {
+    this.db.read().set('setting.user.guide', guide).write();
+  }
 
 
 

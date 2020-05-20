@@ -1,5 +1,10 @@
 [
   {
+    "type": "setting",
+    "name": "引导页",
+    "id": "setting"
+  },
+  {
     "type": "user",
     "name": "用户",
     "id": "user"
