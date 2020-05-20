@@ -2,7 +2,7 @@ import { APP_PATH } from '#/static/appPath'
 
 import itemMapper from "#/db/mapper/itemMapper";
 import templateMapper from "#/db/mapper/templateMapper";
-import { getMovieItem } from "./resolveDoubanData";
+import { getMovieItem, getBookItem, getGameItem, getMusicItem } from "./resolveDoubanData";
 
 let { createDoubanDataGetter, saveDoubanData, DoubanTypeEnum } = require('douban-getter');
 // 存储路径

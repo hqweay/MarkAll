@@ -4,6 +4,9 @@ import DB from '#/db/datastore';
 class tagMapper {
   private db = DB;
 
+  getTagsCount(): number {
+    return this.db.read().get('tags').size().value();
+  }
   // 获取 标签
   getTags(): Array<string> {
     return this.db.read().get('tags').reverse().value()

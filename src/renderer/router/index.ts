@@ -113,6 +113,13 @@ const routes = [
         meta: {
           title: '用户'
         },
+      }, {
+        path: 'statistics',
+        name: 'plugin-statistics',
+        component: () => import('@/views/plugin/lib/statistics/index.vue'),
+        meta: {
+          title: '统计'
+        },
       },
     ]
   }

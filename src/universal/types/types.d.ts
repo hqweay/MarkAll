@@ -62,8 +62,8 @@ interface ItemFieldType {
 // item
 interface ItemType {
   id: string,
-  created_time: string,
-  updated_time: string,
+  created_time: any,
+  updated_time: any,
   template_id: string,
   style_content: Array<ItemFieldType>,
   tags: Array<string>,

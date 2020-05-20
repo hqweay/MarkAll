@@ -3,6 +3,32 @@ import DB from '#/db/datastore';
 
 class itemMapper {
   private db = DB;
+  getItemsCount(): number {
+    return this.db.read().get('items').size().value();
+  }
+  getItemsGroupByTemplate(): any {
+    // @ts-ignore
+    return this.db.read().get('items').groupBy("template_id").value();
+  }
+  getItemsGroupByCteatedYear(): any {
+    // @ts-ignore
+    return this.db.read().get('items').groupBy("created_time.year").value();
+  }
+  getItemsGroupByCteatedMonth(): any {
+    // @ts-ignore
+    return this.db.read().get('items').groupBy("created_time.month").value();
+  }
+  getItemsGroupByCteatedDay(): any {
+    // @ts-ignore
+    return this.db.read().get('items').groupBy("created_time.day").value();
+  }
+  getItemsGroupByCteatedDate(): any {
+    // @ts-ignore
+    return this.db.read().get('items').groupBy(function (ele) {
+      return ele.created_time.year + "年" + ele.created_time.month + "月" + ele.created_time.day + "日"
+    }).value();
+
+  }
   // 获取 条目
   getItems(): Array<ItemType> {
     // 按创建时间逆序 .sortBy('created_time')

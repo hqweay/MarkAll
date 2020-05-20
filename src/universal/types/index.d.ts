@@ -8,5 +8,9 @@ declare module '@/utils/jsonEditor/JsonEditor';
 
 declare module '@/utils/jsonEditor/templatePraseSchema';
 
+
+
+declare module 'vue-echarts';
+
 // declare module '@json-editor/json-editor'; 
 

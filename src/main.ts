@@ -7,6 +7,14 @@ import store from './renderer/store';
 import ElementUI from 'element-ui'; //引入js
 import './renderer/assets/styles/element-variables.scss'; //引入自定义样式
 import { loggerEnum, Logger } from '#/utlis/logger';
+import ECharts from 'vue-echarts' // refers to components/ECharts.vue in webpack
+
+// 手动引入 ECharts 各模块来减小打包体积
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/tooltip'
+
+// 注册组件后即可使用
+Vue.component('v-chart', ECharts)
 
 // 挂载 logger 至 Vue
 Vue.prototype.$logger = new Logger(loggerEnum.render);

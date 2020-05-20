@@ -5,7 +5,11 @@
         <div class="siderbar">
           <div class="avatar">
             <!-- <el-image style="width: 100px; height: 100px" :src="'file:/'+ user.avatar"></el-image> -->
-            <el-image style="width:100px" :src="'file://'+ user.avatar"></el-image>
+            <el-image style="width:100px" :src="'file://'+ user.avatar">
+              <div slot="error" class="image-slot">
+                <el-image :src="require('@/assets/images/logo.png')"></el-image>
+              </div>
+            </el-image>
           </div>
           <el-card class="siderbar-header">
             <el-input

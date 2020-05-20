@@ -159,16 +159,32 @@ import _ from "lodash";
 export default class extends Vue {
   item: ItemType = {
     id: "",
-    created_time: "",
-    updated_time: "",
+    created_time: {
+      year: 2020,
+      month: 4,
+      day: 3
+    },
+    updated_time: {
+      year: 2020,
+      month: 4,
+      day: 3
+    },
     template_id: "",
     style_content: [],
     tags: []
   };
   oldItem: ItemType = {
     id: "",
-    created_time: "",
-    updated_time: "",
+    created_time: {
+      year: 2020,
+      month: 4,
+      day: 3
+    },
+    updated_time: {
+      year: 2020,
+      month: 4,
+      day: 3
+    },
     template_id: "",
     style_content: [],
     tags: []
@@ -193,8 +209,16 @@ export default class extends Vue {
       this.templateName = this.getTemplateNameByID(templateID);
       this.item = {
         id: "",
-        created_time: "",
-        updated_time: "",
+        created_time: {
+          year: 2020,
+          month: 4,
+          day: 3
+        },
+        updated_time: {
+          year: 2020,
+          month: 4,
+          day: 3
+        },
         template_id: templateID,
         style_content: [],
         tags: []
@@ -260,9 +284,14 @@ export default class extends Vue {
 
   updateItem() {
     // 编辑
+    let date = new Date();
     if (this.item.id.toString() !== "") {
       // update
-      this.item.updated_time = new Date().toString();
+      this.item.updated_time = {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        day: date.getDate()
+      };
       if (itemMapper.editItemByID(this.item)) {
         this.$message({
           type: "info",
@@ -276,7 +305,12 @@ export default class extends Vue {
       }
     } else {
       // add
-      this.item.created_time = new Date().toString();
+      this.item.created_time = {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        day: date.getDate()
+      };
+
       if (itemMapper.addItem(this.item)) {
         this.$message({
           type: "info",

@@ -3,6 +3,9 @@ import DB from '#/db/datastore';
 
 class templateMapper {
   private db = DB;
+  getTemplatesCount(): number {
+    return this.db.read().get('templates').size().value();
+  }
   // 获取 模板
   getTemplates() {
     return this.db.read().get('templates').reverse().value()

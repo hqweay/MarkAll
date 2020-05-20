@@ -1,7 +1,16 @@
 export function getMovieItem(movie, state) {
+  let date = new Date();
   return {
-    "created_time": new Date().toString(),
-    "updated_time": new Date().toString(),
+    "created_time": {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
+    },
+    "updated_time": {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
+    },
     "template_id": "douban-movie-hqweay",
     // 只有导入的数据才会有这个 extra_state 字段
     "extra_state": state,
@@ -73,9 +82,19 @@ export function getMovieItem(movie, state) {
 }
 
 export function getBookItem(book, state) {
+  let date = new Date();
+
   return {
-    "created_time": new Date().toString(),
-    "updated_time": new Date().toString(),
+    "created_time": {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
+    },
+    "updated_time": {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
+    },
     "template_id": "douban-book-hqweay",
     "extra_state": state,
     "style_content": [
@@ -152,9 +171,19 @@ export function getBookItem(book, state) {
 }
 
 export function getMusicItem(music, state) {
+  let date = new Date();
+
   return {
-    "created_time": new Date().toString(),
-    "updated_time": new Date().toString(),
+    "created_time": {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
+    },
+    "updated_time": {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
+    },
     "template_id": "douban-music-hqweay",
     "extra_state": state,
     "style_content": [
@@ -231,9 +260,19 @@ export function getMusicItem(music, state) {
 }
 
 export function getGameItem(game, state) {
+  let date = new Date();
+
   return {
-    "created_time": new Date().toString(),
-    "updated_time": new Date().toString(),
+    "created_time": {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
+    },
+    "updated_time": {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
+    },
     "template_id": "douban-game-hqweay",
     "extra_state": state,
     "style_content": [

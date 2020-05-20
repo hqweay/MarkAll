@@ -93,10 +93,19 @@ export default class extends Vue {
       lock: true,
       text: " 正在尝试获取并导入数据..."
     });
-    importDoubanData(this.douban).then(() => {
-      console.log("导入成功");
-      loading.close();
-    });
+    importDoubanData(this.douban)
+      .then(() => {
+        console.log("导入成功");
+      })
+      .finally(() => {
+        loading.close();
+      })
+      .catch((err: any) => {
+        this.$message({
+          type: "error",
+          message: "网络问题"
+        });
+      });
 
     // 浏览器端会报错，到 background 使用
     // ipcRenderer.send("importDouban", this.douban);
