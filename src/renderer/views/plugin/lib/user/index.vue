@@ -10,7 +10,11 @@
           :show-file-list="false"
           multiple
         >
-          <el-image style="height:100%" :src="'file://'+ avatar"></el-image>
+          <el-image style="height:100%" :src="'file://'+ avatar">
+            <div slot="error" class="image-slot">
+              <el-image :src="require('@/assets/images/logo.png')"></el-image>
+            </div>
+          </el-image>
         </el-upload>
       </div>
       <div class="intro">
