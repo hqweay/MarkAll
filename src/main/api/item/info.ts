@@ -52,7 +52,7 @@ export const createItemWindow = (type: string, data: any) => {
   const isDevelopment = process.env.NODE_ENV !== 'production'
   const itemWinURL = isDevelopment
     ? (process.env.WEBPACK_DEV_SERVER_URL as string)
-    : `markall://./`
+    : "markall://./index.html"
 
 
 
