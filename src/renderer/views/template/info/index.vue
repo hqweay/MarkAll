@@ -2,7 +2,7 @@
   <div class="template-info">
     <el-backtop :visibility-height="50"></el-backtop>
     <!-- 编辑 -->
-    <div class="edit" @click="isEdit=isEdit==true?false:true">
+    <div class="edit" @click="isEdit = isEdit==true?false:true">
       <i class="el-icon-edit-outline" v-show="!isEdit"></i>
       <i class="el-icon-check" v-show="isEdit"></i>
     </div>
@@ -119,7 +119,12 @@
             <template slot="prepend">最大</template>
           </el-input>
 
-          <div class="extra-enum" v-if="newField.type == 'ENUM'">
+          <div class="extra-enum" v-if="newField.type === 'ENUM'">
+            <!-- <tagTemplate
+              :isEdit="isEdit"
+              @updateItem="updateItemTags"
+              v-bind:tags="newField.extra.enums"
+            ></tagTemplate>-->
             <tagTemplate
               :isEdit="isEdit"
               @updateItem="updateItemTags"
@@ -160,7 +165,9 @@ export default class extends Vue {
   newField: TemplateFieldType = {
     name: "",
     type: "",
-    extra: {}
+    extra: {
+      enums: []
+    }
   };
 
   created() {
@@ -181,6 +188,10 @@ export default class extends Vue {
       this.updateTemplate();
     }
   }
+  updateItemTags() {
+    console.log("try");
+  }
+
   async updateEnums(newEnums: Array<string>) {
     // 子组件的 prop 改动后，父组件的值也改动了……
     // 先这样吧，不用在这重新拿值
